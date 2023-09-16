@@ -10,7 +10,7 @@ const TrendingFilter = () => {
         <button>Hotel</button>
       </li>
       <li>
-        <button>Activity</button>
+        <button>Entertainment</button>
       </li>
       <li>
         <button>Rental</button>
