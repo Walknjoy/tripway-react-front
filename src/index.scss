@@ -11,7 +11,6 @@
 }
 .main-section {
   padding-top: 80px;
-  background: var(--background);
 }
 .container-fluid {
   padding: 0 25px;
@@ -20,18 +19,12 @@
   }
 }
 
-.home-head {
-  padding: 30px 0;
-  @include xs {
-    padding: 20px 0;
-  }
-}
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
   line-height: 1.5;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .row {
