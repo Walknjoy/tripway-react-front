@@ -1,0 +1,222 @@
+@import '../../css-config/mixins.scss';
+.sticky-header {
+  background-color: #000;
+  height: 80px;
+  padding: 5px 0;
+  z-index: 99;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  &.fixed-header {
+    transform: translateY(-80px);
+    animation: stickyHeader 0.3s ease forwards;
+  }
+  @include flex();
+  .navbar-wrapper {
+    @include flex();
+    justify-content: space-between;
+    .right-side {
+      @include flex();
+      justify-content: flex-end;
+      ul {
+        padding: 0;
+        margin: 0;
+        @include flex();
+        @include md {
+          display: none;
+        }
+        li {
+          line-height: 50px;
+          &:hover {
+            a {
+              opacity: 0.8;
+            }
+          }
+          &.nav-item {
+            position: relative;
+
+            &:hover {
+              .nav-link {
+                svg {
+                  transform: rotate(180deg);
+                }
+              }
+              .sub-menu {
+                opacity: 1;
+                visibility: visible;
+                min-height: 60px;
+                overflow: visible;
+                transform: translateY(0px);
+              }
+            }
+          }
+          a {
+            @include flex();
+            gap: 10px;
+            padding: 10px 15px;
+            color: #fff;
+            transition: 0.4s ease-in-out;
+            font-weight: bold;
+            font-size: 16px;
+            @include lg {
+              padding: 10px;
+              font-size: 14px;
+              gap: 5px;
+            }
+            svg {
+              transition: 0.4s ease-in;
+            }
+          }
+          .sub-menu {
+            position: absolute;
+            background-color: white;
+            flex-direction: column;
+            min-width: 180px;
+            border-radius: 5px;
+            z-index: 98;
+            left: 0;
+            min-height: 0;
+            visibility: hidden;
+            overflow: hidden;
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0 8px 20px rgba(41, 124, 187, 0.075);
+            &::after {
+              border-color: transparent transparent #fff;
+              border-style: solid;
+              border-width: 0 10px 10px;
+              bottom: 100%;
+              content: '';
+              height: 0;
+              left: 15%;
+              position: absolute;
+              width: 0;
+              transition: 0.3s ease-in;
+              top: -9px;
+            }
+            li {
+              padding: 0.813rem 1.875rem;
+              width: 100%;
+              border-bottom: 1px solid #ddd;
+              line-height: 30px;
+              transition: 0.3s ease-in;
+              background-color: #fff;
+              &:first-child {
+                border-radius: 5px 5px 0 0;
+              }
+              &:last-child {
+                border-radius: 0 0 5px 5px;
+                border: none;
+              }
+              &:hover {
+                background-color: #f8f8f8;
+                a {
+                  color: #1d508d;
+                }
+              }
+              a {
+                padding: 0;
+                color: #67747c;
+                transition: 0.4s;
+                font-weight: bold;
+                font-size: 18px;
+              }
+              &.sub-menu-item {
+                position: relative;
+                padding: 0.813rem 1rem;
+
+                a {
+                  @include flex();
+                  justify-content: space-between;
+                }
+                &:hover {
+                  .sub-menu-2 {
+                    overflow: visible;
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateY(0px);
+                    min-height: 50px;
+                  }
+                  a {
+                    svg {
+                      transform: rotate(-90deg) !important;
+                    }
+                  }
+                }
+                .sub-menu-2 {
+                  top: 10px;
+                  position: absolute;
+                  background-color: white;
+                  flex-direction: column;
+                  min-width: 180px;
+                  z-index: 98;
+                  left: 180px;
+                  min-height: 0;
+                  overflow: hidden;
+                  border-radius: 5px;
+                  opacity: 0;
+                  visibility: hidden;
+                  transform: translateY(-10px);
+                  transition: 0.3s ease-in-out;
+                  li {
+                    transition: 0.4s ease-in-out;
+                    &:first-child {
+                      border-radius: 5px 5px 0 0;
+                    }
+                    &:hover {
+                      a {
+                        color: #1d508d;
+                      }
+                    }
+                    a {
+                      color: #67747c;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .login {
+        color: #fff;
+        svg {
+          height: 30px;
+          width: 20px;
+        }
+        @include md {
+          margin: 0 20px;
+        }
+        @include sm {
+          margin: 0 10px;
+        }
+      }
+      .hamburger {
+        display: none;
+        @include md {
+          display: block;
+        }
+        button {
+          background-color: transparent;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          svg {
+            width: 20px;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes stickyHeader {
+  0% {
+    transform: translateY(-80px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
