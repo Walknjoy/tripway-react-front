@@ -21,27 +21,31 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleWindowResize = () => {
-      window.innerWidth > 992 ? setOpenBar(false) : setOpenBar(true);
+      if (window.innerWidth > 992) {
+        setOpenBar(false);
+      } else {
+        return;
+      }
     };
     window.addEventListener('resize', handleWindowResize);
     handleWindowResize();
-
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
-  }, []);
+  }, [setOpenBar]);
   const handleOpen = useCallback(() => {
     setOpenBar(!openBar);
     document.body.classList.toggle('no-scroll');
     setClick(false);
     setOpenMenuIndexTwo(-1);
     setOpenMenuIndex(-1);
-  }, [openBar]);
+  }, [openBar, setOpenMenuIndex, setOpenMenuIndexTwo, setClick, setOpenBar]);
   const location = useLocation();
   const handleScroll = () => {
     const offSet = window.scrollY;
     if (offSet > 200) {
       setScrolled(true);
+      setClick(false);
     } else {
       setScrolled(false);
     }
@@ -54,7 +58,7 @@ const Header = () => {
       setOpenBar(false);
       setClick(false);
     }
-  }, [location.pathname]);
+  }, [location.pathname, setOpenBar, setClick]);
   return (
     <>
       <header className={`sticky-header ${scrolled ? 'fixed-header' : ''} `}>
