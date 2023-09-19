@@ -4,19 +4,17 @@ const TrendingFilter = () => {
   return (
     <ul className="trending-filter-list">
       <li>
-        <button className="active">Tour</button>
+        <button className="active">Entertainment</button>
       </li>
       <li>
         <button>Hotel</button>
       </li>
-      <li>
-        <button>Entertainment</button>
-      </li>
+
       <li>
         <button>Rental</button>
       </li>
       <li>
-        <button>Car</button>
+        <button>Tour</button>
       </li>
     </ul>
   );
