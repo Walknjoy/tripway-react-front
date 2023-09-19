@@ -5,9 +5,9 @@ const LazyLoadImg = ({ src, className }) => {
   return (
     <LazyLoadImage
       className={className || ''}
-      alt=""
       effect="opacity"
       src={src}
+      alt=""
     />
   );
 };
