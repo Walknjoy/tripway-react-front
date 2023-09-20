@@ -1,0 +1,80 @@
+.footer {
+  padding: 40px 0;
+  border-top: 1px #ebf0f7;
+  border-bottom: 1px #ebf0f7;
+}
+
+.footer-contact {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer--contact-number {
+  display: flex;
+}
+
+.footer--social-media ul {
+  display: flex;
+}
+
+.footer--social-media li {
+  border: 1px solid #ebf0f7;
+  margin: 5px;
+  border-width: 2px;
+  border-radius: 6.1875rem;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.footer--social-media li a {
+  color: #67747c;
+}
+
+.footer-company h4 {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-support h4 {
+  display: flex;
+  justify-content: center;
+}
+
+.mail-subs input {
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #3b444f;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 2px solid #ebf0f7;
+  border-radius: 0.3125rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.mail-subs button {
+  display: inline-block;
+  font-weight: 500;
+  margin-left: 8px;
+  color: white;
+  background-color: #297cbb;
+  border-color: #297cbb;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.3125rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.copyright-navbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-navbar ul {
+  display: flex;
+}
+.footer-navbar ul li {
+  margin: 5px;
+  font-size: 15px;
+}/*# sourceMappingURL=Footer.css.map */

@@ -1,0 +1,95 @@
+.language {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+@media only screen and (max-width: 575.99px) {
+  .language {
+    justify-content: center;
+    width: 100%;
+  }
+}
+.language .select-btn {
+  height: 50px;
+  width: 50px;
+  border-radius: 4px;
+  border: 0;
+  outline: 0;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  justify-content: center;
+  background: transparent;
+}
+@media only screen and (max-width: 575.99px) {
+  .language .select-btn {
+    width: 100%;
+  }
+}
+.language .select-list {
+  padding: 0;
+  position: absolute;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  top: 50px;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+@media only screen and (max-width: 575.99px) {
+  .language .select-list {
+    width: 100px !important;
+    right: 0;
+  }
+}
+.language .select-list:after {
+  border-color: transparent transparent #fff;
+  border-style: solid;
+  border-width: 0 10px 10px;
+  bottom: 100%;
+  height: 0;
+  right: 20px;
+  position: absolute;
+  width: 0;
+  transition: 0.3s ease-in;
+  top: -9px;
+  z-index: 100;
+  content: "";
+}
+@media only screen and (max-width: 991.99px) {
+  .language .select-list {
+    display: block !important;
+  }
+}
+@media only screen and (max-width: 575.99px) {
+  .language .select-list {
+    width: 100%;
+  }
+}
+.language .select-list li {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd !important;
+  line-height: 28px !important;
+  text-transform: capitalize;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 4px;
+  transition: 0.3s ease-in-out;
+}
+.language .select-list li span {
+  font-weight: bold;
+  color: #67747c;
+  font-size: 16px;
+}
+.language .select-list li:hover {
+  color: #1d508d;
+  background-color: #f9f9f9;
+}
+.language .select-list li:last-child {
+  border: none !important;
+}/*# sourceMappingURL=Language.css.map */

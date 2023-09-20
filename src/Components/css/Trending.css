@@ -1,0 +1,188 @@
+#trending_section {
+  padding: 30px 0;
+  background: #f7f7fb;
+}
+#trending_section .trending_title {
+  margin-bottom: 30px;
+  position: relative;
+  text-align: center;
+}
+#trending_section .trending_title .horizantal {
+  width: 50px;
+  height: 4px;
+  border-radius: 1px;
+  margin: 0 auto;
+  background-color: #297cbb;
+}
+#trending_section .trending_title h3 {
+  font-size: 28px;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  color: #3b444f;
+}
+#trending_section .trending-filter-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+#trending_section .trending-filter-list li {
+  list-style: none;
+}
+#trending_section .trending-filter-list li button {
+  background-color: #fff;
+  padding: 8px 24px;
+  border: 0;
+  color: #3b444f;
+  font-weight: bold;
+  text-transform: capitalize;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  border-radius: 20px;
+}
+#trending_section .trending-filter-list li button.active {
+  border: 1px solid #1d508d;
+  background-color: #1d508d;
+  color: #fff;
+}
+#trending_section .trendingCard {
+  margin-top: 30px;
+}
+#trending_section .trendingCard .card {
+  border: 1px solid rgba(221, 221, 221, 0.2588235294);
+  transition: 0.3s ease-in;
+}
+#trending_section .trendingCard .card:hover {
+  box-shadow: 0px 5px 16px 0px #d0cdcd;
+  transition: 0.3s ease-out;
+}
+#trending_section .trendingCard .card:hover .card-content h3 {
+  color: #1d508d;
+  transition: 0.3s ease-in-out;
+}
+#trending_section .trendingCard .card:hover .card-image img {
+  transform: scale(1.1);
+  filter: blur(0.8px);
+  transition: 0.4s ease-out;
+}
+#trending_section .trendingCard .card .card-image {
+  width: 100%;
+  height: 200px;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  border-radius: 4px 4px 0 0;
+}
+#trending_section .trendingCard .card .card-image:after {
+  background: linear-gradient(to bottom, rgba(4, 14, 39, 0) 0%, rgba(4, 14, 39, 0.7) 100%);
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+#trending_section .trendingCard .card .card-image img {
+  border-radius: 4px 4px 0 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.4s ease-in;
+}
+#trending_section .trendingCard .card .card-image .image-content {
+  position: absolute;
+  bottom: 0;
+  padding: 10px 20px;
+  z-index: 2;
+}
+#trending_section .trendingCard .card .card-image .image-content h3 {
+  color: #fff;
+  opacity: 0.8;
+  font-size: 18px;
+}
+#trending_section .trendingCard .card .card-image .image-content ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#trending_section .trendingCard .card .card-image .image-content ul li del {
+  color: #fff;
+  opacity: 0.5;
+  font-size: 14px;
+  text-decoration: line-through !important;
+}
+#trending_section .trendingCard .card .card-image .image-content ul li span {
+  color: #fff;
+  font-size: 14px;
+}
+#trending_section .trendingCard .card .card-image .addition {
+  position: absolute;
+  top: 0;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#trending_section .trendingCard .card .card-image .addition .percent {
+  padding: 0.5rem 1.2rem;
+  color: #de4437;
+  background-color: #fff;
+  border-radius: 20px;
+}
+#trending_section .trendingCard .card .card-image .addition .featured {
+  color: #297cbb;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  background-color: #fff;
+}
+#trending_section .trendingCard .card .card-content {
+  background-color: #fff;
+  padding: 10px;
+}
+#trending_section .trendingCard .card .card-content h3 {
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-height: 1.5;
+  font-size: 16px;
+  transition: 0.3s ease-in;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  height: 3;
+}
+#trending_section .trendingCard .card .card-content h6 {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #3b444f;
+  gap: 10px;
+}
+#trending_section .trendingCard .card .card-content h6 svg {
+  font-size: 18px;
+}
+#trending_section .trendingCard .card .card-content .star-review {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+#trending_section .trendingCard .card .card-content .star-review ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+#trending_section .trendingCard .card .card-content .star-review ul li svg {
+  color: #b0d12b;
+}
+#trending_section .trendingCard .card .card-content .star-review span {
+  color: #999;
+  font-size: 14px;
+}/*# sourceMappingURL=Trending.css.map */

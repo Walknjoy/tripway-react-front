@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none !important;
+  box-sizing: border-box;
+  font-family: "Cabin", sans-serif;
+}
+
+.main-section {
+  padding-top: 80px;
+}
+
+.container-fluid {
+  padding: 0 25px;
+}
+@media only screen and (max-width: 767.99px) {
+  .container-fluid {
+    padding: 0 20px;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+.row {
+  flex-basis: 100%;
+  row-gap: 20px;
+}/*# sourceMappingURL=index.css.map */
