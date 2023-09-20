@@ -13,8 +13,8 @@ const Footer = () => {
       <div className="footer">
         <div className="container">
           <div className="row">
+              <div className='col-lg-3 col-md-6 col-sm-12'>
             <div className="footer-contact">
-              <div className='col-12 col-lg-3 col-md-4 col-sm-6'>
                 <div className="footer--contact-header">
                   <h4>Need my Travel Help?</h4>
                 </div>
@@ -31,7 +31,7 @@ const Footer = () => {
                     </p>
                   </div>
                 </div>
-                <div className="footer--contact-info">
+                <div className="footer--contact-info" >
                   <h4>Contact Info</h4>
                   <p>PO Box CT16122 Collins Street West, Victoria 8007,Australia.</p>
                 </div>
@@ -44,7 +44,8 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-              <div className="footer-company">
+            </div>
+              <div className="footer-company col-lg-3 col-md-6 col-sm-12">
                 <h4>Company</h4>
                 <ul>
                   <li><a href="#">About us</a></li>
@@ -54,7 +55,7 @@ const Footer = () => {
                   <li><a href="#">Give Us Feedbacks</a></li>
                 </ul>
               </div>
-              <div className="footer-support">
+              <div className="footer-support col-lg-3 col-md-6 col-sm-12">
                 <h4>Support</h4>
                 <ul>
                   <li><a href="#">Account</a></li>
@@ -64,7 +65,7 @@ const Footer = () => {
                   <li><a href="#">Privacy Policy</a></li>
                 </ul>
               </div>
-              <div className="footer--mailing-list">
+              <div className="footer--mailing-list col-lg-3 col-md-6 col-sm-12">
                 <h4>Mailing List</h4>
                 <p>Sign up for our mailing list to get latest updates and offers.</p>
                 <div className="mail-subs">
@@ -72,18 +73,17 @@ const Footer = () => {
                   <button type='submit'>Subscribes</button>
                 </div>
               </div>
-            </div>
           </div>
         </div>
       </div>
       <div className="footer--copyright-navbar">
         <div className="container">
-          <div className="row">
             <div className="copyright-navbar">
-              <div className="footer-copyright">
+          <div className="row">
+              <div className="footer-copyright col-md-6 col-xs-12">
                 <p>© 2022 MyTravel. All rights reserved</p>
               </div>
-              <div className="footer-navbar">
+              <div className="footer-navbar col-md-6 col-xs-12">
                 <ul>
                   <li><a href="#">Home</a></li>
                   <li><a href="#">Hotel</a></li>
