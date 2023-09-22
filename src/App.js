@@ -1,21 +1,14 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home/Home';
-import NotFound from './Pages/NotFound/NotFound';
-import Footer from './Components/Footer/Footer';
-import Header from './Components/Header/Header';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import BackToTop from './Components/BackToTop/BackToTop';
+import { ROUTES } from './Routes/Routes';
 function App() {
+  const router = createBrowserRouter(ROUTES);
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+    <>
+      <RouterProvider router={router}></RouterProvider>
       <BackToTop />
-      <Footer />
-    </Router>
+    </>
   );
 }
 
