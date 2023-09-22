@@ -41,7 +41,7 @@ const Header = () => {
     setOpenMenuIndex(-1);
   }, [openBar, setOpenMenuIndex, setOpenMenuIndexTwo, setClick, setOpenBar]);
   const location = useLocation();
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const offSet = window.scrollY;
     if (offSet > 200) {
       setScrolled(true);
@@ -49,10 +49,15 @@ const Header = () => {
     } else {
       setScrolled(false);
     }
-  };
+  }, [setClick]);
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
   useEffect(() => {
     if (location.pathname) {
       setOpenBar(false);
