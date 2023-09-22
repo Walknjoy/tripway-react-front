@@ -11,13 +11,8 @@ import SideBar from './SideBar/SideBar';
 import { mainContext } from '../../utils/ContextApi';
 
 const Header = () => {
-  const {
-    openBar,
-    setOpenBar,
-    setClick,
-    setOpenMenuIndexTwo,
-    setOpenMenuIndex,
-  } = useContext(mainContext);
+  const { openBar, setOpenBar, setClick, setOpenMenuIndex } =
+    useContext(mainContext);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleWindowResize = () => {
@@ -37,9 +32,8 @@ const Header = () => {
     setOpenBar(!openBar);
     document.body.classList.toggle('no-scroll');
     setClick(false);
-    setOpenMenuIndexTwo(-1);
     setOpenMenuIndex(-1);
-  }, [openBar, setOpenMenuIndex, setOpenMenuIndexTwo, setClick, setOpenBar]);
+  }, [openBar, setOpenMenuIndex, setClick, setOpenBar]);
   const location = useLocation();
   const handleScroll = useCallback(() => {
     const offSet = window.scrollY;
@@ -94,9 +88,7 @@ const Header = () => {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link">
-                    Tours <FaAngleDown />
-                  </NavLink>
+                  <NavLink className="nav-link">Tours</NavLink>
                   <ul className="sub-menu">
                     <li>
                       <NavLink>Lorem</NavLink>
@@ -109,58 +101,19 @@ const Header = () => {
                     </li>
                   </ul>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link">
-                    Entertainments <FaAngleDown />
-                  </NavLink>
-                  <ul className="sub-menu">
-                    <li>
-                      <NavLink>Lorem</NavLink>
-                    </li>
-                    <li>
-                      <NavLink>Lorem</NavLink>
-                    </li>
-                    <li>
-                      <NavLink>Lorem</NavLink>
-                    </li>
-                  </ul>
+                <li>
+                  <NavLink>Entertainments</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link">
                     Rental <FaAngleDown />
                   </NavLink>
                   <ul className="sub-menu">
-                    <li className="sub-menu-item">
-                      <NavLink>
-                        Cars <FaAngleDown />
-                      </NavLink>
-                      <ul className="sub-menu-2">
-                        <li>
-                          <NavLink>Lorem</NavLink>
-                        </li>
-                        <li>
-                          <NavLink>Lorem</NavLink>
-                        </li>
-                        <li>
-                          <NavLink>Lorem</NavLink>
-                        </li>
-                      </ul>
+                    <li>
+                      <NavLink>Cars</NavLink>
                     </li>
-                    <li className="sub-menu-item">
-                      <NavLink>
-                        Yachts <FaAngleDown />
-                      </NavLink>
-                      <ul className="sub-menu-2">
-                        <li>
-                          <NavLink>Lorem</NavLink>
-                        </li>
-                        <li>
-                          <NavLink>Lorem</NavLink>
-                        </li>
-                        <li>
-                          <NavLink>Lorem</NavLink>
-                        </li>
-                      </ul>
+                    <li>
+                      <NavLink>Yachts</NavLink>
                     </li>
                   </ul>
                 </li>
