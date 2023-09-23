@@ -49,7 +49,7 @@ const Register = () => {
           <label htmlFor="img">Profile Picture:</label>
           <input
             type="file"
-            id="file"
+            id="img"
             onChange={handleChange}
           />
 
