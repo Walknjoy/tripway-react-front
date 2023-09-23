@@ -88,9 +88,9 @@ const Header = () => {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link">Tours</NavLink>
+                  <NavLink className="nav-link">Tours <FaAngleDown /></NavLink>
                   <ul className="sub-menu" >
-                    <li>
+                    <li>Tours
                       <NavLink>Lorem</NavLink>
                     </li>
                     <li>
@@ -100,9 +100,6 @@ const Header = () => {
                       <NavLink>Lorem</NavLink>
                     </li>
                   </ul>
-                </li>
-                <li>
-                  <NavLink>Entertainments</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link">
@@ -116,6 +113,9 @@ const Header = () => {
                       <NavLink>Yachts</NavLink>
                     </li>
                   </ul>
+                </li>
+                <li>
+                  <NavLink>Entertainments</NavLink>
                 </li>
                 <li>
                   <NavLink>Contact us</NavLink>

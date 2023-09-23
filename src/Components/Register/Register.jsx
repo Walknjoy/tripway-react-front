@@ -1,31 +1,19 @@
 import React, { useState } from 'react';
 import './Register.scss';
 import axios from 'axios';
-import { useEffect, useRef } from 'react';
 
 const Register = () => {
-  const [imgUrl, setImgUrl] = useState('');
   const [info, setInfo] = useState({});
 
-  const cloudinaryRef = useRef();
-  const widgetRef = useRef();
-  useEffect(() => {
-    cloudinaryRef.current = window.cloudinary;
-    widgetRef.current = cloudinaryRef.current.createUploadWidget(
-      {
-        cloudName: 'dvr9fma4d',
-        uploadPreset: 'avatars',
-      },
-      function (err, result) {
-        if (!err && result && result.event === 'success') {
-          setImgUrl(result.info.secure_url);
-        }
-      }
-    );
-  }, [widgetRef]);
-
   const handleChange = (e) => {
-    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    if (e.target.type === 'file') {
+      // Handle file input separately to extract the file name
+      const fileName = e.target.files[0].name;
+      setInfo((prev) => ({ ...prev, [e.target.id]: fileName }));
+    } else {
+      // Handle other input types as before
+      setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    }
   };
 
   const handleClick = async (e) => {
@@ -33,8 +21,8 @@ const Register = () => {
     debugger
     const newUser = {
       ...info,
-      img: imgUrl,
     };
+    console.log(newUser)
     await axios.post('/auth/register', newUser);
   };
 
@@ -59,10 +47,10 @@ const Register = () => {
           <input type="text" id="phone" onChange={handleChange} />
 
           <label htmlFor="img">Profile Picture:</label>
-          <button
+          <input
             type="file"
             id="file"
-            onClick={() => widgetRef.current.open()}
+            onChange={handleChange}
           />
 
           <label htmlFor="password">Password:</label>
