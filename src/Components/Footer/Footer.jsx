@@ -1,60 +1,122 @@
-import React from 'react'
-import "./Footer.scss"
-import logo from "../../Media/logo-white.svg"
-
-const Footer = ()=> {
+import React from 'react';
+import './Footer.scss';
+import logo from '../../Media/primary-logo.jpeg';
+import { AiFillHeart, AiOutlineSend } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { GoMail } from 'react-icons/go';
+import { FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import { ImFacebook } from 'react-icons/im';
+import { BsTelephoneOutboundFill } from 'react-icons/bs';
+const Footer = () => {
   return (
-    <footer className="new_footer_area bg_color">
+    <footer className="new_footer_area">
       <div className="new_footer_top">
         <div className="container">
           <div className="row">
-            <div className="col-lg-3 col-md-6">
-              <div className="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s">
-                <h3 className="f-title f_600 t_color f_size_18">Get in Touch</h3>
-                <p>Don’t miss any updates of our new templates and extensions.!</p>
-                <form action="#" className="f_subscribe_two mailchimp" method="post" noValidate={true}>
-                  <input type="text" name="EMAIL" className="form-control memail" placeholder="Email" />
-                  <button className="btn btn_get btn_get_two" type="submit">Subscribe</button>
-                  <p className="mchimp-errmessage" style={{ display: 'none' }}></p>
-                  <p className="mchimp-sucmessage" style={{ display: 'none' }}></p>
+            <div className="col-12 col-lg-3 col-md-6">
+              <div className="company_widget">
+                <div className="logo">
+                  <img src={logo} alt="primary logo" />
+                  <h3>Walknjoy</h3>
+                </div>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex
+                  quia dolorum obcaecati provident quod sunt.
+                </p>
+                <form className="subscribe">
+                  <input type="text" name="email" placeholder="Email" />
+                  <button className="subcribe-btn" type="submit">
+                    <AiOutlineSend />
+                  </button>
                 </form>
               </div>
             </div>
-            <div className="col-lg-3 col-md-6">
-              <div className="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s">
-                <h3 className="f-title f_600 t_color f_size_18">Download</h3>
-                <ul className="list-unstyled f_list">
-                  <li><a href="#">Company</a></li>
-                  <li><a href="#">Android App</a></li>
-                  <li><a href="#">iOS App</a></li>
-                  <li><a href="#">Desktop</a></li>
-                  <li><a href="#">Projects</a></li>
-                  <li><a href="#">My tasks</a></li>
+            <div className="col-12 col-lg-3 col-md-6">
+              <div className="widget-list">
+                <h3>Main</h3>
+                <ul className="widget-items">
+                <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/hotels">Hotels</Link>
+                  </li>
+                  <li>
+                    <Link to="/tours">Tours</Link>
+                  </li>
+                  <li>
+                    <Link to="/rental">Rental</Link>
+                  </li>
+                  <li>
+                    <Link to="/yachts">Yachts</Link>
+                  </li>
+                  <li>
+                    <Link to="/cars">Cars</Link>
+                  </li>
+                  <li>
+                    <Link to="/entertainments">Enterntainments</Link>
+                  </li>
+                  <li>
+                    <Link to="/contact-use">Contact us</Link>
+                  </li>
                 </ul>
               </div>
             </div>
             <div className="col-lg-3 col-md-6">
-              <div className="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s">
-                <h3 className="f-title f_600 t_color f_size_18">Help</h3>
-                <ul className="list-unstyled f_list">
-                  <li><a href="#">FAQ</a></li>
-                  <li><a href="#">Term &amp; conditions</a></li>
-                  <li><a href="#">Reporting</a></li>
-                  <li><a href="#">Documentation</a></li>
-                  <li><a href="#">Support Policy</a></li>
-                  <li><a href="#">Privacy</a></li>
+              <div className="widget-list">
+                <h3>Help</h3>
+                <ul className="widget-items">
+                  <li>
+                    <Link to="/faq">FAQ</Link>
+                  </li>
+                  <li>
+                    <Link to="/term-conditions">Term & conditions</Link>
+                  </li>
+                  <li>
+                    <Link to="/support-policy">Support Policy</Link>
+                  </li>
+                  <li>
+                    <Link to="/privacy">Privacy</Link>
+                  </li>
                 </ul>
               </div>
             </div>
-            <div className="col-lg-3 col-md-6">
-              <div className="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s">
-                <h3 className="f-title f_600 t_color f_size_18">Team Solutions</h3>
-                <div className="f_social_icon">
-                  <a href="#" className="fab fa-facebook"></a>
-                  <a href="#" className="fab fa-twitter"></a>
-                  <a href="#" className="fab fa-linkedin"></a>
-                  <a href="#" className="fab fa-pinterest"></a>
-                </div>
+            <div className="col-12 col-lg-3 col-md-6">
+              <div className="widget-list">
+                <h3>Contact us</h3>
+                <ul className="contact-list">
+                  <li>
+                    <Link to="mailto:walknjoy@gmail.com">
+                      <GoMail /> walknjoy@gmail.com
+                    </Link>
+                  </li>
+                  <li>
+                  
+                    <Link to="tel:+994-55 262 40 37">  <BsTelephoneOutboundFill />+994-55 262 40 37</Link>
+                  </li>
+                </ul>
+                <ul className="social-list">
+                  <li>
+                    <Link to="/">
+                      <ImFacebook />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/">
+                      <FaInstagram />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/">
+                      <FaTwitter />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/">
+                      <FaLinkedinIn />
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -66,19 +128,25 @@ const Footer = ()=> {
       </div>
       <div className="footer_bottom">
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6 col-sm-7">
-              <p className="mb-0 f_400">© cakecounter Inc.. 2019 All rights reserved.</p>
+          <div className="row">
+            <div className="col-12 col-lg-6 col-md-6 col-sm-6">
+              <div className="copyright">
+                <p>© Walknjoy.. 2023 All rights reserved.</p>
+              </div>
             </div>
-            <div className="col-lg-6 col-sm-5 text-right">
-              <p>Made with <i className="icon_heart"></i> in <a href="http://cakecounter.com" target="_blank">CakeCounter</a></p>
+            <div className="col-12 col-lg-6 col-md-6 col-sm-6 text-right">
+              <div className="made_in">
+                <p>
+                  Made with <AiFillHeart /> in{' '}
+                  <Link to="https://walknjoy.com">walknjoy.com</Link>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
-

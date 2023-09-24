@@ -13,11 +13,14 @@ import { mainContext } from '../../utils/ContextApi';
 const Header = () => {
   const { openBar, setOpenBar, setClick, setOpenMenuIndex } =
     useContext(mainContext);
+  const location = useLocation();
+
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleWindowResize = () => {
       if (window.innerWidth > 992) {
         setOpenBar(false);
+        document.body.classList.remove('no-scroll');
       } else {
         return;
       }
@@ -34,7 +37,6 @@ const Header = () => {
     setClick(false);
     setOpenMenuIndex(-1);
   }, [openBar, setOpenMenuIndex, setClick, setOpenBar]);
-  const location = useLocation();
   const handleScroll = useCallback(() => {
     const offSet = window.scrollY;
     if (offSet > 200) {
@@ -69,10 +71,10 @@ const Header = () => {
             <div className="right-side">
               <ul className="nav-list">
                 <li>
-                  <NavLink>Home</NavLink>
+                  <NavLink to="/">Home</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link">
+                  <NavLink className="nav-link" to="/hotels">
                     Hotels <FaAngleDown />
                   </NavLink>
                   <ul className="sub-menu">
@@ -88,9 +90,11 @@ const Header = () => {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link">Tours <FaAngleDown /></NavLink>
-                  <ul className="sub-menu" >
-                    <li>Tours
+                  <NavLink className="nav-link" to="/tours">
+                    Tours <FaAngleDown />
+                  </NavLink>
+                  <ul className="sub-menu">
+                    <li>
                       <NavLink>Lorem</NavLink>
                     </li>
                     <li>
@@ -102,30 +106,36 @@ const Header = () => {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link">
+                  <NavLink className="nav-link" to="/rental">
                     Rental <FaAngleDown />
                   </NavLink>
                   <ul className="sub-menu">
                     <li>
-                      <NavLink>Cars</NavLink>
+                      <NavLink to="/cars">Cars</NavLink>
                     </li>
                     <li>
-                      <NavLink>Yachts</NavLink>
+                      <NavLink to="/yachts">Yachts</NavLink>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <NavLink>Entertainments</NavLink>
+                  <NavLink to="/entertainment">Entertainments</NavLink>
                 </li>
                 <li>
-                  <NavLink>Contact us</NavLink>
+                  <NavLink to="/contact-us">Contact us</NavLink>
                 </li>
               </ul>
               <div id="language">
                 <Language />
               </div>
-              <Link to="" className="login">
+              <Link to="/user-login" className="login">
                 <FiLogIn />
+                {/* <div className="login-avatar">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/21/21104.png"
+                    alt=""
+                  />
+                </div> */}
               </Link>
               <div className="hamburger">
                 <button onClick={handleOpen}>

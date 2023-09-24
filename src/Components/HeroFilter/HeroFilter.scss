@@ -4,4 +4,14 @@
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+  &:after {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    content: '';
+  }
 }

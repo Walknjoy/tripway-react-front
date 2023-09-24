@@ -5,7 +5,7 @@ import HeroFilter from '../../Components/HeroFilter/HeroFilter';
 
 const Home = () => {
   return (
-    <main className="main-section">
+    <main>
       <HeroFilter />
       <Trending />
       <Blogs />
