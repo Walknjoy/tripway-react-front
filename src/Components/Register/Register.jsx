@@ -4,11 +4,13 @@ import axios from 'axios';
 
 const Register = () => {
   const [info, setInfo] = useState({});
+  const [file, setFile] = useState(null)
 
   const handleChange = (e) => {
     if (e.target.type === 'file') {
       // Handle file input separately to extract the file name
-      const fileName = e.target.files[0].name;
+      const fileName = e.target.files[0];
+      setFile(fileName)
       setInfo((prev) => ({ ...prev, [e.target.id]: fileName }));
     } else {
       // Handle other input types as before
@@ -18,12 +20,15 @@ const Register = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    debugger
-    const newUser = {
-      ...info,
-    };
-    console.log(newUser)
-    await axios.post('/auth/register', newUser);
+    const formData = new FormData();
+    formData.append('username', info.username);
+    formData.append('country', info.country);
+    formData.append('email', info.email);
+    formData.append('city', info.city);
+    formData.append('phone', info.phone);
+    formData.append('password', info.password);
+    formData.append('img', file);
+    await axios.post('/auth/register', formData);
   };
 
   return (
