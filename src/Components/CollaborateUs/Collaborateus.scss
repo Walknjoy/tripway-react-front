@@ -1,0 +1,58 @@
+@import '../../css-config/mixins.scss';
+#collaborate{
+    padding: 30px 0;
+}
+.collaborateus{
+    display: flex;
+    justify-content: space-around;
+    button{
+        background-color:#ffc64c;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 0 24px;
+        font-size: 22px;
+        height: 56px;
+        line-height: 28px;
+    }
+}
+.collabrateus-left{
+    padding: 0 12px;
+    h2{
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 30px;
+    }
+    p{
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+}
+.collabrateus--right-form { 
+    input{
+         width: 100%;
+         padding: 8px 16px 8px 13px;
+         margin: 5px;
+         border-radius: 8px;
+    }
+    textarea{
+        padding: 3px 16px 5px 16px;
+        width: 100%;
+        height: 120px;
+    }
+    .field-holder{
+        select{
+            padding: 3px 16px 5px 1px;
+        }
+    }
+    
+    .field-holder textarea:focus+label,
+    .field-holder textarea:valid+label {
+        top: 7px;
+        font-size: 13px;
+        opacity: 1;
+        left: 20px;
+        color: #cecece;
+    }
+    
+}
