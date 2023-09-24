@@ -11,7 +11,7 @@
   overflow: hidden;
   transform: translateZ(-20px);
   opacity: 0;
-  background-color: #000;
+  background-color: #fff;
   &.active-bar {
     max-height: 400px;
     overflow-y: scroll !important;
@@ -30,18 +30,12 @@
     padding: 0;
     li {
       width: 100%;
-      border-bottom: 1px solid #ddd;
       line-height: 1.5 !important;
-      &:last-child {
-        border-top: 1px solid #ddd;
-      }
+
       &.side-bar-item {
         border: none !important;
-        h3 {
-          border-bottom: 1px solid #b3b3b3;
-        }
         .side-bar-menu {
-          background: #000;
+          background: transparent;
           opacity: 0;
           max-height: 0;
           transition: 0.4s ease-in-out;
@@ -55,28 +49,20 @@
             visibility: visible;
             transform: translateZ(0px);
           }
-          li {
-            border-top: 0;
-            &:last-child {
-              border-top: 0;
-            }
-          
-          }
         }
-      }
-      &:first-child {
-        border-top: 1px solid #ddd;
       }
       h3 {
         @include flex();
         width: 100%;
         justify-content: space-between;
         padding: 10px;
+        font-weight: bold;
         margin: 0;
         a {
           font-size: 16px;
           padding: 0;
           width: 60%;
+          color: #67747c;
         }
         button {
           @include flex();
@@ -84,7 +70,7 @@
           background-color: transparent;
           border: none;
           cursor: pointer;
-          color: #fff;
+          color: #67747c;
           width: 40%;
           svg {
             height: 20px !important;
@@ -93,8 +79,9 @@
         }
       }
       a {
-        color: #fff;
+        color: #67747c;
         padding: 10px;
+        font-weight: bold;
         display: block;
       }
     }
