@@ -165,16 +165,16 @@
           line-height: 1.5;
           font-size: 16px;
           color: #fff;
-          background: #6a8104;
-          border: 2px solid #6a8104;
-          outline: 2px solid #6a8104;
+          background: #6754e2;
+          border: 2px solid #6754e2;
+          outline: 2px solid #6754e2;
           outline-offset: 1px;
           font-weight: bold;
           transition: 0.3s ease-in-out;
           cursor: pointer;
           &:hover {
             background: transparent;
-            color: #6a8104;
+            color: #6754e2;
           }
           @include xs {
             width: 100%;

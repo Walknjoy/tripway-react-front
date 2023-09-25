@@ -20,23 +20,26 @@ const Login = () => {
     });
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await axios.post('/auth/login', data, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    if (res.status === 200) {
-      setData({
-        username: '',
-        password: '',
+    try {
+      e.preventDefault();
+      const res = await axios.post('/auth/login', data, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-      toast.success(res.data.success);
-      navigate('/');
-    } else {
-      toast.error(res.data.error);
-      navigate('/user-login');
+      if (res.status === 200) {
+        setData({
+          username: '',
+          password: '',
+        });
+        toast.success(res.data.success);
+        navigate('/');
+      } else {
+        navigate('/user-login');
+      }
+    } catch (error) {
+      toast.error(error.response.data.error);
     }
   };
   return (
