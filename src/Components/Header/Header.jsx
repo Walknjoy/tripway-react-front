@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import Logo from '../../Assets/Logo/Logo';
 import './Header.scss';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa';
 import { FiLogIn } from 'react-icons/fi';
 import { RiMenu2Line } from 'react-icons/ri';
@@ -9,12 +9,21 @@ import Language from '../../Assets/LanguageDropDown/Language';
 import { AiOutlineClose } from 'react-icons/ai';
 import SideBar from './SideBar/SideBar';
 import { mainContext } from '../../utils/ContextApi';
-
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const Header = () => {
-  const { openBar, setOpenBar, setClick, setOpenMenuIndex } =
-    useContext(mainContext);
+  const {
+    openBar,
+    setOpenBar,
+    setClick,
+    setOpenMenuIndex,
+    userVisible,
+    setUserVisible,
+    user,
+    setUser,
+  } = useContext(mainContext);
   const location = useLocation();
-
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleWindowResize = () => {
@@ -42,10 +51,11 @@ const Header = () => {
     if (offSet > 200) {
       setScrolled(true);
       setClick(false);
+      setUserVisible(false);
     } else {
       setScrolled(false);
     }
-  }, [setClick]);
+  }, [setClick, setUserVisible]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -58,8 +68,41 @@ const Header = () => {
     if (location.pathname) {
       setOpenBar(false);
       setClick(false);
+      setUserVisible(false);
     }
-  }, [location.pathname, setOpenBar, setClick]);
+  }, [location.pathname, setOpenBar, setClick, setUserVisible]);
+
+  const handleToggleUser = useCallback(() => {
+    setUserVisible(!userVisible);
+    setClick(false);
+  }, [setUserVisible, userVisible, setClick]);
+
+  useEffect(() => {
+    const storedImg = localStorage.getItem('img');
+    if (storedImg) {
+      setUser(storedImg);
+    }
+  }, [setUser]);
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post('/auth/logout', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.status === 200) {
+        localStorage.removeItem('img');
+        navigate('/');
+        toast.success(response.data.success);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <header className={`sticky-header ${scrolled ? 'fixed-header' : ''} `}>
@@ -128,15 +171,27 @@ const Header = () => {
               <div id="language">
                 <Language />
               </div>
-              <Link to="/user-login" className="login">
-                <FiLogIn />
-                {/* <div className="login-avatar">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/21/21104.png"
-                    alt=""
-                  />
-                </div> */}
-              </Link>
+              <div className="user-login">
+                {user ? (
+                  <div className="login-avatar">
+                    <button onClick={handleToggleUser}>
+                      <img src={user} alt="" />
+                    </button>
+                    <ul className={`user-info ${userVisible ? 'active' : ''}`}>
+                      <li>
+                        <Link to="/user-profile">My account</Link>
+                      </li>
+                      <li>
+                        <button onClick={handleLogout}>Log out</button>
+                      </li>
+                    </ul>
+                  </div>
+                ) : (
+                  <Link to="/user-login" className="login">
+                    <FiLogIn />
+                  </Link>
+                )}
+              </div>
               <div className="hamburger">
                 <button onClick={handleOpen}>
                   {openBar ? <AiOutlineClose /> : <RiMenu2Line />}

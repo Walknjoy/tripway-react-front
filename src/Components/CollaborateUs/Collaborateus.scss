@@ -22,6 +22,9 @@
       line-height: 1.5;
       letter-spacing: 1px;
       color: #3b444f;
+      @include xs{
+        font-size: 25px;
+      }
     }
   }
   .collabrate-wrapper {
@@ -48,7 +51,8 @@
         line-height: 1.5;
         font-weight: bold;
         @include xs {
-          font-size: 24px;
+          font-size: 18px;
+          text-align: justify;
         }
       }
       p {
@@ -58,7 +62,8 @@
         padding: 0;
         opacity: 0.8;
         @include xs {
-          font-size: 18px;
+          font-size: 14ç5px;
+          text-align: justify;
         }
       }
     }

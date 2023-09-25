@@ -1,42 +1,49 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.scss';
 import bgSvg from '../../Media/register-bg.svg';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { mainContext } from '../../utils/ContextApi';
 const Login = () => {
+  const { login, setLogin } = useContext(mainContext);
+
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
-  const [data, setData] = useState({
-    username: '',
-    password: '',
-  });
+
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setData({
-      ...data,
+    setLogin({
+      ...login,
       [name]: value,
     });
   };
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const res = await axios.post('/auth/login', data, {
+
+      const res = await axios.post('/auth/login', login, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
       });
+
+      if (!login.username || !login.password) return;
       if (res.status === 200) {
-        setData({
+        setLogin({
           username: '',
           password: '',
         });
         toast.success(res.data.success);
+        localStorage.setItem('img', res.data.img);
+        console.log(res);
         navigate('/');
       } else {
         navigate('/user-login');
+        toast.error(res.data.message);
       }
     } catch (error) {
       toast.error(error.response.data.error);
@@ -61,7 +68,7 @@ const Login = () => {
                       placeholder="username"
                       name="username"
                       id="username"
-                      value={data.username}
+                      value={login.username}
                       onChange={handleChange}
                     />
                   </div>
@@ -74,7 +81,7 @@ const Login = () => {
                       placeholder="password"
                       name="password"
                       id="password"
-                      value={data.password}
+                      value={login.password}
                       onChange={handleChange}
                     />
                     {visible ? (
@@ -106,7 +113,7 @@ const Login = () => {
                     </div>
                     <div className="forgot-link">
                       <Link
-                        to="/forgot-password"
+                        to="/user-forgot-password"
                         className="font-medium text-blue-500 hover:text-blue-500">
                         Forgot password?
                       </Link>
@@ -120,12 +127,6 @@ const Login = () => {
                   <div className="text-side">
                     <h4>Not have any account?</h4>
                     <Link to="/user-register">Sign up</Link>
-                  </div>
-                </div>
-                <div className="col-12">
-                  <div className="text-side">
-                    <h4>Go to home</h4>
-                    <Link to="/">Home</Link>
                   </div>
                 </div>
               </div>

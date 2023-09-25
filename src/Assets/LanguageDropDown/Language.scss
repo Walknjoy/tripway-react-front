@@ -11,7 +11,6 @@
   .select-btn {
     height: 50px;
     width: 50px;
-    border-radius: 4px;
     border: 0;
     outline: 0;
     font-size: 18px;
@@ -22,7 +21,7 @@
     color: #fff;
     justify-content: center;
     background: transparent;
-    @include xs{
+    @include xs {
       font-size: 16px;
     }
     @include xs {
@@ -30,20 +29,25 @@
     }
   }
   .select-list {
-    padding: 0;
     position: absolute;
     width: 100px;
     display: flex;
     flex-direction: column;
+    padding: 0 10px !important;
     z-index: 100;
     top: 50px;
-    border-radius: 4px;
-    background-color: #f8f8f8;
+    background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
-    @include xs {
-      width: 100px !important;
-      right: 0;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    max-height: 0;
+    &.active {
+      overflow: visible;
+      visibility: visible;
+      opacity: 1;
+      max-height: 200px;
     }
     &:after {
       border-color: transparent transparent #f8f8f8;
@@ -56,32 +60,32 @@
       width: 0;
       transition: 0.3s ease-in;
       top: -9px;
-      z-index: 100;
+      z-index: 99;
       content: '';
     }
     @include md {
       display: block !important;
     }
     @include xs {
+      right: 0;
       width: 100%;
     }
     li {
       padding: 10px 20px;
-      border-bottom: 1px solid #ddd !important;
+      border-bottom: 1px solid #0543722a !important;
       line-height: 28px !important;
       text-transform: capitalize;
       cursor: pointer;
       width: 100%;
-      border-radius: 4px;
+      background-color: transparent;
+      color: #67747c;
       transition: 0.3s ease-in-out;
       span {
         font-weight: bold;
-        color: #67747c;
         font-size: 16px;
       }
       &:hover {
-        color: #1d508d;
-        background-color: #f8f8f8;
+        color: #297cbb;
       }
       &:last-child {
         border: none !important;

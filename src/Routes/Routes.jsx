@@ -1,9 +1,11 @@
-import Login from '../Components/Login/Login';
-import Register from '../Components/Register/Register';
+import NewPassword from '../Components/NewPassword/NewPassword';
 import MainRoot from '../Layout/MainRoot';
 import MainRootTwo from '../Layout/MainRootTwo';
+import ForgotPassword from '../Pages/ForgotPassword/ForgotPassword';
 import Home from '../Pages/Home/Home';
+import Login from '../Pages/Login/Login';
 import NotFound from '../Pages/NotFound/NotFound';
+import Register from '../Pages/Register/Register';
 
 export const ROUTES = [
   {
@@ -27,6 +29,14 @@ export const ROUTES = [
       {
         path: '/user-register',
         element: <Register />,
+      },
+      {
+        path: '/user-forgot-password',
+        element: <ForgotPassword />,
+      },
+      {
+        path: '/reset-password',
+        element: <NewPassword />,
       },
       {
         path: '*',
