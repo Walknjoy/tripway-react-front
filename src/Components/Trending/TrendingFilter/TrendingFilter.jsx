@@ -9,9 +9,11 @@ const TrendingFilter = () => {
       <li>
         <button>Hotel</button>
       </li>
-
       <li>
-        <button>Rental</button>
+        <button>Yachts</button>
+      </li>
+      <li>
+        <button>Car</button>
       </li>
       <li>
         <button>Tour</button>

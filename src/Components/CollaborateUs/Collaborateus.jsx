@@ -42,9 +42,7 @@ const Collaborateus = () => {
                 <div className="col-12">
                   <div className="field-holder">
                     <select name="jobs">
-                      <option value="" selected>
-                        Select your jobs
-                      </option>
+                      <option value="">Select your jobs</option>
                       <option value="job">Frontend Developer</option>
                       <option value="job">Backend Developer</option>
                       <option value="job">Fullstack Developer</option>

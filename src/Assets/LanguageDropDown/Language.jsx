@@ -4,7 +4,7 @@ import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { mainContext } from '../../utils/ContextApi';
 const Language = () => {
   const [selected, setSelected] = useState('Az');
-  const { click, setClick } = useContext(mainContext);
+  const { click, setClick ,setUserVisible} = useContext(mainContext);
   const dropdownOptions = [
     { id: 1, label: 'Az' },
     { id: 2, label: 'En' },
@@ -15,12 +15,17 @@ const Language = () => {
   };
   return (
     <div className="language">
-      <button className="select-btn" onClick={() => setClick((e) => !e)}>
+      <button
+        className="select-btn"
+        onClick={() => {
+          setClick((e) => !e);
+          setUserVisible(false);
+        }}>
         {selected}
         {click ? <FaAngleUp /> : <FaAngleDown />}
       </button>
-      {click && (
-        <ul className="select-list">
+      {
+        <ul className={`select-list ${click ? 'active' : ''}`}>
           {dropdownOptions?.map((item) => (
             <li
               key={item.id}
@@ -32,7 +37,7 @@ const Language = () => {
             </li>
           ))}
         </ul>
-      )}
+      }
     </div>
   );
 };

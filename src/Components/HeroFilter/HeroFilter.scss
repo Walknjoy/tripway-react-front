@@ -1,6 +1,7 @@
 @import '../../css-config/mixins.scss';
 .hero-filter {
   height: 100vh;
+  background: url('../../Media/bg.jpeg');
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,7 +12,11 @@
     top: 0;
     left: 0;
     position: absolute;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: #18181a;
+    opacity: 0.5;
     content: '';
+  }
+  @include xs{
+    background-position:bottom center;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import './Register.scss';
 import bgSvg from '../../Media/register-bg.svg';
@@ -6,18 +6,11 @@ import { RxAvatar } from 'react-icons/rx';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { mainContext } from '../../utils/ContextApi';
 const Register = () => {
-  const [avatar, setAvatar] = useState(null);
+  const { avatar, setAvatar, register, setRegister } = useContext(mainContext);
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
-  const [data, setData] = useState({
-    username: '',
-    country: '',
-    email: '',
-    password: '',
-    city: '',
-    phone: '',
-  });
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
@@ -26,8 +19,8 @@ const Register = () => {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setData({
-      ...data,
+    setRegister({
+      ...register,
       [name]: value,
     });
   };
@@ -35,23 +28,14 @@ const Register = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      if (
-        !avatar ||
-        !data.username ||
-        !data.city ||
-        !data.country ||
-        !data.phone ||
-        !data.email ||
-        !data.password
-      )
-        return;
+  
       const formData = new FormData();
-      formData.append('username', data.username);
-      formData.append('country', data.country);
-      formData.append('email', data.email);
-      formData.append('city', data.city);
-      formData.append('phone', data.phone);
-      formData.append('password', data.password);
+      formData.append('username', register.username);
+      formData.append('country', register.country);
+      formData.append('email', register.email);
+      formData.append('city', register.city);
+      formData.append('phone', register.phone);
+      formData.append('password', register.password);
       formData.append('img', avatar);
       const res = await axios.post('/auth/register', formData, {
         headers: {
@@ -59,7 +43,7 @@ const Register = () => {
         },
       });
       if (res.status === 200) {
-        setData({
+        setRegister({
           username: '',
           email: '',
           password: '',
@@ -97,7 +81,7 @@ const Register = () => {
                       placeholder="username"
                       name="username"
                       id="username"
-                      value={data.username}
+                      value={register.username}
                       onChange={handleChange}
                     />
                   </div>
@@ -110,7 +94,7 @@ const Register = () => {
                       placeholder="email"
                       name="email"
                       id="email"
-                      value={data.email}
+                      value={register.email}
                       onChange={handleChange}
                     />
                   </div>
@@ -123,7 +107,7 @@ const Register = () => {
                       placeholder="city"
                       name="city"
                       id="city"
-                      value={data.city}
+                      value={register.city}
                       onChange={handleChange}
                     />
                   </div>
@@ -136,7 +120,7 @@ const Register = () => {
                       placeholder="phone"
                       name="phone"
                       id="phone"
-                      value={data.phone}
+                      value={register.phone}
                       onChange={handleChange}
                     />
                   </div>
@@ -147,8 +131,9 @@ const Register = () => {
                     <select
                       name="country"
                       id="country"
-                      value={data.country}
+                      value={register.country}
                       onChange={handleChange}>
+                        <option value="">Select country</option>
                       <option value="Azerbaijan">Azerbaijan</option>
                       <option value="Turkey">Turkey</option>
                       <option value="Italy">Italy</option>
@@ -164,7 +149,7 @@ const Register = () => {
                       placeholder="password"
                       name="password"
                       id="password"
-                      value={data.password}
+                      value={register.password}
                       onChange={handleChange}
                     />
                     {visible ? (
