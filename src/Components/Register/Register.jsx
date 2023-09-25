@@ -74,7 +74,7 @@ const Register = () => {
         navigate('/user-register');
       }
     } catch (error) {
-      toast.error(error.response.data.error.error);
+      toast.error(error.response.data.error.message);
     }
   };
 
