@@ -7,12 +7,13 @@ import Destination from '../../Components/Destination/Destination';
 import WhyChoose from '../../Components/WhyChoose/WhyChoose';
 
 const Home = () => {
+  
   return (
     <main>
       <HeroFilter />
       <Destination />
       <Trending />
-      <WhyChoose/>
+      <WhyChoose />
       <Collaborateus />
       <Blogs />
     </main>

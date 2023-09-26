@@ -11,6 +11,7 @@ import SideBar from './SideBar/SideBar';
 import { mainContext } from '../../utils/ContextApi';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+
 const Header = () => {
   const {
     openBar,
@@ -77,13 +78,6 @@ const Header = () => {
     setClick(false);
   }, [setUserVisible, userVisible, setClick]);
 
-  useEffect(() => {
-    const storedImg = localStorage.getItem('img');
-    if (storedImg) {
-      setUser(storedImg);
-    }
-  }, [setUser]);
-
   const handleLogout = async () => {
     try {
       const response = await axios.post('/auth/logout', {
@@ -103,6 +97,14 @@ const Header = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const storedImg = localStorage.getItem('img');
+    if (storedImg) {
+      setUser(storedImg);
+    }
+  }, [setUser]);
+
   return (
     <>
       <header className={`sticky-header ${scrolled ? 'fixed-header' : ''} `}>
@@ -179,7 +181,7 @@ const Header = () => {
                     </button>
                     <ul className={`user-info ${userVisible ? 'active' : ''}`}>
                       <li>
-                        <Link to="/user-profile">My account</Link>
+                        <Link to={`/user-profile`}>My account</Link>
                       </li>
                       <li>
                         <button onClick={handleLogout}>Log out</button>

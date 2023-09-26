@@ -12,7 +12,7 @@ function ContextApi({ children }) {
   const [user, setUser] = useState(false);
   const [userVisible, setUserVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
-
+  const [username, setUsername] = useState('');
   // register
   const [register, setRegister] = useState({
     username: '',
@@ -28,6 +28,7 @@ function ContextApi({ children }) {
     username: '',
     password: '',
   });
+
   //  remember
   const [rememberMe, setRememberMe] = useState(false);
   const values = {
@@ -53,7 +54,9 @@ function ContextApi({ children }) {
     setAvatar,
     login,
     setLogin,
-    rememberMe, setRememberMe
+    rememberMe,
+    setRememberMe,
+    username, setUsername
   };
   return <mainContext.Provider value={values}>{children}</mainContext.Provider>;
 }

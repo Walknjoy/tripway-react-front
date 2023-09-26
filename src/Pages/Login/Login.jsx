@@ -23,6 +23,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      if (!login.username || !login.password) {
+        toast.error('Please enter the fields value');
+        return;
+      }
 
       const res = await axios.post('/auth/login', login, {
         method: 'POST',
@@ -31,22 +35,19 @@ const Login = () => {
         },
       });
 
-      if (!login.username || !login.password) return;
       if (res.status === 200) {
+        localStorage.setItem('img', res.data.img);
+        toast.success(res.data.success);
         setLogin({
           username: '',
           password: '',
         });
-        toast.success(res.data.success);
-        localStorage.setItem('img', res.data.img);
-        console.log(res);
         navigate('/');
       } else {
-        navigate('/user-login');
-        toast.error(res.data.message);
+        return;
       }
     } catch (error) {
-      toast.error(error.response.data.error);
+      toast.error(error.response.data.error.error);
     }
   };
   return (
@@ -97,20 +98,12 @@ const Login = () => {
                     )}
                   </div>
                 </div>
+
+                <div className="col-12 ">
+                  <button className="login-btn">Login account</button>
+                </div>
                 <div className="col-12">
                   <div className="remember-forgot-side">
-                    <div className="remember-me">
-                      <input
-                        type="checkbox"
-                        name="remember-me"
-                        id="remember-me"
-                      />
-                      <label
-                        htmlFor="remember-me"
-                        className="ml-2 block text-sm text-gray-900 cursor-pointer">
-                        Remember me
-                      </label>
-                    </div>
                     <div className="forgot-link">
                       <Link
                         to="/user-forgot-password"
@@ -118,10 +111,8 @@ const Login = () => {
                         Forgot password?
                       </Link>
                     </div>
+                    <Link to="/">Cancel</Link>
                   </div>
-                </div>
-                <div className="col-12 ">
-                  <button className="login-btn">Login account</button>
                 </div>
                 <div className="col-12">
                   <div className="text-side">

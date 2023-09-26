@@ -6,6 +6,7 @@ import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
 import NotFound from '../Pages/NotFound/NotFound';
 import Register from '../Pages/Register/Register';
+import UserProfile from '../Pages/UserProfile/UserProfile';
 
 export const ROUTES = [
   {
@@ -25,6 +26,10 @@ export const ROUTES = [
       {
         path: '/user-login',
         element: <Login />,
+      },
+      {
+        path: '/user-profile',
+        element: <UserProfile/>,
       },
       {
         path: '/user-register',

@@ -8,7 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { mainContext } from '../../utils/ContextApi';
 const Register = () => {
-  const { avatar, setAvatar, register, setRegister } = useContext(mainContext);
+  const { avatar, setAvatar, register, setRegister, setUsername } =
+    useContext(mainContext);
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
 
@@ -28,7 +29,18 @@ const Register = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-  
+      if (
+        !register.username ||
+        !register.country ||
+        !register.email ||
+        !register.city ||
+        !register.phone ||
+        !register.password ||
+        !avatar
+      ) {
+        toast.error('Input fields are empty');
+        return;
+      }
       const formData = new FormData();
       formData.append('username', register.username);
       formData.append('country', register.country);
@@ -42,7 +54,11 @@ const Register = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
+
       if (res.status === 200) {
+        toast.success(res.data.success);
+        navigate('/user-login');
+        setAvatar(null);
         setRegister({
           username: '',
           email: '',
@@ -51,14 +67,11 @@ const Register = () => {
           country: '',
           phone: '',
         });
-        navigate('/user-login');
-        toast.success(res.data.success);
-        setAvatar(null);
       } else {
-        navigate('/user-register');
+        return;
       }
     } catch (error) {
-      toast.error(error.response.data.error.message);
+      toast.error(error.response.data.error.error);
     }
   };
 
@@ -133,7 +146,7 @@ const Register = () => {
                       id="country"
                       value={register.country}
                       onChange={handleChange}>
-                        <option value="">Select country</option>
+                      <option value="">Select country</option>
                       <option value="Azerbaijan">Azerbaijan</option>
                       <option value="Turkey">Turkey</option>
                       <option value="Italy">Italy</option>
