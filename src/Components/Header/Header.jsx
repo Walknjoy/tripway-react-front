@@ -11,6 +11,8 @@ import SideBar from './SideBar/SideBar';
 import { mainContext } from '../../utils/ContextApi';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import useFetch from '../../hooks/useFetch';
+
 const Header = () => {
   const {
     openBar,
@@ -22,24 +24,11 @@ const Header = () => {
     user,
     setUser,
   } = useContext(mainContext);
+  const { data } = useFetch('/users/user/profile');
+
   const location = useLocation();
-  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const handleWindowResize = () => {
-      if (window.innerWidth > 992) {
-        setOpenBar(false);
-        document.body.classList.remove('no-scroll');
-      } else {
-        return;
-      }
-    };
-    window.addEventListener('resize', handleWindowResize);
-    handleWindowResize();
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, [setOpenBar]);
+  const navigate = useNavigate();
   const handleOpen = useCallback(() => {
     setOpenBar(!openBar);
     document.body.classList.toggle('no-scroll');
@@ -64,13 +53,17 @@ const Header = () => {
     };
   }, [handleScroll]);
 
+  const resetStateOnPathChange = useCallback(() => {
+    setOpenBar(false);
+    setClick(false);
+    setUserVisible(false);
+  }, [setOpenBar, setClick, setUserVisible]);
+
   useEffect(() => {
     if (location.pathname) {
-      setOpenBar(false);
-      setClick(false);
-      setUserVisible(false);
+      resetStateOnPathChange();
     }
-  }, [location.pathname, setOpenBar, setClick, setUserVisible]);
+  }, [location.pathname, resetStateOnPathChange]);
 
   const handleToggleUser = useCallback(() => {
     setUserVisible(!userVisible);
@@ -84,7 +77,9 @@ const Header = () => {
     }
   }, [setUser]);
 
-  const handleLogout = async () => {
+  // logout
+  const handleLogout = useCallback(async () => {
+    console.log('logout olundu');
     try {
       const response = await axios.post('/auth/logout', {
         headers: {
@@ -93,16 +88,14 @@ const Header = () => {
       });
       if (response.status === 200) {
         localStorage.removeItem('img');
+        window.location.reload();
         navigate('/');
         toast.success(response.data.success);
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error.response.data.error.error);
     }
-  };
+  }, [navigate]);
   return (
     <>
       <header className={`sticky-header ${scrolled ? 'fixed-header' : ''} `}>
@@ -179,7 +172,9 @@ const Header = () => {
                     </button>
                     <ul className={`user-info ${userVisible ? 'active' : ''}`}>
                       <li>
-                        <Link to="/user-profile">My account</Link>
+                        <Link to={`/user-profile/${data.username}`}>
+                          My account
+                        </Link>
                       </li>
                       <li>
                         <button onClick={handleLogout}>Log out</button>
