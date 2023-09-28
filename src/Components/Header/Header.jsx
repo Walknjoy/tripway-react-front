@@ -11,8 +11,11 @@ import SideBar from './SideBar/SideBar';
 import { mainContext } from '../../utils/ContextApi';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import useFetch from '../../hooks/useFetch';
 
 const Header = () => {
+  const { data } = useFetch('/users/user/profile');
+
   const {
     openBar,
     setOpenBar,
@@ -181,7 +184,9 @@ const Header = () => {
                     </button>
                     <ul className={`user-info ${userVisible ? 'active' : ''}`}>
                       <li>
-                        <Link to={`/user-profile`}>My account</Link>
+                        <Link to={`/user-profile/${data.username}`}>
+                          My account
+                        </Link>
                       </li>
                       <li>
                         <button onClick={handleLogout}>Log out</button>
