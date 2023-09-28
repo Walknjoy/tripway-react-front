@@ -4,6 +4,7 @@ import useFetch from '../../../hooks/useFetch';
 import { AiFillEdit } from 'react-icons/ai';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 const Information = () => {
   const navigate = useNavigate();
   const { data, loading, reFetch } = useFetch('/users/user/profile');
@@ -16,10 +17,12 @@ const Information = () => {
     phone: '',
     // email: '',
   });
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(file);
   };
+
   useEffect(() => {
     if (!loading && data) {
       setFormData({
@@ -49,16 +52,16 @@ const Information = () => {
   const handleEdit = async (e) => {
     e.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append('username', formData.username);
-      formData.append('city', formData.city);
-      formData.append('country', formData.country);
-      formData.append('phone', formData.phone);
-      // formData.append('email', formData.email);
+      const formDataToSend = new FormData();
+      formDataToSend.append('username', formData.username);
+      formDataToSend.append('city', formData.city);
+      formDataToSend.append('country', formData.country);
+      formDataToSend.append('phone', formData.phone);
+      // formDataToSend.append('email', formData.email);
       if (selectedImage) {
-        formData.append('img', selectedImage);
+        formDataToSend.append('img', selectedImage);
       }
-      const res = await axios.put('/users/user/update', formData, {
+      const res = await axios.put('/users/user/update', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
