@@ -14,8 +14,6 @@ import { toast } from 'react-toastify';
 import useFetch from '../../hooks/useFetch';
 
 const Header = () => {
-  const { data } = useFetch('/users/user/profile');
-
   const {
     openBar,
     setOpenBar,
@@ -26,24 +24,11 @@ const Header = () => {
     user,
     setUser,
   } = useContext(mainContext);
+  const { data } = useFetch('/users/user/profile');
+
   const location = useLocation();
-  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const handleWindowResize = () => {
-      if (window.innerWidth > 992) {
-        setOpenBar(false);
-        document.body.classList.remove('no-scroll');
-      } else {
-        return;
-      }
-    };
-    window.addEventListener('resize', handleWindowResize);
-    handleWindowResize();
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, [setOpenBar]);
+  const navigate = useNavigate();
   const handleOpen = useCallback(() => {
     setOpenBar(!openBar);
     document.body.classList.toggle('no-scroll');
@@ -68,38 +53,22 @@ const Header = () => {
     };
   }, [handleScroll]);
 
+  const resetStateOnPathChange = useCallback(() => {
+    setOpenBar(false);
+    setClick(false);
+    setUserVisible(false);
+  }, [setOpenBar, setClick, setUserVisible]);
+
   useEffect(() => {
     if (location.pathname) {
-      setOpenBar(false);
-      setClick(false);
-      setUserVisible(false);
+      resetStateOnPathChange();
     }
-  }, [location.pathname, setOpenBar, setClick, setUserVisible]);
+  }, [location.pathname, resetStateOnPathChange]);
 
   const handleToggleUser = useCallback(() => {
     setUserVisible(!userVisible);
     setClick(false);
   }, [setUserVisible, userVisible, setClick]);
-
-  const handleLogout = async () => {
-    try {
-      const response = await axios.post('/auth/logout', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (response.status === 200) {
-        localStorage.removeItem('img');
-        navigate('/');
-        toast.success(response.data.success);
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     const storedImg = localStorage.getItem('img');
@@ -108,6 +77,25 @@ const Header = () => {
     }
   }, [setUser]);
 
+  // logout
+  const handleLogout = useCallback(async () => {
+    console.log('logout olundu');
+    try {
+      const response = await axios.post('/auth/logout', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.status === 200) {
+        localStorage.removeItem('img');
+        window.location.reload();
+        navigate('/');
+        toast.success(response.data.success);
+      }
+    } catch (error) {
+      toast.error(error.response.data.error.error);
+    }
+  }, [navigate]);
   return (
     <>
       <header className={`sticky-header ${scrolled ? 'fixed-header' : ''} `}>

@@ -2,19 +2,44 @@ import './UserProfile.scss';
 import useFetch from '../../hooks/useFetch';
 import LoadingPage from '../../Assets/LoadingPage/LoadingPage';
 import './UserProfile.scss';
-import { BiSolidDownload } from 'react-icons/bi';
+import { BiHomeAlt, BiSolidDownload } from 'react-icons/bi';
 import bgSvg from '../../Media/register-bg.svg';
 import dayjs from 'dayjs';
 import { FaAngleRight, FaUserEdit } from 'react-icons/fa';
 import { CgProfile } from 'react-icons/cg';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { saveAs } from 'file-saver';
+import { FiLogOut } from 'react-icons/fi';
+import { toast } from 'react-toastify';
+import { useCallback } from 'react';
+import axios from 'axios';
 function UserProfile() {
   const { data, loading } = useFetch('/users/user/profile');
   const downLoadFile = () => {
     saveAs(data.img, 'walknjoy_picture.png');
   };
+  const navigate = useNavigate();
+
+  // logout
+  const handleLogout = useCallback(async () => {
+    console.log('logout olundu');
+    try {
+      const response = await axios.post('/auth/logout', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.status === 200) {
+        localStorage.removeItem('img');
+        window.location.reload();
+        navigate('/');
+        toast.success(response.data.success);
+      }
+    } catch (error) {
+      toast.error(error.response.data.error.error);
+    }
+  }, [navigate]);
   return (
     <>
       {loading ? (
@@ -46,9 +71,7 @@ function UserProfile() {
                     </p>
                     <p className="uptadet-date">
                       Uptaded date:{' '}
-                      <span>
-                        {dayjs(data?.updatedAt).format('D.MM.YYYY')}
-                      </span>
+                      <span>{dayjs(data?.updatedAt).format('D.MM.YYYY')}</span>
                     </p>
                   </div>
                   <div className="profile-some-information routers">
@@ -80,13 +103,28 @@ function UserProfile() {
               </div>
               <div className="col-12 col-lg-7 col-md-7">
                 <div className="right-wrapper">
-                  <div className="information-title">
-                    <h2>Welcome to the information</h2>
-                    <p>Check or change your infromation as you want</p>
+                  <div className="right-wrapper-content">
+                    <div className="information-title">
+                      <h2>Welcome to the information</h2>
+                      <p>Check or change your infromation as you want</p>
+                    </div>
+                    <div className="all_fields">
+                      <Outlet />
+                    </div>
                   </div>
-
-                  <div className="all_fields">
-                    <Outlet />
+                  <div className="logout_or_home">
+                    <div className="logout">
+                      <button onClick={handleLogout}>
+                        Logout <FiLogOut />
+                      </button>
+                    </div>
+                    <div className="home_icon">
+                      <Link to="/">
+                        {' '}
+                        Home
+                        <BiHomeAlt />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

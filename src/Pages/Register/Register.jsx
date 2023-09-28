@@ -8,8 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { mainContext } from '../../utils/ContextApi';
 const Register = () => {
-  const { avatar, setAvatar, register, setRegister, setUsername } =
-    useContext(mainContext);
+  const { avatar, setAvatar, register, setRegister } = useContext(mainContext);
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
 

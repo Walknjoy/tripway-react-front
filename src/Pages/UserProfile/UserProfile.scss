@@ -51,6 +51,7 @@
         border-radius: 30px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         width: 100%;
+        
         figure {
           width: 180px;
           height: 180px;
@@ -171,38 +172,121 @@
       }
     }
     .right-wrapper {
-      padding: 20px 30px;
-      border-radius: 30px;
-      background: #ffff;
-      position: relative;
-      z-index: 1;
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      .information-title {
-        h2 {
-          font-size: 24px;
-          color: #111;
-          line-height: 1.5;
-          margin-bottom: 10px;
-          @include xs {
-            font-size: 20px;
+      height: 100%;
+      .right-wrapper-content {
+        padding: 20px 30px;
+        border-radius: 30px;
+        background: #ffff;
+        position: relative;
+        z-index: 1;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        .information-title {
+          h2 {
+            font-size: 24px;
+            color: #111;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            @include xs {
+              font-size: 20px;
+            }
+          }
+          p {
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #666;
+            opacity: 0.7;
+            @include xs {
+              font-size: 14px;
+            }
           }
         }
-        p {
-          font-size: 16px;
-          font-weight: normal;
-          line-height: 1.5;
-          color: #666;
-          opacity: 0.7;
-          @include xs {
-            font-size: 14px;
-          }
+        .all_fields {
+          margin-top: 20px;
+        }
+        @include sm {
+          padding: 20px 15px;
         }
       }
-      .all_fields {
-        margin-top: 20px;
-      }
-      @include sm {
-        padding: 20px 15px;
+      .logout_or_home {
+        padding-top: 50px;
+        @include xs{
+          padding-top: 20px
+        }
+        @include flex();
+        flex-wrap: wrap;
+        row-gap: 10px;
+        .logout {
+          max-width: 50%;
+          flex: 0 0 50%;
+          padding: 0 12px;
+          @include xs {
+            max-width: 100%;
+            flex: 0 0 100%;
+            padding: 0;
+          }
+          button {
+            width: 150px;
+            height: 50px;
+            color: #fff;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            background-color: #2563eb;
+            border: 1px solid transparent;
+            border-radius: 0.375rem;
+            @include flex();
+            justify-content: center;
+            transition: 0.4s ease-in-out;
+            &:hover {
+              background-color: #1d4ed8;
+            }
+            svg {
+              margin-left: 5px;
+            }
+            @include xs {
+              width: 100%;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
+            }
+          }
+        }
+        .home_icon {
+          max-width: 50%;
+          flex: 0 0 50%;
+          padding: 0 12px;
+          @include flex();
+          justify-content: flex-end;
+          @include xs {
+            max-width: 100%;
+            flex: 0 0 100%;
+            padding: 0;
+            justify-content: center;
+          }
+          a {
+            width: 150px;
+            height: 50px;
+            color: #fff;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            background-color: #2563eb;
+            border: 1px solid transparent;
+            border-radius: 0.375rem;
+            @include flex();
+            justify-content: center;
+            transition: 0.4s ease-in-out;
+            &:hover {
+              background-color: #1d4ed8;
+            }
+            svg {
+              margin-left: 5px;
+            }
+            @include xs {
+              width: 100%;
+              font-size: 0.875rem;
+              line-height: 1.25rem;
+            }
+          }
+        }
       }
     }
   }

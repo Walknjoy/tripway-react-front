@@ -131,6 +131,10 @@
     }
     .btn-fields {
       width: 100%;
+      .save_cancel{
+        @include flex();
+        gap: 10px;
+      }
       button {
         color: #fff;
         font-weight: 500;
