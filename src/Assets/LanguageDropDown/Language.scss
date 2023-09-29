@@ -13,12 +13,12 @@
     width: 50px;
     border: 0;
     outline: 0;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     text-transform: capitalize;
     @include flex();
     gap: 5px;
-    color: #fff;
+    color:#297cbb;
     justify-content: center;
     background: transparent;
     @include xs {

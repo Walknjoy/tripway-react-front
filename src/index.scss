@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap');
 @import './css-config/mixins.scss';
-
+@import './Poppins/font.css';
 * {
   margin: 0;
   padding: 0;
   list-style: none;
   text-decoration: none !important;
   box-sizing: border-box;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'Poppins', sans-serif;
+
 }
 .main-section {
   padding-top: 80px;
@@ -24,6 +24,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
   line-height: 1.5;
+  font-style: normal;
   font-weight: 400;
   &.no-scroll {
     overflow: hidden;

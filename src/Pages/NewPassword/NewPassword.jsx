@@ -3,6 +3,7 @@ import './NewPassword.scss';
 import bgSvg from '../../Media/register-bg.svg';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { mainContext } from '../../utils/ContextApi';
+import axios from 'axios';
 const NewPassword = () => {
   const {
     passwordVisible,
@@ -22,11 +23,13 @@ const NewPassword = () => {
         setConfirmPasswordVisible(!confirmPasswordVisible);
       }
     },
-    [passwordVisible, setConfirmPasswordVisible, setPasswordVisible,confirmPasswordVisible]
+    [
+      passwordVisible,
+      setConfirmPasswordVisible,
+      setPasswordVisible,
+      confirmPasswordVisible,
+    ]
   );
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
   const handleChange = (event) => {
     const { value, name } = event.target;
     setNewPassword({
@@ -34,6 +37,10 @@ const NewPassword = () => {
       [name]: value,
     });
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div className="newPassword_panel">
       <div className="container">

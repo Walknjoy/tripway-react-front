@@ -1,19 +1,43 @@
 import React, { useState } from 'react';
 import './ForgotPassword.scss';
 import bgSvg from '../../Media/register-bg.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState('');
+  const [forgot, setForgot] = useState({
+    email: '',
+  });
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setEmail({
-      ...email,
+    setForgot({
+      ...forgot,
       [name]: value,
     });
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const newData = new FormData();
+      newData.append('email', forgot.email);
+      const res = await axios.post('/auth/forget-password', newData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        method: 'POST',
+      });
+      if (res.status === 200) {
+        toast.success(res.data.success);
+        navigate('/user-login');
+        setForgot({
+          email: '',
+        });
+      }
+    } catch (error) {
+      toast.error(error.response.data.error.error);
+    }
   };
   return (
     <div className="forgot-panel">
@@ -34,13 +58,15 @@ const ForgotPassword = () => {
                       placeholder="email"
                       name="email"
                       id="email"
-                      value={email}
+                      value={forgot.email}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
                 <div className="col-12 ">
-                  <button className="recovery-btn">Recover Password</button>
+                  <button className="recovery-btn" type="submit">
+                    Recover Password
+                  </button>
                 </div>
                 <div className="col-12">
                   <div className="text-side">

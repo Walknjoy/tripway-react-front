@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
-const TrendingFilter = () => {
+const TrendingFilter = ({ onTabChange, dataes }) => {
+  const [selected, setSelected] = useState(0);
+  const activeTab = useCallback(
+    (tab, index) => {
+        setSelected(index);
+      onTabChange(tab, index);
+    },
+    [setSelected, onTabChange]
+  );
   return (
     <ul className="trending-filter-list">
-      <li>
-        <button className="active">Entertainment</button>
-      </li>
-      <li>
-        <button>Hotel</button>
-      </li>
-      <li>
-        <button>Yachts</button>
-      </li>
-      <li>
-        <button>Car</button>
-      </li>
-      <li>
-        <button>Tour</button>
-      </li>
+      {dataes?.map((tab, index) => (
+        <li
+          key={index}
+          className={`${selected === index ? 'active' : ''}`}
+          onClick={() => activeTab(tab, index)}>
+          {tab}
+        </li>
+      ))}
     </ul>
   );
 };
