@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../Media/logo-white.svg';
-import logoScroll from '../../Media/primary-logo.jpeg';
+import logoScroll from '../../Media/primary-logo.png';
 import './Logo.scss';
 const Logo = () => {
   return (

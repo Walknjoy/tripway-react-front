@@ -14,11 +14,11 @@
     border: 0;
     outline: 0;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 500;
     text-transform: capitalize;
     @include flex();
     gap: 5px;
-    color:#297cbb;
+    color: #297cbb;
     justify-content: center;
     background: transparent;
     @include xs {
@@ -68,7 +68,6 @@
     }
     @include xs {
       right: 0;
-      width: 100%;
     }
     li {
       padding: 10px 20px;
@@ -81,7 +80,7 @@
       color: #67747c;
       transition: 0.3s ease-in-out;
       span {
-        font-weight: bold;
+        font-weight: 500;
         font-size: 16px;
       }
       &:hover {
