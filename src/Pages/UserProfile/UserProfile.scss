@@ -29,14 +29,14 @@
     }
   }
   .row {
+    position: relative;
+    z-index:1 ;
     align-items: center;
     justify-content: space-between;
     @include md {
       align-items: flex-start;
     }
     .left-wrapper {
-      z-index: 2;
-      position: relative;
       width: 100%;
       flex: 0 0 100%;
       display: flex;
@@ -177,8 +177,6 @@
         padding: 20px 30px;
         border-radius: 30px;
         background: #ffff;
-        position: relative;
-        z-index: 1;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         .information-title {
           h2 {

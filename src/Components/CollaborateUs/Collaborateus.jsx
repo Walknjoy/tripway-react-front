@@ -11,14 +11,16 @@ const Collaborateus = () => {
         <form>
           <div className="collabrate-wrapper">
             <div className="collabrateus-left">
-              <h3>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit
-                vitae, sint facere enim cumque debitis! Eveniet rerum, velit!!.
-              </h3>
+              <h3>Near or far, we’ll get you there</h3>
               <p>
-                2,000,000 hotels, car rental, and other services throughout the
-                world
+                Be part of our the magic of travel with the world. Collaborate
+                with our platform to reach a diverse audience, showcase your
+                expertise, and make lasting connections in the travel industry.
               </p>
+
+              <button className="send-btn" type="submit">
+                Send
+              </button>
             </div>
             <div className="collabrateus--right-form">
               <div className="row">
@@ -77,11 +79,6 @@ const Collaborateus = () => {
                     <textarea name="message" id="message" required></textarea>
                     <label htmlFor="message">Message</label>
                   </div>
-                </div>
-                <div className="col-12">
-                  <button className="send-btn" type="submit">
-                    Send
-                  </button>
                 </div>
               </div>
             </div>

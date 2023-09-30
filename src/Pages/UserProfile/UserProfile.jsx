@@ -15,31 +15,35 @@ import { toast } from 'react-toastify';
 import { useCallback } from 'react';
 import axios from 'axios';
 function UserProfile() {
-  const { data, loading } = useFetch('/users/user/profile');
+  const { data, loading, error } = useFetch('/users/user/profile');
+  const navigate = useNavigate();
+
   const downLoadFile = () => {
     saveAs(data.img, 'walknjoy_picture.png');
   };
-  const navigate = useNavigate();
 
-  // logout
+  // !logout
   const handleLogout = useCallback(async () => {
     console.log('logout olundu');
     try {
-      const response = await axios.post('/auth/logout', {
+      const res = await axios.post('/auth/logout', {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      if (response.status === 200) {
+      if (res.status === 200) {
         localStorage.removeItem('img');
-        window.location.reload();
         navigate('/');
-        toast.success(response.data.success);
+        toast.success(res.data.success);
       }
     } catch (error) {
       toast.error(error.response.data.error.error);
     }
   }, [navigate]);
+
+  if (error) {
+    return <div>Error: Unable to fetch user profile data.</div>;
+  }
   return (
     <>
       {loading ? (

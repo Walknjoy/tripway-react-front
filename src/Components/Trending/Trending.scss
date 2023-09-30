@@ -18,6 +18,7 @@
       line-height: 1.5;
       letter-spacing: 1px;
       color: #3b444f;
+      font-weight: bold;
     }
   }
   .trending-filter-list {
@@ -49,21 +50,19 @@
       &:not(:last-child) {
         margin: 0 0.25rem;
       }
-      button {
-        background-color: #fff;
-        padding: 0.5rem 1.5rem;
-        border: 0;
-        color: #3b444f;
-        font-weight: bold;
-        text-transform: capitalize;
-        cursor: pointer;
-        border-radius: 20px;
+      background-color: #fff;
+      padding: 0.5rem 1.5rem;
+      border: 0;
+      color: #3b444f;
+      font-weight: bold;
+      text-transform: capitalize;
+      cursor: pointer;
+      border-radius: 20px;
 
-        &.active {
-          border: 1px solid #1d508d;
-          background-color: #1d508d;
-          color: #fff;
-        }
+      &.active {
+        border: 1px solid #1d508d;
+        background-color: #1d508d;
+        color: #fff;
       }
     }
   }

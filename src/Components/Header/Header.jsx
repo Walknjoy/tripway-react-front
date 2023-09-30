@@ -3,7 +3,7 @@ import Logo from '../../Assets/Logo/Logo';
 import './Header.scss';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa';
-import { FiLogIn } from 'react-icons/fi';
+import {FaUser} from 'react-icons/fa';
 import { RiMenu2Line } from 'react-icons/ri';
 import Language from '../../Assets/LanguageDropDown/Language';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -62,6 +62,7 @@ const Header = () => {
   useEffect(() => {
     if (location.pathname) {
       resetStateOnPathChange();
+       window.scrollTo(0, 0);
     }
   }, [location.pathname, resetStateOnPathChange]);
 
@@ -173,7 +174,7 @@ const Header = () => {
                     <ul className={`user-info ${userVisible ? 'active' : ''}`}>
                       <li>
                         <Link to={`/user-profile/${data.username}`}>
-                          My account
+                        Profile
                         </Link>
                       </li>
                       <li>
@@ -183,7 +184,7 @@ const Header = () => {
                   </div>
                 ) : (
                   <Link to="/user-login" className="login">
-                    <FiLogIn />
+                    <FaUser/>
                   </Link>
                 )}
               </div>

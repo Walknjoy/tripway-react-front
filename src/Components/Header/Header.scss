@@ -17,12 +17,7 @@
     background: #fff !important;
     .navbar-wrapper {
       .left-side {
-        .logo-noscroll {
-          display: none;
-        }
-        .logo-scroll {
-          display: block;
-        }
+     
         span {
           color: #1d508d;
         }
@@ -38,16 +33,13 @@
               }
             }
             a {
-              color: #67747c;
-              svg {
-                transition: none;
-              }
+              color: #1d508d;
             }
           }
         }
         .hamburger {
           button {
-            color: #67747c;
+            color: #1d508d;
           }
         }
         .language {
@@ -59,16 +51,16 @@
             }
           }
           .select-btn {
-            color: #67747c;
+            color: #1d508d;
           }
         }
         .user-login {
           .login {
-            color: #67747c;
+            color: #1d508d;
           }
           .login-avatar {
-            button{
-              color: #67747c;
+            button {
+              color: #1d508d;
             }
             .user-info {
               border-top: 0.1875rem solid #297cbb;
@@ -89,7 +81,7 @@
     .right-side {
       @include flex();
       justify-content: flex-end;
-      gap: 10px;
+      gap: 5px;
       @include md {
         gap: 20px;
       }
@@ -131,19 +123,22 @@
           }
           a {
             @include flex();
-            gap: 5px;
-            padding: 13px 15px;
-            color: #fff;
-            transition: 0.4s ease-in-out;
+            padding: 13px 10px;
+            color: #297cbb;
+            transition: 0.3s ease-in-out;
+            font-size: 16px;
             font-weight: bold;
-            font-size: 18px;
             @include lg {
               padding: 10px;
-              font-size: 14px;
               gap: 5px;
             }
             svg {
-              transition: 0.4s ease;
+              margin-left: 3px;
+            }
+            &.active {
+              font-weight: bold;
+              font-size: 16px;
+              color: #e53e29;
             }
           }
           .sub-menu {
@@ -206,7 +201,7 @@
       }
       .user-login {
         .login {
-          color: #fff;
+          color: #297cbb;
           svg {
             height: 30px;
             width: 20px;
@@ -226,14 +221,14 @@
             justify-content: center;
             background: transparent;
             border: none;
-            color: #fff;
-           img{
-            height: 35px;
-            width: 35px;
-            border-radius: 9999px;
-            object-fit: cover;
-            object-position: top;
-           }
+            color: #297cbb;
+            img {
+              height: 35px;
+              width: 35px;
+              border-radius: 9999px;
+              object-fit: cover;
+              object-position: top;
+            }
           }
           .user-info {
             position: absolute;
@@ -308,7 +303,7 @@
         }
         button {
           background-color: transparent;
-          color: #fff;
+          color: #297cbb;
           border: none;
           cursor: pointer;
           svg {
