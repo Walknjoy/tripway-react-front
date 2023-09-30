@@ -44,6 +44,7 @@ const Login = () => {
         });
         navigate('/');
       } else {
+        console.log(res.info.error)
         return;
       }
     } catch (error) {

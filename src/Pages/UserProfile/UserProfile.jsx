@@ -26,15 +26,15 @@ function UserProfile() {
   const handleLogout = useCallback(async () => {
     console.log('logout olundu');
     try {
-      const response = await axios.post('/auth/logout', {
+      const res = await axios.post('/auth/logout', {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      if (response.status === 200) {
+      if (res.status === 200) {
         localStorage.removeItem('img');
         navigate('/');
-        toast.success(response.data.success);
+        toast.success(res.data.success);
       }
     } catch (error) {
       toast.error(error.response.data.error.error);

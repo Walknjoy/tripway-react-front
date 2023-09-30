@@ -6,34 +6,25 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const ForgotPassword = () => {
-  const [forgot, setForgot] = useState({
-    email: '',
-  });
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  const handleChange = (e) => {
-    const { value, name } = e.target;
-    setForgot({
-      ...forgot,
-      [name]: value,
-    });
-  };
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const newData = new FormData();
-      newData.append('email', forgot.email);
-      const res = await axios.post('/auth/forget-password', newData, {
+      const res = await axios.post('/auth/forgot-password', {"email": email}, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
         },
         method: 'POST',
       });
       if (res.status === 200) {
         toast.success(res.data.success);
         navigate('/user-login');
-        setForgot({
-          email: '',
-        });
+        setEmail("");
+      }
+      else{
+        toast.error(res.data.error);
+        return;
       }
     } catch (error) {
       toast.error(error.response.data.error.error);
@@ -58,8 +49,8 @@ const ForgotPassword = () => {
                       placeholder="email"
                       name="email"
                       id="email"
-                      value={forgot.email}
-                      onChange={handleChange}
+                      value={email}
+                      onChange={(e)=>{setEmail(e.target.value)}}
                     />
                   </div>
                 </div>

@@ -4,17 +4,18 @@ import bgSvg from '../../Media/register-bg.svg';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { mainContext } from '../../utils/ContextApi';
 import axios from 'axios';
+import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 const NewPassword = () => {
+  const navigate = useNavigate();
   const {
     passwordVisible,
     setConfirmPasswordVisible,
     setPasswordVisible,
     confirmPasswordVisible,
   } = useContext(mainContext);
-  const [newPassword, setNewPassword] = useState({
-    password: '',
-    confirmPassword: '',
-  });
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const togglePasswordVisibility = useCallback(
     (field) => {
       if (field === 'password') {
@@ -30,15 +31,29 @@ const NewPassword = () => {
       confirmPasswordVisible,
     ]
   );
-  const handleChange = (event) => {
-    const { value, name } = event.target;
-    setNewPassword({
-      ...newPassword,
-      [name]: value,
-    });
-  };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try{
+      const res = await axios.post("/auth/user/reset-password", {
+        "password": password,
+        "confirmPassword": confirmPassword
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      })
+      if(res.status === 200){
+        toast.success(res.data.success)
+        navigate("/user-login")
+      }
+      else{
+        toast.error(res.data.error)
+        return;
+      }
+    }catch (error) {
+      toast.error(error.response.data.error.error)
+    }
   };
 
   return (
@@ -60,8 +75,8 @@ const NewPassword = () => {
                       placeholder="password"
                       name="password"
                       id="password"
-                      value={newPassword.password}
-                      onChange={handleChange}
+                      value={password}
+                      onChange={(e)=>setPassword(e.target.value)}
                     />
                     {passwordVisible ? (
                       <AiOutlineEye
@@ -82,8 +97,8 @@ const NewPassword = () => {
                       placeholder="password"
                       name="confirmPassword"
                       id="confirmPassword"
-                      value={newPassword.confirmPassword}
-                      onChange={handleChange}
+                      value={confirmPassword}
+                      onChange={(e)=>setConfirmPassword(e.target.value)}
                     />
                     {confirmPasswordVisible ? (
                       <AiOutlineEye
