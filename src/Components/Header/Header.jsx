@@ -1,9 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import Logo from '../../Assets/Logo/Logo';
 import './Header.scss';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaAngleDown } from 'react-icons/fa';
-import {FaUser} from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
 import { RiMenu2Line } from 'react-icons/ri';
 import Language from '../../Assets/LanguageDropDown/Language';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -62,7 +62,7 @@ const Header = () => {
   useEffect(() => {
     if (location.pathname) {
       resetStateOnPathChange();
-       window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
     }
   }, [location.pathname, resetStateOnPathChange]);
 
@@ -108,58 +108,46 @@ const Header = () => {
             <div className="right-side">
               <ul className="nav-list">
                 <li>
-                  <NavLink to="/">Home</NavLink>
+                  <Link to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/hotels">
+                  <Link className="nav-link" to="#">
                     Hotels <FaAngleDown />
-                  </NavLink>
+                  </Link>
                   <ul className="sub-menu">
                     <li>
-                      <NavLink>Lorem</NavLink>
-                    </li>
-                    <li>
-                      <NavLink>Lorem</NavLink>
-                    </li>
-                    <li>
-                      <NavLink>Lorem</NavLink>
+                      <Link to="/hotels/hotel-1">Hotel-1</Link>
                     </li>
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/tours">
+                  <Link className="nav-link" to="#">
                     Tours <FaAngleDown />
-                  </NavLink>
+                  </Link>
                   <ul className="sub-menu">
                     <li>
-                      <NavLink>Lorem</NavLink>
-                    </li>
-                    <li>
-                      <NavLink>Lorem</NavLink>
-                    </li>
-                    <li>
-                      <NavLink>Lorem</NavLink>
+                      <Link to="/tours/tours-1">Tours -1</Link>
                     </li>
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/rental">
+                  <Link className="nav-link" to="#">
                     Rental <FaAngleDown />
-                  </NavLink>
+                  </Link>
                   <ul className="sub-menu">
                     <li>
-                      <NavLink to="/cars">Cars</NavLink>
+                      <Link to="/rental/cars">Cars</Link>
                     </li>
                     <li>
-                      <NavLink to="/yachts">Yachts</NavLink>
+                      <Link to="/rental/yachts">Yachts</Link>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <NavLink to="/entertainment">Entertainments</NavLink>
+                  <Link to="/entertainments">Entertainments</Link>
                 </li>
                 <li>
-                  <NavLink to="/contact-us">Contact us</NavLink>
+                  <Link to="/contact-us">Contact us</Link>
                 </li>
               </ul>
               <div id="language">
@@ -174,7 +162,7 @@ const Header = () => {
                     <ul className={`user-info ${userVisible ? 'active' : ''}`}>
                       <li>
                         <Link to={`/user-profile/${data.username}`}>
-                        Profile
+                          Profile
                         </Link>
                       </li>
                       <li>
@@ -184,7 +172,7 @@ const Header = () => {
                   </div>
                 ) : (
                   <Link to="/user-login" className="login">
-                    <FaUser/>
+                    <FaUser />
                   </Link>
                 )}
               </div>

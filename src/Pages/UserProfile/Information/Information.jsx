@@ -15,7 +15,7 @@ const Information = () => {
     city: '',
     country: '',
     phone: '',
-    // email: '',
+    email: '',
   });
 
   const handleImageChange = (e) => {
@@ -30,7 +30,7 @@ const Information = () => {
         city: data.city,
         country: data.country,
         phone: data.phone,
-        // email: data.email || '',
+        email: data.email || '',
         img: data.img,
       });
     }
@@ -57,7 +57,7 @@ const Information = () => {
       formDataToSend.append('city', formData.city);
       formDataToSend.append('country', formData.country);
       formDataToSend.append('phone', formData.phone);
-      // formDataToSend.append('email', formData.email);
+      formDataToSend.append('email', formData.email);
       if (selectedImage) {
         formDataToSend.append('img', selectedImage);
       }
@@ -98,7 +98,7 @@ const Information = () => {
                 />
                 <label htmlFor="username"> Username</label>
               </div>
-              {/* <div className="some-fields">
+              <div className="some-fields">
                 <input
                   type="email"
                   id="email"
@@ -109,7 +109,7 @@ const Information = () => {
                   required
                 />
                 <label htmlFor="email">Email</label>
-              </div> */}
+              </div>
               <div className="some-fields">
                 <input
                   type="text"
@@ -133,18 +133,6 @@ const Information = () => {
                   onChange={handleInputChange}
                 />
                 <label htmlFor="country">Country</label>
-              </div>
-              <div className="some-fields">
-                <input
-                  type="tel"
-                  id="tel"
-                  disabled={!isEditing}
-                  name="phone"
-                  value={isEditing ? formData.phone : ''}
-                  onChange={handleInputChange}
-                  required
-                />
-                <label htmlFor="tel">Phone</label>
               </div>
               <div className="input-fields-avatar">
                 <label htmlFor="avatar" className="avatar-empty-label"></label>
@@ -171,6 +159,18 @@ const Information = () => {
                     />
                   </label>
                 </div>
+              </div>
+              <div className="some-fields">
+                <input
+                  type="tel"
+                  id="tel"
+                  disabled={!isEditing}
+                  name="phone"
+                  value={isEditing ? formData.phone : ''}
+                  onChange={handleInputChange}
+                  required
+                />
+                <label htmlFor="tel">Phone</label>
               </div>
               <div className="btn-fields">
                 {isEditing ? (
