@@ -37,7 +37,7 @@ const Header = () => {
   }, [openBar, setOpenMenuIndex, setClick, setOpenBar]);
   const handleScroll = useCallback(() => {
     const offSet = window.scrollY;
-    if (offSet > 200) {
+    if (offSet > 0) {
       setScrolled(true);
       setClick(false);
       setUserVisible(false);

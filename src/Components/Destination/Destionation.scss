@@ -20,6 +20,7 @@
     }
   }
   .row {
+    row-gap: 20px;
     #destination-bg-1 {
       background: url('https://mytravel.madrasthemes.com/wp-content/uploads/2022/02/630350.jpeg');
     }
@@ -48,6 +49,13 @@
       position: relative;
       transition: 0.4s ease-in-out;
       z-index: 1;
+      overflow: hidden;
+      top: 0;
+      cursor: pointer;
+      &:hover {
+        top: -5px;
+        transition: 0.3s ease-out;
+      }
       @include xs {
         padding: 1.2rem;
         min-height: 18.875rem;

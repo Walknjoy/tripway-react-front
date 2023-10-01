@@ -17,7 +17,6 @@
     background: #fff !important;
     .navbar-wrapper {
       .left-side {
-     
         span {
           color: #1d508d;
         }
@@ -127,7 +126,7 @@
             color: #297cbb;
             transition: 0.3s ease-in-out;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 500;
             @include lg {
               padding: 10px;
               gap: 5px;
@@ -192,7 +191,7 @@
                 padding: 0;
                 color: #67747c;
                 transition: 0.4s;
-                font-weight: bold;
+                font-weight: 500;
                 font-size: 18px;
               }
             }

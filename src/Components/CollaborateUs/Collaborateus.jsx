@@ -17,10 +17,6 @@ const Collaborateus = () => {
                 with our platform to reach a diverse audience, showcase your
                 expertise, and make lasting connections in the travel industry.
               </p>
-
-              <button className="send-btn" type="submit">
-                Send
-              </button>
             </div>
             <div className="collabrateus--right-form">
               <div className="row">
@@ -79,6 +75,11 @@ const Collaborateus = () => {
                     <textarea name="message" id="message" required></textarea>
                     <label htmlFor="message">Message</label>
                   </div>
+                </div>
+                <div className="col-12">
+                  <button className="send-btn" type="submit">
+                    Send
+                  </button>
                 </div>
               </div>
             </div>

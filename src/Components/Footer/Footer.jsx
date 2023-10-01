@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.scss';
-import logo from '../../Media/primary-logo.jpeg';
+import logo from '../../Media/primary-logo.png';
 import { AiFillHeart, AiOutlineSend } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { GoMail } from 'react-icons/go';
@@ -35,7 +35,7 @@ const Footer = () => {
               <div className="widget-list">
                 <h3>Main</h3>
                 <ul className="widget-items">
-                <li>
+                  <li>
                     <Link to="/">Home</Link>
                   </li>
                   <li>
@@ -91,8 +91,11 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                  
-                    <Link to="tel:+994-55 262 40 37">  <BsTelephoneOutboundFill />+994-55 262 40 37</Link>
+                    <Link to="tel:+994-55 262 40 37">
+                      {' '}
+                      <BsTelephoneOutboundFill />
+                      +994-55 262 40 37
+                    </Link>
                   </li>
                 </ul>
                 <ul className="social-list">

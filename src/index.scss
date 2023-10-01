@@ -1,13 +1,12 @@
 @import './css-config/mixins.scss';
-@import './Poppins/font.css';
+@import './Inter/font.css';
 * {
   margin: 0;
   padding: 0;
   list-style: none;
   text-decoration: none !important;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-
+  font-family: 'Inter', sans-serif;
 }
 .main-section {
   padding-top: 80px;
