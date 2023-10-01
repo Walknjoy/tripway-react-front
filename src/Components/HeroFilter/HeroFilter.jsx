@@ -13,7 +13,7 @@ const HeroFilter = () => {
   return (
     <section className="my-hero-carousel">
       <div className="item">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             <div className="col-12 col-lg-3">
               <div className="left-side" data-aos="fade-right" data-aos-duration="100">

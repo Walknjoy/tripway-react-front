@@ -31,37 +31,40 @@ const SideBar = () => {
             <li>
               <Link to="/">Home</Link>
             </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
             <li className="side-bar-item">
-              <h3>
+              {/* <h3> */}
                 <Link to="#">Hotels </Link>
-                <button onClick={() => toggleMenu(0)}>
+                {/* <button onClick={() => toggleMenu(0)}>
                   {openMenuIndex === 0 ? <FaAngleUp /> : <FaAngleDown />}
-                </button>
-              </h3>
-              <ul
+                </button> */}
+              {/* </h3> */}
+              {/* <ul
                 className={`side-bar-menu ${
                   openMenuIndex === 0 ? 'open' : ''
                 }`}>
                 <li>
                   <Link to="/hotels/hotel-1">Hotel-1</Link>
                 </li>
-              </ul>
+              </ul> */}
             </li>
             <li className="side-bar-item">
-              <h3>
+              {/* <h3> */}
                 <Link to="#">Tours</Link>
-                <button onClick={() => toggleMenu(1)}>
+                {/* <button onClick={() => toggleMenu(1)}>
                   {openMenuIndex === 1 ? <FaAngleUp /> : <FaAngleDown />}
-                </button>
-              </h3>
-              <ul
+                </button> */}
+              {/* </h3> */}
+              {/* <ul
                 className={`side-bar-menu ${
                   openMenuIndex === 1 ? 'open' : ''
                 }`}>
                 <li>
                   <Link to="/tours/tours-1">Tour-1</Link>
                 </li>
-              </ul>
+              </ul> */}
             </li>
             <li>
               <Link to="/entertainments">Entertainments</Link>
@@ -86,7 +89,7 @@ const SideBar = () => {
               </ul>
             </li>
             <li>
-              <Link to="/contact-us">Contact us</Link>
+              <Link to="/blog">Blog</Link>
             </li>
           </ul>
         </div>

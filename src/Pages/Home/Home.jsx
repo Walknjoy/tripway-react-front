@@ -13,8 +13,8 @@ const Home = () => {
       <HeroFilter />
       <Destination />
       <Trending />
-      <WhyChoose />
       <Collaborateus />
+      <WhyChoose />
       <Blogs />
     </main>
   );

@@ -18,3 +18,13 @@ export const ProtectRoute = ({ children }) => {
   }
   return children;
 };
+
+export const LoginRegisterUser = ({ children }) => {
+  const auth = localStorage.getItem('img');
+
+  if (auth) {
+    return <Navigate to={'/'} replace={true}></Navigate>;
+  }
+
+  return children;
+};

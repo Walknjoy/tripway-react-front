@@ -1,13 +1,11 @@
 import React from 'react';
 import './Collaborateus.scss';
+import SectionTitle from '../SectionTitle/SectionTitle';
 const Collaborateus = () => {
   return (
     <section id="collaborate">
-      <div className="container">
-        <div className="collaborate_title">
-          <h3>Collaborate with us</h3>
-          <div className="horizantal"></div>
-        </div>
+      <div className="container-fluid">
+        <SectionTitle title={'Collaborate with us'} />
         <form>
           <div className="collabrate-wrapper">
             <div className="collabrateus-left">

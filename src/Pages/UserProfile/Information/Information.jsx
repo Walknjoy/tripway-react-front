@@ -15,7 +15,6 @@ const Information = () => {
     city: '',
     country: '',
     phone: '',
-    email: '',
   });
 
   const handleImageChange = (e) => {
@@ -30,7 +29,6 @@ const Information = () => {
         city: data.city,
         country: data.country,
         phone: data.phone,
-        email: data.email || '',
         img: data.img,
       });
     }
@@ -57,7 +55,6 @@ const Information = () => {
       formDataToSend.append('city', formData.city);
       formDataToSend.append('country', formData.country);
       formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('email', formData.email);
       if (selectedImage) {
         formDataToSend.append('img', selectedImage);
       }
@@ -100,15 +97,15 @@ const Information = () => {
               </div>
               <div className="some-fields">
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
+                  type="tel"
+                  id="tel"
                   disabled={!isEditing}
-                  value={isEditing ? formData.email : ''}
+                  name="phone"
+                  value={isEditing ? formData.phone : ''}
                   onChange={handleInputChange}
                   required
                 />
-                <label htmlFor="email">Email</label>
+                <label htmlFor="tel">Phone</label>
               </div>
               <div className="some-fields">
                 <input
@@ -160,18 +157,7 @@ const Information = () => {
                   </label>
                 </div>
               </div>
-              <div className="some-fields">
-                <input
-                  type="tel"
-                  id="tel"
-                  disabled={!isEditing}
-                  name="phone"
-                  value={isEditing ? formData.phone : ''}
-                  onChange={handleInputChange}
-                  required
-                />
-                <label htmlFor="tel">Phone</label>
-              </div>
+
               <div className="btn-fields">
                 {isEditing ? (
                   <div className="save_cancel">

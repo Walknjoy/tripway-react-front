@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom';
 import './Destionation.scss';
+import SectionTitle from '../SectionTitle/SectionTitle';
 const Destination = () => {
   return (
     <div className="destionation">
-      <div className="container">
-        <div className="destination_title">
-          <h3>Top Destination</h3>
-          <div className="horizantal"></div>
-        </div>
+      <div className="container-fluid">
+        <SectionTitle title={'Top Destination'} />
         <div className="row">
           <div className="col-12 col-lg-6 col-md-6">
             <div className="destination_card" id="destination-bg-1">

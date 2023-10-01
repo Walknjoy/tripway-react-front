@@ -75,6 +75,8 @@ const Header = () => {
     const storedImg = localStorage.getItem('img');
     if (storedImg) {
       setUser(storedImg);
+    } else {
+      setUser(false);
     }
   }, [setUser]);
 
@@ -100,7 +102,7 @@ const Header = () => {
   return (
     <>
       <header className={`sticky-header ${scrolled ? 'fixed-header' : ''} `}>
-        <div className="container">
+        <div className="container-fluid">
           <nav className="navbar-wrapper">
             <div className="left-side">
               <Logo />
@@ -110,25 +112,30 @@ const Header = () => {
                 <li>
                   <Link to="/">Home</Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="#">
-                    Hotels <FaAngleDown />
-                  </Link>
-                  <ul className="sub-menu">
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
+                <li>
+                  <Link to="#">Hotel</Link>
+                  {/* <ul className="sub-menu">
                     <li>
                       <Link to="/hotels/hotel-1">Hotel-1</Link>
                     </li>
-                  </ul>
+                  </ul> */}
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="#">
-                    Tours <FaAngleDown />
-                  </Link>
-                  <ul className="sub-menu">
+                <li>
+                  <Link to="#">Tours</Link>
+                  {/* <ul className="sub-menu">
                     <li>
                       <Link to="/tours/tours-1">Tours -1</Link>
                     </li>
-                  </ul>
+                  </ul> */}
+                </li>
+                <li>
+                  <Link to="/entertainments">Entertainments</Link>
+                </li>
+                <li>
+                  <Link to="/blog">Blog</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="#">
@@ -142,12 +149,6 @@ const Header = () => {
                       <Link to="/rental/yachts">Yachts</Link>
                     </li>
                   </ul>
-                </li>
-                <li>
-                  <Link to="/entertainments">Entertainments</Link>
-                </li>
-                <li>
-                  <Link to="/contact-us">Contact us</Link>
                 </li>
               </ul>
               <div id="language">
@@ -166,7 +167,7 @@ const Header = () => {
                         </Link>
                       </li>
                       <li>
-                        <button onClick={handleLogout}>Log out</button>
+                        <button onClick={handleLogout}>Logout</button>
                       </li>
                     </ul>
                   </div>

@@ -1,0 +1,64 @@
+@import '../../css-config/mixins.scss';
+.not_found {
+  @include flex();
+  padding: 40px 0;
+  min-height: 100vh;
+  .row {
+    .error_text {
+      @include md {
+        text-align: center;
+      }
+      h3 {
+        color: #3b444f;
+        font-size: 200px;
+        line-height: 1.2;
+        font-weight: bold;
+        margin-bottom: 10px;
+        @include xs {
+          font-size: 150px;
+        }
+      }
+      h6 {
+        font-size: 21px;
+        color: #3b444f;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 16px;
+        color: #67747c;
+      }
+      a {
+        font-size: 16px;
+        background-color: #297cbb;
+        border: #297cbb;
+        height: 50px;
+        cursor: pointer !important;
+        width: 150px;
+        color: #fff;
+        @include flex();
+        justify-content: center;
+        padding: 10px;
+        border-radius: 0.188rem;
+        transition: color 0.3s ease-in-out;
+        &:hover {
+          background-color: #1d508d;
+        }
+        @include md {
+          margin: 0 auto;
+        }
+      }
+    }
+    .error_image {
+      height: 400px;
+      width: 100%;
+      @include xs {
+        height: 250px;
+      }
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

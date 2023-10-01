@@ -1,6 +1,7 @@
 import MainRoot from '../Layout/MainRoot';
 import MainRootTwo from '../Layout/MainRootTwo';
-import ContactUs from '../Pages/ContactUs/ContactUs';
+import About from '../Pages/About/About';
+import BlogPage from '../Pages/BlogPage/BlogPage';
 import Entertainments from '../Pages/Entertainments/Entertainments';
 import ForgotPassword from '../Pages/ForgotPassword/ForgotPassword';
 import Home from '../Pages/Home/Home';
@@ -19,7 +20,11 @@ import Information from '../Pages/UserProfile/Information/Information';
 import Password from '../Pages/UserProfile/Password/Password';
 import Profile from '../Pages/UserProfile/Profile/Profile';
 import UserProfile from '../Pages/UserProfile/UserProfile';
-import { AuthorizeUser, ProtectRoute } from '../middleware/auth';
+import {
+  AuthorizeUser,
+  LoginRegisterUser,
+  ProtectRoute,
+} from '../middleware/auth';
 
 export const ROUTES = [
   {
@@ -77,7 +82,7 @@ export const ROUTES = [
         ],
       },
       {
-        path: 'entertainment',
+        path: 'entertainments',
         element: (
           <AuthorizeUser>
             <Entertainments />
@@ -85,8 +90,12 @@ export const ROUTES = [
         ),
       },
       {
-        path: 'contact-us',
-        element: <ContactUs />,
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'blog',
+        element: <BlogPage />,
       },
     ],
   },
@@ -96,7 +105,11 @@ export const ROUTES = [
     children: [
       {
         path: 'user-login',
-        element: <Login />,
+        element: (
+          <LoginRegisterUser>
+            <Login />
+          </LoginRegisterUser>
+        ),
       },
       {
         path: 'user-profile',
@@ -122,7 +135,11 @@ export const ROUTES = [
       },
       {
         path: 'user-register',
-        element: <Register />,
+        element: (
+          <LoginRegisterUser>
+            <Register />
+          </LoginRegisterUser>
+        ),
       },
       {
         path: 'user-forgot-password',

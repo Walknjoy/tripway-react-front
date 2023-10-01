@@ -1,33 +1,11 @@
 @import '../../css-config/mixins.scss';
 #collaborate {
   padding: 30px 0;
-  background: url('../../Media/collabrator.jpg');
+  background: url('../../Media/bg-collabrate.png');
   min-height: 500px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  .collaborate_title {
-    margin-bottom: 30px;
-    position: relative;
-    text-align: center;
-    .horizantal {
-      width: 50px;
-      height: 2px;
-      border-radius: 1px;
-      margin: 0 auto;
-      background-color: #297cbb;
-    }
-    h3 {
-      font-size: 28px;
-      line-height: 1.5;
-      letter-spacing: 1px;
-      font-weight: bold;
-      color: #3b444f;
-      @include xs {
-        font-size: 25px;
-      }
-    }
-  }
   .collabrate-wrapper {
     display: flex;
     align-items: flex-start;

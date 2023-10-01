@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './Trending.scss';
-import TrendingTitle from './TrendingTitle/TrendingTitle';
 import TrendingFilter from './TrendingFilter/TrendingFilter';
 import TrendingCard from './TrendingCard/TrendingCard';
 import useFetch from '../../hooks/useFetch';
+import SectionTitle from '../SectionTitle/SectionTitle';
 const Trending = () => {
   const [endPoint, setEndPoint] = useState('Entertainment');
   // const { data, loading } = useFetch(`/${endPoint}`);
@@ -30,8 +30,8 @@ const Trending = () => {
   };
   return (
     <section id="trending_section">
-      <div className="container">
-        <TrendingTitle />
+      <div className="container-fluid">
+        <SectionTitle  title={'Trending'}/>
         <TrendingFilter
           onTabChange={onTabChange}
           dataes={['Entertainment', 'Hotel', 'Yachts', 'Car', 'Tour']}
