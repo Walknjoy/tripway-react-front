@@ -3,15 +3,13 @@ import './WhyChoose.scss';
 import { GiPriceTag } from 'react-icons/gi';
 import { LiaAwardSolid } from 'react-icons/lia';
 import { SiYourtraveldottv } from 'react-icons/si';
+import SectionTitle from '../SectionTitle/SectionTitle';
 
 const WhyChoose = () => {
   return (
     <section id="why-choose">
-      <div className="container">
-        <div className="choose-title">
-          <h3>Why Choose us</h3>
-          <div className="horizantal"></div>
-        </div>
+      <div className="container-fluid">
+        <SectionTitle title={'Why Choose us'} />
         <div className="row">
           <div className="col-12 col-lg-4 col-md-4">
             <div className="choose-description">
