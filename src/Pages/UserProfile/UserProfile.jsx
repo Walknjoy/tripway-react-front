@@ -14,6 +14,7 @@ import { FiLogOut } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import { useCallback } from 'react';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 function UserProfile() {
   const { data, loading, error } = useFetch('/users/user/profile');
   const navigate = useNavigate();
@@ -46,6 +47,9 @@ function UserProfile() {
   }
   return (
     <>
+      <Helmet>
+        <title>User Profile</title>
+      </Helmet>
       {loading ? (
         <LoadingPage initial={true} />
       ) : (

@@ -31,10 +31,10 @@ const Trending = () => {
   return (
     <section id="trending_section">
       <div className="container">
-        <SectionTitle  title={'Trending'}/>
+        <SectionTitle title={'Trending'} />
         <TrendingFilter
           onTabChange={onTabChange}
-          dataes={['Entertainment', 'Hotel', 'Yachts', 'Car', 'Tour']}
+          dataes={['entertainment', 'hotel', 'yachts', 'car', 'tour']}
         />
         <TrendingCard />
       </div>
