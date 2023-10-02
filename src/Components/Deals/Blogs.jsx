@@ -6,7 +6,7 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 const Blogs = () => {
   return (
     <div className="deals-section">
-      <div className="container-fluid">
+      <div className="container">
         <SectionTitle title={"Today's top Blogs"} />
         <div className="card-area">
           <BlogCard />

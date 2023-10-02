@@ -2,13 +2,11 @@
 .sticky-header {
   background-color: transparent;
   height: 88px;
-  padding: 25px 0;
   z-index: 99;
   width: 100%;
   position: fixed;
   top: 0;
   &.fixed-header {
-    padding: 5px 0;
     min-height: 60px;
     border-bottom: 1px solid #1d4f8d3b;
     box-shadow: 0 8px 20px rgba(41, 124, 187, 0.075);

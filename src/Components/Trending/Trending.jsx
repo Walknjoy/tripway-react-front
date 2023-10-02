@@ -30,7 +30,7 @@ const Trending = () => {
   };
   return (
     <section id="trending_section">
-      <div className="container-fluid">
+      <div className="container">
         <SectionTitle  title={'Trending'}/>
         <TrendingFilter
           onTabChange={onTabChange}

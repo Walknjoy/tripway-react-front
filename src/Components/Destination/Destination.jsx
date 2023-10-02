@@ -4,7 +4,7 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 const Destination = () => {
   return (
     <div className="destionation">
-      <div className="container-fluid">
+      <div className="container">
         <SectionTitle title={'Top Destination'} />
         <div className="row">
           <div className="col-12 col-lg-6 col-md-6">

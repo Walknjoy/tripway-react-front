@@ -1,11 +1,11 @@
 @import '../../css-config/mixins.scss';
-.not_found {
+.mail_success {
   @include flex();
   padding: 40px 0;
   min-height: 100vh;
   .row {
     align-items: center;
-    .error_text {
+    .mail_text {
       @include md {
         text-align: center;
       }
@@ -47,7 +47,7 @@
         }
       }
     }
-    .error_image {
+    .mail_image {
       height: 400px;
       width: 100%;
       @include xs {

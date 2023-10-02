@@ -5,10 +5,15 @@ import HeroFilter from '../../Components/HeroFilter/HeroFilter';
 import Collaborateus from '../../Components/CollaborateUs/Collaborateus';
 import Destination from '../../Components/Destination/Destination';
 import WhyChoose from '../../Components/WhyChoose/WhyChoose';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
   
   return (
+    <>
+    <Helmet>
+        <title>Home</title>
+      </Helmet>
     <main>
       <HeroFilter />
       <Destination />
@@ -17,6 +22,7 @@ const Home = () => {
       <WhyChoose />
       <Blogs />
     </main>
+    </>
   );
 };
 

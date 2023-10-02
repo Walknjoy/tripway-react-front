@@ -8,7 +8,7 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 const WhyChoose = () => {
   return (
     <section id="why-choose">
-      <div className="container-fluid">
+      <div className="container">
         <SectionTitle title={'Why Choose us'} />
         <div className="row">
           <div className="col-12 col-lg-4 col-md-4">

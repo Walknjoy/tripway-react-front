@@ -4,7 +4,7 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 const Collaborateus = () => {
   return (
     <section id="collaborate">
-      <div className="container-fluid">
+      <div className="container">
         <SectionTitle title={'Collaborate with us'} />
         <form>
           <div className="collabrate-wrapper">

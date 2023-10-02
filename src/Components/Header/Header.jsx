@@ -102,7 +102,7 @@ const Header = () => {
   return (
     <>
       <header className={`sticky-header ${scrolled ? 'fixed-header' : ''} `}>
-        <div className="container-fluid">
+        <div className="container">
           <nav className="navbar-wrapper">
             <div className="left-side">
               <Logo />

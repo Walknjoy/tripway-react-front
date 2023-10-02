@@ -8,6 +8,7 @@ import Home from '../Pages/Home/Home';
 import Hotel from '../Pages/Hotels/Hotel';
 import HotelOne from '../Pages/Hotels/HotelOne/HotelOne';
 import Login from '../Pages/Login/Login';
+import MailSuccess from '../Pages/MailSucces/MailSuccess';
 import NewPassword from '../Pages/NewPassword/NewPassword';
 import NotFound from '../Pages/NotFound/NotFound';
 import Register from '../Pages/Register/Register';
@@ -103,6 +104,10 @@ export const ROUTES = [
     path: '/',
     element: <MainRootTwo />,
     children: [
+      {
+        path: 'success-mail',
+        element: <MailSuccess />,
+      },
       {
         path: 'user-login',
         element: (
