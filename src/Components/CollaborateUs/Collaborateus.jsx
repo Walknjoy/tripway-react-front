@@ -1,12 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Collaborateus.scss';
 import SectionTitle from '../SectionTitle/SectionTitle';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const Collaborateus = () => {
+  const initialState = {
+    companyName: '',
+    fullName: '',
+    job: '',
+    businessEmail: '',
+    businessPhone: '',
+    message: '',
+  };
+
+  const [collabrate, setCollabrate] = useState(initialState);
+
+  const handleCollabrate = (e) => {
+    const { name, value } = e.target;
+    setCollabrate({ ...collabrate, [name]: value });
+  };
+
+  const handleCollabrateSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const collaborateData = {
+        fullName: collabrate.fullName,
+        companyName: collabrate.companyName,
+        job: collabrate.job,
+        businessEmail: collabrate.businessEmail,
+        businessPhone: collabrate.businessPhone,
+        message: collabrate.message,
+      };
+      const res = await axios.post('/collaborate/send/offer', collaborateData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (res.status === 200) {
+        toast.success(res.data.success);
+        setCollabrate(initialState); // Reset form fields
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <section id="collaborate">
       <div className="container">
         <SectionTitle title={'Collaborate with us'} />
-        <form>
+        <form onSubmit={handleCollabrateSubmit}>
           <div className="collabrate-wrapper">
             <div className="collabrateus-left">
               <h3>Near or far, we’ll get you there</h3>
@@ -20,7 +64,14 @@ const Collaborateus = () => {
               <div className="row">
                 <div className="col-12 col-lg-6 col-md-6 col-sm-6">
                   <div className="field-holder">
-                    <input type="text" id="fullname" required />
+                    <input
+                      type="text"
+                      id="fullname"
+                      name="fullName"
+                      value={collabrate.fullName}
+                      onChange={handleCollabrate}
+                      required
+                    />
                     <label htmlFor="fullname">Fullname</label>
                   </div>
                 </div>
@@ -28,8 +79,10 @@ const Collaborateus = () => {
                   <div className="field-holder">
                     <input
                       type="text"
-                      name="companyname"
+                      name="companyName"
                       id="companyname"
+                      value={collabrate.companyName}
+                      onChange={handleCollabrate}
                       required
                     />
                     <label htmlFor="companyname">Company name</label>
@@ -37,12 +90,18 @@ const Collaborateus = () => {
                 </div>
                 <div className="col-12">
                   <div className="field-holder">
-                    <select name="jobs">
+                    <select
+                      name="job"
+                      value={collabrate.job}
+                      onChange={handleCollabrate}>
                       <option value="">Select your jobs</option>
-                      <option value="job">Frontend Developer</option>
-                      <option value="job">Backend Developer</option>
-                      <option value="job">Fullstack Developer</option>
-                      <option value="job">PM</option>
+                      <option value="Frontend Developer">
+                        Frontend Developer
+                      </option>
+                      <option value="Backend Developer">
+                        Backend Developer
+                      </option>
+                      <option value="Pm">PM</option>
                     </select>
                   </div>
                 </div>
@@ -51,7 +110,9 @@ const Collaborateus = () => {
                     <input
                       type="text"
                       id="businessemail"
-                      name="businessemail"
+                      name="businessEmail"
+                      value={collabrate.businessEmail}
+                      onChange={handleCollabrate}
                       required
                     />
                     <label htmlFor="businessemail">Business email</label>
@@ -61,8 +122,10 @@ const Collaborateus = () => {
                   <div className="field-holder">
                     <input
                       type="text"
-                      id="businessphone"
-                      name="businessphone"
+                      id="businessPhone"
+                      name="businessPhone"
+                      value={collabrate.businessPhone}
+                      onChange={handleCollabrate}
                       required
                     />
                     <label htmlFor="businessphone">Business Phone</label>
@@ -70,7 +133,12 @@ const Collaborateus = () => {
                 </div>
                 <div className="col-12">
                   <div className="field-holder">
-                    <textarea name="message" id="message" required></textarea>
+                    <textarea
+                      name="message"
+                      id="message"
+                      required
+                      value={collabrate.message}
+                      onChange={handleCollabrate}></textarea>
                     <label htmlFor="message">Message</label>
                   </div>
                 </div>
