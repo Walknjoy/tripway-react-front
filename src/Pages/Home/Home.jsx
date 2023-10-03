@@ -13,7 +13,6 @@ const Home = () => {
     <>
     <Helmet>
         <title>Home</title>
-        <link rel="shortcut icon" href="./walknjoy icons.png" type="image/x-icon"/>
       </Helmet>
     <main>
       <HeroFilter />

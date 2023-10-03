@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 
 const TrendingFilter = ({ onTabChange, dataes }) => {
-  const [selected, setSelected] = useState(3);
+  const [selected, setSelected] = useState(1);
   const activeTab = useCallback(
     (tab, index) => {
-        setSelected(index);
+      setSelected(index);
       onTabChange(tab, index);
     },
     [setSelected, onTabChange]

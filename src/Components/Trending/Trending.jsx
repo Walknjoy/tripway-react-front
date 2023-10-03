@@ -5,28 +5,10 @@ import TrendingCard from './TrendingCard/TrendingCard';
 import useFetch from '../../hooks/useFetch';
 import SectionTitle from '../SectionTitle/SectionTitle';
 const Trending = () => {
-  const [endPoint, setEndPoint] = useState('Entertainment');
-  // const { data, loading } = useFetch(`/${endPoint}`);
+  const [endPoint, setEndPoint] = useState('cars');
+  const { data, loading, reFetch } = useFetch(`/${endPoint}`);
   const onTabChange = (tab) => {
-    switch (tab) {
-      case 'entertainment':
-        setEndPoint(tab);
-        break;
-      case 'hotel':
-        setEndPoint(tab);
-        break;
-      case 'yachts':
-        setEndPoint(tab);
-        break;
-      case 'car':
-        setEndPoint(tab);
-        break;
-      case 'tour':
-        setEndPoint(tab);
-        break;
-      default:
-        setEndPoint('entertainment');
-    }
+    setEndPoint(tab);
   };
   return (
     <section id="trending_section">
@@ -34,9 +16,9 @@ const Trending = () => {
         <SectionTitle title={'Trending'} />
         <TrendingFilter
           onTabChange={onTabChange}
-          dataes={['entertainment', 'hotel', 'yachts', 'car', 'tour']}
+          dataes={['hotels', 'cars', 'tours']}
         />
-        <TrendingCard />
+        <TrendingCard data={data} loading={loading} />
       </div>
     </section>
   );
