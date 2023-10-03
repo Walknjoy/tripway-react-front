@@ -2,8 +2,7 @@ import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 import { TbCurrencyManat } from 'react-icons/tb';
-import { CiLocationOn } from 'react-icons/ci';
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { FaLocationDot } from 'react-icons/fa6';
 const TrendingCard = () => {
   return (
     <div className="trendingCard">
@@ -12,57 +11,24 @@ const TrendingCard = () => {
           <Link className="card">
             <figure className="card-image">
               <LazyLoadImage src="https://mytravel.madrasthemes.com/wp-content/uploads/2022/02/img4-2-300x225.jpeg" />
-              <figcaption className="image-content">
-                <h3>Culturals Tours</h3>
-                <ul>
-                  <li>
-                    <del>
-                      <TbCurrencyManat />
-                      565.00
-                    </del>
-                  </li>
-                  <li>
-                    <span>
-                      <TbCurrencyManat />
-                      565.00
-                    </span>
-                  </li>
-                </ul>
-              </figcaption>
-              <div className="addition">
-                <div className="featured">Featured</div>
-                <div className="percent">%25</div>
-              </div>
+              <h3 className="location">
+                <FaLocationDot />
+                Istanbul,Turkey
+              </h3>
             </figure>
             <article className="card-content">
-              <h6>
-                <CiLocationOn />
-                <span>Istanbul,Turkey</span>
-              </h6>
               <h3>
                 5-Day Oahu Tour: Honolulu, Pearl Harbor, & Diamond Head
                 cskcsjvcskvnscksjc
               </h3>
               <div className="star-review">
-                <ul>
-                  <li>
-                    <AiFillStar />
-                  </li>
-                  <li>
-                    <AiFillStar />
-                  </li>
-                  <li>
-                    <AiFillStar />
-                  </li>
-                  <li>
-                    <AiFillStar />
-                  </li>
-                  <li>
-                    <AiOutlineStar />
-                  </li>
-                </ul>
+                <p>5.0/5.0</p>
                 <span>(1 review)</span>
               </div>
+              <h4>
+                From 
+                <span><TbCurrencyManat />540.00</span>
+              </h4>
             </article>
           </Link>
         </div>
