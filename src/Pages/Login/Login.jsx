@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { mainContext } from '../../utils/ContextApi';
+import { Helmet } from 'react-helmet';
 const Login = () => {
   const { login, setLogin } = useContext(mainContext);
 
@@ -44,7 +45,7 @@ const Login = () => {
         });
         navigate('/');
       } else {
-        console.log(res.info.error)
+        console.log(res.info.error);
         return;
       }
     } catch (error) {
@@ -52,81 +53,87 @@ const Login = () => {
     }
   };
   return (
-    <div className="login-panel">
-      <div className="container">
-        <div className="bg-svg">
-          <img src={bgSvg} alt="login bg" />
-        </div>
-        <div className="login-container">
-          <h2>Login to your account</h2>
-          <div className="form-side">
-            <form onSubmit={handleSubmit}>
-              <div className="row">
-                <div className="col-12">
-                  <div className="input-fields">
-                    <label htmlFor="username">Username</label>
-                    <input
-                      type="text"
-                      placeholder="username"
-                      name="username"
-                      id="username"
-                      value={login.username}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="col-12">
-                  <div className="input-fields fields-position">
-                    <label htmlFor="password">Password</label>
-                    <input
-                      type={visible ? 'text' : 'password'}
-                      placeholder="password"
-                      name="password"
-                      id="password"
-                      value={login.password}
-                      onChange={handleChange}
-                    />
-                    {visible ? (
-                      <AiOutlineEye
-                        className="absolute right-2 top-3 cursor-pointer"
-                        onClick={() => setVisible(false)}
-                      />
-                    ) : (
-                      <AiOutlineEyeInvisible
-                        className="absolute right-2 top-3 cursor-pointer"
-                        onClick={() => setVisible(true)}
-                      />
-                    )}
-                  </div>
-                </div>
+    <>
+      <Helmet>
+        <title>Login as user</title>
+      </Helmet>
 
-                <div className="col-12 ">
-                  <button className="login-btn">Login account</button>
-                </div>
-                <div className="col-12">
-                  <div className="remember-forgot-side">
-                    <div className="forgot-link">
-                      <Link
-                        to="/user-forgot-password"
-                        className="font-medium text-blue-500 hover:text-blue-500">
-                        Forgot password?
-                      </Link>
+      <div className="login-panel">
+        <div className="container">
+          <div className="bg-svg">
+            <img src={bgSvg} alt="login bg" />
+          </div>
+          <div className="login-container">
+            <h2>Login to your account</h2>
+            <div className="form-side">
+              <form onSubmit={handleSubmit}>
+                <div className="row">
+                  <div className="col-12">
+                    <div className="input-fields">
+                      <label htmlFor="username">Username</label>
+                      <input
+                        type="text"
+                        placeholder="username"
+                        name="username"
+                        id="username"
+                        value={login.username}
+                        onChange={handleChange}
+                      />
                     </div>
-                    <Link to="/">Cancel</Link>
+                  </div>
+                  <div className="col-12">
+                    <div className="input-fields fields-position">
+                      <label htmlFor="password">Password</label>
+                      <input
+                        type={visible ? 'text' : 'password'}
+                        placeholder="password"
+                        name="password"
+                        id="password"
+                        value={login.password}
+                        onChange={handleChange}
+                      />
+                      {visible ? (
+                        <AiOutlineEye
+                          className="absolute right-2 top-3 cursor-pointer"
+                          onClick={() => setVisible(false)}
+                        />
+                      ) : (
+                        <AiOutlineEyeInvisible
+                          className="absolute right-2 top-3 cursor-pointer"
+                          onClick={() => setVisible(true)}
+                        />
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="col-12 ">
+                    <button className="login-btn">Login account</button>
+                  </div>
+                  <div className="col-12">
+                    <div className="remember-forgot-side">
+                      <div className="forgot-link">
+                        <Link
+                          to="/user-forgot-password"
+                          className="font-medium text-blue-500 hover:text-blue-500">
+                          Forgot password?
+                        </Link>
+                      </div>
+                      <Link to="/">Cancel</Link>
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <div className="text-side">
+                      <h4>Not have any account?</h4>
+                      <Link to="/user-register">Sign up</Link>
+                    </div>
                   </div>
                 </div>
-                <div className="col-12">
-                  <div className="text-side">
-                    <h4>Not have any account?</h4>
-                    <Link to="/user-register">Sign up</Link>
-                  </div>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

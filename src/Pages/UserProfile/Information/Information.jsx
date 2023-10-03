@@ -4,6 +4,7 @@ import useFetch from '../../../hooks/useFetch';
 import { AiFillEdit } from 'react-icons/ai';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const Information = () => {
   const navigate = useNavigate();
@@ -77,6 +78,9 @@ const Information = () => {
 
   return (
     <>
+      <Helmet>
+        <title>User information</title>
+      </Helmet>
       {loading ? (
         <p>loading....</p>
       ) : (

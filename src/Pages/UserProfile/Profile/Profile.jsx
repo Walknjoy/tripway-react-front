@@ -1,10 +1,14 @@
 import React from 'react';
 import './Profile.scss';
 import useFetch from '../../../hooks/useFetch';
+import { Helmet } from 'react-helmet';
 const Profile = () => {
   const { data, loading } = useFetch('/users/user/profile');
   return (
     <>
+      <Helmet>
+        <title>User-{data.username}</title>
+      </Helmet>
       {loading ? (
         <p>loading....</p>
       ) : (
@@ -34,7 +38,6 @@ const Profile = () => {
               <input type="tel" id="tel" disabled={true} required />
               <label id="tel">{data.phone}</label>
             </div>
-          
           </div>
         </div>
       )}
