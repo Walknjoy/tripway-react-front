@@ -4,12 +4,14 @@ import BlogImg from '../../Media/blog-bg.webp';
 import VacationFutures from './VacationFutures/VacationFutures';
 import ContactNow from './ContactNow/ContactNow';
 import TeamMembers from './TeamMembers/TeamMembers';
+import OurExperience from './OurExperience/OurExperience';
 
 const About = () => {
   return (
     <div>
       <PageTitle title={'About us'} backgroundImg={BlogImg} />
       <VacationFutures/>
+      <OurExperience/>
       <TeamMembers/>
       <ContactNow/>
     </div>
