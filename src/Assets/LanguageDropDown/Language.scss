@@ -14,11 +14,11 @@
     border: 0;
     outline: 0;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: capitalize;
     @include flex();
     gap: 5px;
-    color: #297cbb;
+    color: #000;
     justify-content: center;
     background: transparent;
     @include xs {

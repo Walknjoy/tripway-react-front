@@ -6,7 +6,7 @@ const PageTitle = ({ title, backgroundImg }) => {
       <div
         className="page_title"
         style={{ background: `url(${backgroundImg})` }}>
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div className="col-12">
               <div className="page_description">

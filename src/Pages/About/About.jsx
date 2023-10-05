@@ -10,8 +10,8 @@ const About = () => {
   return (
     <div>
       <PageTitle title={'About us'} backgroundImg={BlogImg} />
-      <VacationFutures/>
       <OurExperience/>
+      <VacationFutures/>
       <TeamMembers/>
       <ContactNow/>
     </div>
