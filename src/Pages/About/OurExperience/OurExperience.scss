@@ -1,0 +1,72 @@
+@import '../../../css-config/mixins.scss';
+#our_experience{
+    background: #EFF2F9;
+    position: relative;
+    padding: 30px 0;
+    .experience{
+        display: flex;
+        justify-content: space-between;
+        .experience-img{
+            width: 100%;
+            position: relative;
+        }
+        .left-side{
+            position: absolute;
+            width: 300px;
+            border-radius: 27px;
+            background: -webkit-gradient(linear, right bottom, left top, from(#3763eb), to(#6f58e8));
+            background: linear-gradient(to top left, #3763eb 0%, #6f58e8 100%);
+            border: 5px solid #eff2f9;
+            padding: 40px 20px;
+            position: absolute;
+            right: -40px;
+            bottom: 10px;
+            color: white;
+    }
+}
+.content-title{
+    span{
+        font-size: 25px;
+        font-weight: 700;
+        color: #3763EB;
+        margin-bottom: 5px;
+    }
+    h2{
+        line-height: 55px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+}
+}
+.experience-content{
+    .content-description{
+        p{
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 26px;
+            color: #6A7C92;
+            margin-bottom: 45px;
+        }
+    }
+    .description-down{
+        @include flex();
+        span{
+            font-size: 40px;
+            font-weight: 600;
+            color: #3763EB;
+            display: block;
+            margin-bottom: 8px;
+        }
+        h4{
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        p{
+            font-size: 16px;
+            line-height: 26px;
+            color: #6A7C92;
+            margin: 0px;
+            font-weight: 400;
+        }
+    }
+}
