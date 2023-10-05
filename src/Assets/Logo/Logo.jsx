@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoScroll from '../../Media/logo_transparent.png';
+import logoScroll from '../../Media/walknjoy.png';
 import './Logo.scss';
 const Logo = () => {
   return (

@@ -7,7 +7,7 @@ const Profile = () => {
   return (
     <>
       <Helmet>
-        <title>User-{data.username}</title>
+        <title>User</title>
       </Helmet>
       {loading ? (
         <p>loading....</p>
