@@ -121,21 +121,19 @@
           a {
             @include flex();
             padding: 13px 10px;
-            color: #297cbb;
+            color: #000;
             transition: 0.3s ease-in-out;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
+            &:hover {
+              color: #1d508d;
+            }
             @include lg {
               padding: 10px;
               gap: 5px;
             }
             svg {
               margin-left: 3px;
-            }
-            &.active {
-              font-weight: bold;
-              font-size: 16px;
-              color: #e53e29;
             }
           }
           .sub-menu {
@@ -198,7 +196,10 @@
       }
       .user-login {
         .login {
-          color: #297cbb;
+          color: #000;
+          &:hover{
+            color: #1d508d;
+          }
           svg {
             height: 30px;
             width: 20px;
