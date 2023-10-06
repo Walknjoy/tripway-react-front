@@ -27,6 +27,7 @@ import {
   ProtectRoute,
 } from '../middleware/auth';
 
+
 export const ROUTES = [
   {
     path: '/',
