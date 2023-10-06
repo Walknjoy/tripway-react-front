@@ -45,7 +45,32 @@
           text-align: justify;
         }
       }
-      
+      .send-btn {
+        margin-top: 30px;
+        width: 150px;
+        height: 50px;
+        border-radius: 10px;
+       @include flex();
+        justify-content: center;
+        line-height: 1.5;
+        font-size: 16px;
+        color: #fff;
+        background: #1d508d;
+        border: 2px solid #1d508d;
+        outline: 2px solid #1d508d;
+        outline-offset: 1px;
+        font-weight: bold;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+        @include md{
+          display:none;
+        }
+        &:hover {
+          background: transparent;
+          color: #1d508d;
+        }
+       
+      } 
       
     }
     .collabrateus--right-form {
@@ -143,12 +168,13 @@
           }
           
         }
-        .send-btn {
+        .responsive-send-btn {
           margin-top: 30px;
           width: 150px;
           height: 50px;
           border-radius: 10px;
-          @include flex();
+          display: none;
+          align-items: center;
           justify-content: center;
           line-height: 1.5;
           font-size: 16px;
@@ -160,6 +186,9 @@
           font-weight: bold;
           transition: 0.3s ease-in-out;
           cursor: pointer;
+          @include md{
+            display: flex;
+          }
           &:hover {
             background: transparent;
             color: #1d508d;

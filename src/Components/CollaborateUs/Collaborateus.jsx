@@ -59,10 +59,13 @@ const Collaborateus = () => {
                 with our platform to reach a diverse audience, showcase your
                 expertise, and make lasting connections in the travel industry.
               </p>
+              <button className="send-btn" type="submit">
+                    Send
+                  </button>
             </div>
             <div className="collabrateus--right-form">
               <div className="row">
-                <div className="col-12 col-lg-6 col-md-6 col-sm-6">
+                <div className="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                   <div className="field-holder">
                     <input
                       type="text"
@@ -75,7 +78,7 @@ const Collaborateus = () => {
                     <label htmlFor="fullname">Fullname</label>
                   </div>
                 </div>
-                <div className="col-12 col-lg-6 col-md-6 col-sm-6">
+                <div className="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                   <div className="field-holder">
                     <input
                       type="text"
@@ -105,7 +108,7 @@ const Collaborateus = () => {
                     </select>
                   </div>
                 </div>
-                <div className="col-12 col-lg-6 col-md-6 col-sm-6">
+                <div className="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                   <div className="field-holder">
                     <input
                       type="text"
@@ -118,7 +121,7 @@ const Collaborateus = () => {
                     <label htmlFor="businessemail">Business email</label>
                   </div>
                 </div>
-                <div className="col-12 col-lg-6 col-md-6 col-sm-6">
+                <div className="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                   <div className="field-holder">
                     <input
                       type="text"
@@ -143,7 +146,7 @@ const Collaborateus = () => {
                   </div>
                 </div>
                 <div className="col-12">
-                  <button className="send-btn" type="submit">
+                  <button className="responsive-send-btn" type="submit">
                     Send
                   </button>
                 </div>

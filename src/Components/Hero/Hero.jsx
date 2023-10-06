@@ -15,7 +15,7 @@ const Hero = () => {
       <div className="item">
         <div className="container">
           <div className="row">
-            <div className="col-12 col-lg-3">
+            <div className="col-12 col-xl-3 col-lg-3">
               <div className="left-side" data-aos="fade-right" data-aos-duration="100">
                 <h1>Lorem dolor sit.</h1>
                 <p>
@@ -25,7 +25,7 @@ const Hero = () => {
                 <button>Explore</button>
               </div>
             </div>
-            <div className="col-12 col-lg-8">
+            <div className="col-12 col-xl-8 col-lg-8">
               <div className="right-side">
                 <div className="images images-1" data-aos="fade-down" data-aos-duration="180">
                   <img src={Image1} alt="" />
