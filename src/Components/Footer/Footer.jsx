@@ -14,7 +14,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer_head">
           <div className="row">
-            <div className="col-12 col-lg-4 col-md-6">
+            <div className="col-12 col-xl-4 col-lg-4 col-md-6">
               <div className="footer_content">
                 <Link to="/" className="logo">
                   <img src={logo} alt="logo for footer" />
@@ -43,7 +43,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-12 col-lg-2 col-md-6">
+            <div className="col-12  col-xl-2 col-lg-2 col-md-6">
               <div className="footer_content">
                 <h3>Home</h3>
                 <ul className="page_link">
@@ -68,7 +68,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-12 col-lg-3 col-md-6">
+            <div className="col-12  col-xl-3 col-lg-3 col-md-6">
               <div className="footer_content">
                 <h3>Other Page</h3>
                 <ul className="page_link">
@@ -87,7 +87,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="col-12 col-lg-3 col-md-6">
+            <div className="col-12  col-xl-3 col-lg-3 col-md-6">
               <div className="footer_content">
                 <h3>Contact us</h3>
                 <ul className="contact-link">
@@ -122,12 +122,12 @@ const Footer = () => {
         </div>
         <div className="footer_bottom">
           <div className="row">
-            <div className="col-12 col-lg-6 col-md-6">
+            <div className="col-12 col-xl-6 col-lg-6 col-md-6">
               <div className="footer_bottom-left">
                 <p>© Walknjoy.. 2023 All rights reserved.</p>
               </div>
             </div>
-            <div className="col-12 col-lg-6 col-md-6">
+            <div className="col-12 col-xl-6 col-lg-6 col-md-6">
               <div className="footer_bottom-right">
                 <ul className="privacy_policy">
                   <li>

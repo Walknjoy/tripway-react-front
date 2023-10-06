@@ -7,7 +7,7 @@ const Destination = () => {
       <div className="container">
         <SectionTitle title={'Top Destination'} />
         <div className="row">
-          <div className="col-12 col-lg-6 col-md-6">
+          <div className="col-12 col-xl-6 col-lg-6 col-md-6">
             <div className="destination_card" id="destination-bg-1">
               <div className="destination-content ">
                 <Link to="/" className="destination-city">
@@ -42,7 +42,7 @@ const Destination = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-lg-6 col-md-6">
+          <div className="col-12  col-xl-6 col-lg-6 col-md-6">
             <div className="destination_card" id="destination-bg-2">
               <div className="destination-content">
                 <Link to="/" className="destination-city">
@@ -77,7 +77,7 @@ const Destination = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-lg-3 col-md-6">
+          <div className="col-12  col-xl-3 col-lg-3 col-md-6">
             <div className="destination_card" id="destination-bg-3">
               <div className="destination-content ">
                 <Link to="/" className="destination-city">
@@ -112,7 +112,7 @@ const Destination = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-lg-3 col-md-6">
+          <div className="col-12 col-xl-3 col-lg-3 col-md-6">
             <div className="destination_card" id="destination-bg-4">
               <div className="destination-content ">
                 <Link to="/" className="destination-city">
@@ -147,7 +147,7 @@ const Destination = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-lg-3 col-md-6">
+          <div className="col-12 col-xl-3 col-lg-3 col-md-6">
             <div className="destination_card" id="destination-bg-5">
               <div className="destination-content ">
                 <Link to="/" className="destination-city">
@@ -182,7 +182,7 @@ const Destination = () => {
               </div>
             </div>
           </div>
-          <div className="col-12 col-lg-3 col-md-6">
+          <div className="col-12  col-xl-3 col-lg-3 col-md-6">
             <div className="destination_card" id="destination-bg-6">
               <div className="destination-content">
                 <Link to="/" className="destination-city">
