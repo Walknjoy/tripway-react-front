@@ -1,4 +1,4 @@
-import './HeroFilter.scss';
+import './Hero.scss';
 import { FaLocationDot } from 'react-icons/fa6';
 import Image1 from '../../Media/image/bali.jpg';
 import Image2 from '../../Media/image/capadocia.jpg';
@@ -6,7 +6,7 @@ import Image3 from '../../Media/image/santorini2.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
-const HeroFilter = () => {
+const Hero = () => {
   useEffect(() => {
     AOS.init();
   }, []);
@@ -66,4 +66,4 @@ const HeroFilter = () => {
   );
 };
 
-export default HeroFilter;
+export default Hero;
