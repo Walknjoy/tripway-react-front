@@ -5,7 +5,8 @@ import Image2 from '../../Media/image/capadocia.jpg';
 import Image3 from '../../Media/image/santorini2.jpg';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import HeroSearch from "../HeroSearch/HeroSearch";
 const Hero = () => {
   useEffect(() => {
     AOS.init();
@@ -62,6 +63,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <HeroSearch />
     </section>
   );
 };
