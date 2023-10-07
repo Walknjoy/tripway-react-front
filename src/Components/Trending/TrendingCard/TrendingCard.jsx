@@ -3,6 +3,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 import { TbCurrencyManat } from 'react-icons/tb';
 import { FaLocationDot } from 'react-icons/fa6';
+import {AiTwotoneStar} from 'react-icons/ai'
 const TrendingCard = ({ data, loading }) => {
   return (
     <div className="trendingCard">
@@ -19,28 +20,42 @@ const TrendingCard = ({ data, loading }) => {
                   <Link className="card">
                     <figure className="card-image">
                       <LazyLoadImage src="https://mytravel.madrasthemes.com/wp-content/uploads/2022/02/img4-2-300x225.jpeg" />
-                      <h3 className="location">
-                        <FaLocationDot />
-                        {item?.city}
-                      </h3>
                     </figure>
                     <article className="card-content">
                       <h3>
                         {item?.name || item?.title}{' '}
                         {item?.model ? <span>{item?.model} </span> : <></>}
                       </h3>
+                      {item?.year ? <p>{item?.year}</p> : <></>}
+
+                      <div className="city">
+                      <p>
+                        {item?.city}
+                      </p>
+                      </div>
+                      <div className="review">
+                        <p>5.0</p>
+                        <div className="icon-re">
+                        <AiTwotoneStar/>
+                        <AiTwotoneStar/>
+                        <AiTwotoneStar/>
+                        <AiTwotoneStar/>
+                        <AiTwotoneStar/>
+                        </div>
+                      </div>
                       <div className="star-review">
-                        <p>5.0/5.0</p>
+                        <span>Very good</span>
                         <span>({item?.reviews?.length} review)</span>
                       </div>
+                      <div className="price">
                       <h4>
                         From
-                        <span>
-                          <TbCurrencyManat />
+                        <span>Azn</span>
+                        <span>  
                           {item?.price}
                         </span>
                       </h4>
-                      {item?.year ? <p>{item?.year}</p> : <></>}
+                      </div>
                     </article>
                   </Link>
                 </div>
