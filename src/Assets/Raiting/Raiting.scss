@@ -1,0 +1,14 @@
+@import '../../css-config/mixins.scss';
+.raiting_star {
+  @include flex();
+  gap: 5px;
+  font-size: 15px;
+  margin: 0;
+  .star-icon {
+    color: #b0d12b;
+  }
+  span {
+    color: #999;
+    margin: 0;
+  }
+}
