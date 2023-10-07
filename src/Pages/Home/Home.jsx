@@ -5,7 +5,6 @@ import Collaborateus from '../../Components/CollaborateUs/Collaborateus';
 import Destination from '../../Components/Destination/Destination';
 import WhyChoose from '../../Components/WhyChoose/WhyChoose';
 import { Helmet } from 'react-helmet';
-import HeroSearch from '../../Components/HeroSearch/HeroSearch';
 import Hero from '../../Components/Hero/Hero';
 
 const Home = () => {
@@ -18,7 +17,6 @@ const Home = () => {
         <Hero />
         <Destination />
         <Trending />
-        <HeroSearch />
         <Collaborateus />
         <WhyChoose />
         <Blogs />
