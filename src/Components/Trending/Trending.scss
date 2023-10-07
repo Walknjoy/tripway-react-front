@@ -51,8 +51,9 @@
   .trendingCard {
     margin-top: 30px;
     .card {
-      border: 1px solid #dddddd42;
       transition: 0.3s ease-in;
+      height: 400px;
+      border-radius: 5px 8px 5px 8px;
       &:hover {
         box-shadow: 0px 5px 16px 0px #d0cdcd;
         transition: 0.3s ease-out;
@@ -94,22 +95,9 @@
           height: 100%;
           transition: 0.4s ease-in;
         }
-        .location {
-          position: absolute;
-          bottom: 0;
-          padding: 0 24px 16px;
-          width: 100%;
-          font-size: 16px;
-          z-index: 2;
-          color: #fff;
-          @include flex();
-          gap: 4px;
-        }
       }
       .card-content {
-        background-color: #fff;
-        padding: 10px 15px;
-        border: 1px solid #ddd;
+        padding: 12px 15px;
         h3 {
           font-weight: bold;
           display: -webkit-box;
@@ -121,36 +109,42 @@
           overflow: hidden;
           height: calc(1.5 * 2);
         }
-        h6 {
-          @include flex();
-          font-size: 16px;
-          color: #3b444f;
-          gap: 10px;
-          svg {
-            font-size: 18px;
-          }
+        .city{
+         font-size: 12px;
         }
-        .star-review {
+        .review {
           @include flex();
           gap: 3px;
-          margin: 10px 0;
-          p {
-            background-color: #ffc107;
-            border-radius: 3px;
-            padding: 0.25rem 0.5rem;
-            color: #fff;
+          p:first-child {
             margin: 0;
+            background-color: #1d508d;
+            color: white;
+            padding: 1px 2px;
+            border-radius: 5px;
+            font-size: 14px;
           }
+          .icon-re{
+            display: inline;
+          }
+        }
+        .star-review{
+          @include flex();
           span {
+            margin-top: 5px;
             color: #999;
             font-size: 14px;
           }
         }
-        h4 {
-          @include flex();
+        .price{
+          h4 {
+            @include flex();
+          justify-content: flex-end;
           gap: 6px;
           font-size: 14px;
           color: #3b444f;
+          :first-child{
+            text-transform: uppercase;
+          }
           span {
             color: #000;
             font-size: 16px;
@@ -160,4 +154,5 @@
       }
     }
   }
+}
 }
