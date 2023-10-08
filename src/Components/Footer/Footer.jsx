@@ -1,6 +1,5 @@
 import React from 'react';
 import './Footer.scss';
-import './Footer.scss';
 import { Link } from 'react-router-dom';
 import Logo from '../../Assets/Logo/Logo';
 import payment from '../../Media/image/credit-cards.png';
@@ -12,6 +11,7 @@ import {
 } from 'react-icons/fa';
 import LazyLoadImg from '../../Assets/LazyLoadImg';
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <footer id="footer">
       <div className="container">
@@ -58,7 +58,6 @@ const Footer = () => {
                       height="24">
                       <path d="M19,1H5A5.006,5.006,0,0,0,0,6V18a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6A5.006,5.006,0,0,0,19,1ZM5,3H19a3,3,0,0,1,2.78,1.887l-7.658,7.659a3.007,3.007,0,0,1-4.244,0L2.22,4.887A3,3,0,0,1,5,3ZM19,21H5a3,3,0,0,1-3-3V7.5L8.464,13.96a5.007,5.007,0,0,0,7.072,0L22,7.5V18A3,3,0,0,1,19,21Z" />
                     </svg>
-
                     <Link to="mailto:">example@example.com</Link>
                   </li>
                 </ul>
@@ -176,7 +175,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-12 col-lg-6 col-md-6">
               <div className="footer_bottom_content">
-                <p>© 2022 Walknjoy. All rights reserved </p>
+                <p>© {currentYear} Walknjoy. All rights reserved </p>
               </div>
             </div>
             <div className="col-12 col-lg-6 col-md-6">

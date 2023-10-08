@@ -1,7 +1,6 @@
 import { createContext, useState } from 'react';
 
 export const mainContext = createContext(null);
-
 function ContextApi({ children }) {
   const [openBar, setOpenBar] = useState(false);
   const [click, setClick] = useState(false);
@@ -12,6 +11,7 @@ function ContextApi({ children }) {
   const [user, setUser] = useState(false);
   const [userVisible, setUserVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
+  const [activeTab, setActiveTab] = useState(1);
   const [register, setRegister] = useState({
     username: '',
     country: '',
@@ -25,6 +25,10 @@ function ContextApi({ children }) {
     password: '',
   });
 
+  //! function area
+  const activeTabToggle = (index) => {
+    setActiveTab(index);
+  };
   const values = {
     openBar,
     setOpenBar,
@@ -48,6 +52,9 @@ function ContextApi({ children }) {
     setAvatar,
     login,
     setLogin,
+    activeTabToggle,
+    activeTab,
+    setActiveTab,
   };
   return <mainContext.Provider value={values}>{children}</mainContext.Provider>;
 }
