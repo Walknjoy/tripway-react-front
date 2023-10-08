@@ -6,7 +6,7 @@ import useFetch from '../../hooks/useFetch';
 import SectionTitle from '../SectionTitle/SectionTitle';
 const Trending = () => {
   const [endPoint, setEndPoint] = useState('cars');
-  const { data, loading } = useFetch(`/${endPoint}`);
+  const { data, loading } = useFetch(`https://tripway-app-api.onrender.com/api/${endPoint}`);
   const onTabChange = (tab) => {
     setEndPoint(tab);
   };
