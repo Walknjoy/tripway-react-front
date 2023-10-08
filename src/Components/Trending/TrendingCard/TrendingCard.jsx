@@ -2,13 +2,13 @@ import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
-import { AiTwotoneStar } from 'react-icons/ai';
 import Raiting from '../../../Assets/Raiting/Raiting.jsx';
 const TrendingCard = ({ data, loading }) => {
   const animatedProps = useSpring({
-    opacity: loading ? 0 : 1,
-    transform: loading ? 'translateY(-10px)' : 'translateY(0px)',
-    filter: loading ? 'blur(10px)' : 'blur(0px)',
+    opacity: loading ? 0.6 : 1,
+    transform: loading ? 'translateY(-2px)' : 'translateY(0px)',
+    filter: loading ? 'blur(1px)' : 'blur(0px)',
+    config: { duration: 500 },
   });
   return (
     <div className="trendingCard">
@@ -22,6 +22,7 @@ const TrendingCard = ({ data, loading }) => {
                   <figure className="card-image">
                     <LazyLoadImage
                       effect="blur"
+                      className="image-transition"
                       src="https://mytravel.madrasthemes.com/wp-content/uploads/2022/02/img4-2-300x225.jpeg"
                     />
                   </figure>
