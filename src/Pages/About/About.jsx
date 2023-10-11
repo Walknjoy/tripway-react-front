@@ -1,6 +1,6 @@
 import React from 'react'
 import PageTitle from '../../Components/PageTitle/PageTitle';
-import BlogImg from '../../Media/blog-bg.webp';
+import BlogImg from '../../Media/image/hero-about-bg.jpeg';
 import VacationFutures from './VacationFutures/VacationFutures';
 import ContactNow from './ContactNow/ContactNow';
 import TeamMembers from './TeamMembers/TeamMembers';

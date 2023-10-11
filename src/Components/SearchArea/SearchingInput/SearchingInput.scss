@@ -43,12 +43,17 @@
             &:focus {
               outline-color: #297cbb;
             }
+            @include lg {
+              &::placeholder {
+                font-size: 12px;
+              }
+            }
           }
         }
         @include xs {
           font-size: 14px;
         }
-        span {
+        label {
           color: #67747c;
           text-align: start;
         }
@@ -80,7 +85,7 @@
             justify-content: space-between;
           }
         }
-        .rooms_area{
+        .rooms_area {
           @include flex();
           height: 45px;
           padding: 10px 15px;
@@ -107,14 +112,28 @@
             @include flex();
             width: 100%;
             margin: 0;
+            cursor: pointer;
             justify-content: space-between;
+            @include lg {
+              font-size: 12px;
+            }
+            @include md {
+              font-size: 14px;
+            }
+            .chevron-icon{
+              transform: rotate(0);
+              &.active{
+                transform: rotate(180deg);
+              }
+            }
+           
           }
         }
         .date {
           position: absolute;
           top: 100px;
         }
-        .options{
+        .options {
           z-index: 2;
           position: absolute;
           top: 100px;
@@ -148,7 +167,6 @@
               }
             }
           }
-       
         }
       }
       .searching_btn {

@@ -12,7 +12,6 @@ const PageTitle = ({ title, backgroundImg }) => {
             <div className="col-12">
               <div className="page_description">
                 <h2>{title}</h2>
-                <p>Sharing the memories</p>
                 <BreadCrumps />
               </div>
             </div>

@@ -11,7 +11,8 @@
   @include xs {
     padding: 50px 0;
   }
-  @include flex();
+ display: flex;
+ align-items: flex-end;
   &:before {
     height: 100%;
     width: 100%;
@@ -21,12 +22,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.5);
   }
   .page_description {
     position: relative;
     h2 {
-      font-size: 40px;
+      font-size: 42px;
       font-weight: 600;
       color: white;
       border-bottom: 2px solid rgba(255, 255, 255, 0.3);
@@ -34,13 +35,6 @@
       @include sm {
         font-size: 30px;
       }
-    }
-    p {
-      font-size: 20px;
-      color: #fff;
-      font-style: italic;
-      padding-top: 10px;
-      margin: 0;
     }
   }
 }
