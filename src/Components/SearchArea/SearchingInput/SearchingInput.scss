@@ -41,7 +41,7 @@
             border: 0;
             outline-color: transparent;
             &:focus {
-              outline-color: #297cbb;
+              outline-color: #06A6E3;
             }
             @include lg {
               &::placeholder {
@@ -75,8 +75,8 @@
             gap: 10px;
           }
           &.active-btn {
-            fill: #297cbb;
-            border-bottom: 2px solid #297cbb;
+            fill: #06A6E3;
+            border-bottom: 2px solid #06A6E3;
           }
           p {
             @include flex();
@@ -105,8 +105,8 @@
             gap: 10px;
           }
           &.active-btn {
-            fill: #297cbb;
-            border-bottom: 2px solid #297cbb;
+            fill: #06A6E3;
+            border-bottom: 2px solid #06A6E3;
           }
           p {
             @include flex();
@@ -157,8 +157,8 @@
               .optionCounterButton {
                 width: 30px;
                 height: 30px;
-                border: 1px solid #0071c2;
-                color: #0071c2;
+                border: 1px solid #06A6E3;
+                color: #06A6E3;
                 cursor: pointer;
                 background-color: white;
                 &:disabled {
@@ -174,8 +174,8 @@
         align-items: flex-end;
         height: 100%;
         button {
-          background-color: #297cbb;
-          border-color: #297cbb;
+          background-color: #06A6E3;
+          border-color: #06A6E3;
           display: flex;
           align-items: center;
           justify-content: center;

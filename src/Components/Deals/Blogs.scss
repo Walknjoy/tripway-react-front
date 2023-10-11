@@ -9,7 +9,7 @@
       font-size: 28px;
       line-height: 1.5;
       letter-spacing: 1px;
-      color: #3b444f;
+      color: #112542;
       margin-bottom: 10px;
       font-weight: bold;
       @include xs {
@@ -21,7 +21,7 @@
       height: 2px;
       border-radius: 1px;
       margin: 0 auto;
-      background-color: #297cbb;
+      background-color: #06A6E3;
     }
   }
   .deals-carousel {
@@ -32,7 +32,7 @@
       &.active {
         span {
           background: transparent !important;
-          border-color: #297cbb;
+          border-color: #06A6E3;
           transform: scale(0.9);
         }
       }

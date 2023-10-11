@@ -21,7 +21,7 @@
       width: 100%;
       @include flex();
       font-size: 20px;
-      color: #297cbb;
+      color: #06A6E3;
       cursor: pointer;
       gap: 5px;
       background: transparent;
@@ -33,11 +33,11 @@
         border-radius: 50%;
         @include flex();
         justify-content: center;
-        fill: #297cbb;
+        fill: #06A6E3;
         &.active-span {
           color: #fff;
           fill: #fff;
-          background-color: #297cbb;
+          background-color: #06A6E3;
           &::after {
             content: '';
             display: block;
