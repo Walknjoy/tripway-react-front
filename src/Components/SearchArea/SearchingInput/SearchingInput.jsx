@@ -1,14 +1,18 @@
 import { motion } from 'framer-motion';
 import { mainContext } from '../../../utils/ContextApi';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css'; 
+import 'react-date-range/dist/theme/default.css';
 import './SearchingInput.scss';
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
 const SearchingInput = () => {
   const { activeTab } = useContext(mainContext);
   const [openDate, setOpenDate] = useState(false);
+  const [openOptions, setOpenOptions] = useState(false);
+  const dateAreaRef = useRef(null);
+  const optionsAreaRef = useRef(null);
+
   const scaleVariants = {
     initial: { scale: 0.99 },
     animate: { scale: 1, transition: { duration: 0.5 } },
@@ -20,24 +24,53 @@ const SearchingInput = () => {
       key: 'selection',
     },
   ]);
-  const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
     room: 1,
   });
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (dateAreaRef.current && !dateAreaRef.current.contains(event.target)) {
+        setOpenDate(false);
+      }
+    };
+
+    document.addEventListener('click', handleDocumentClick);
+
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, []);
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (
+        optionsAreaRef.current &&
+        !optionsAreaRef.current.contains(event.target)
+      ) {
+        setOpenOptions(false);
+      }
+    };
+
+    document.addEventListener('click', handleDocumentClick);
+
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, []);
+
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
         ...prev,
-        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+        [name]: operation === 'i' ? options[name] + 1 : options[name] - 1,
       };
     });
   };
 
-  const handleSearchSubmit=(e)=>{
+  const handleSearchSubmit = (e) => {
     e.preventDefault();
-  }
+  };
   return (
     <div className="all-searching-fields">
       <motion.div
@@ -49,7 +82,7 @@ const SearchingInput = () => {
           <div className="row">
             <div className="col-12 col-xl-3 col-lg-3">
               <div className="searcing-input">
-                <span>Destination or Hotel Name</span>
+                <label>Destination or Hotel Name</label>
                 <div className="destination_hotel">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -67,8 +100,11 @@ const SearchingInput = () => {
             </div>
             <div className="col-12 col-xl-3 col-lg-3">
               <div className="searcing-input">
-                <span>Check In - Out</span>
-                <div className='date-area'   onClick={() => setOpenDate(!openDate)}>
+                <label>Check In - Out</label>
+                <div
+                  className="date-area"
+                  ref={dateAreaRef}
+                  onClick={() => setOpenDate(!openDate)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     id="Layer_1"
@@ -98,8 +134,11 @@ const SearchingInput = () => {
             </div>
             <div className="col-12 col-xl-3 col-lg-3">
               <div className="searcing-input">
-                <span>Rooms and Guests</span>
-                <div className='rooms_area'    onClick={() => setOpenOptions(!openOptions)}>
+                <label>Rooms and Guests</label>
+                <div
+                  className="rooms_area"
+                  ref={optionsAreaRef}
+                  onClick={() => setOpenOptions(!openOptions)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     id="Layer_1"
@@ -111,10 +150,11 @@ const SearchingInput = () => {
                     <path d="M0,12V6C0,3.243,2.243,1,5,1h14c2.757,0,5,2.243,5,5v6h-3v-1c0-2.206-1.794-4-4-4h-2c-1.2,0-2.266,.542-3,1.382-.734-.84-1.8-1.382-3-1.382h-2c-2.206,0-4,1.794-4,4v1H0Zm9-3h-2c-1.103,0-2,.897-2,2v1h6v-1c0-1.103-.897-2-2-2Zm10,2c0-1.103-.897-2-2-2h-2c-1.103,0-2,.897-2,2v1h6v-1ZM0,14v6c0,.553,.448,1,1,1s1-.447,1-1v-2H22v2c0,.553,.447,1,1,1s1-.447,1-1v-6H0Z" />
                   </svg>
                   <p>
-                  {`${options.adult} adult · ${options.children} children · ${options.room} room`}
+                    {`${options.adult} adult · ${options.children} children · ${options.room} room`}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       id="Outline"
+                      className={`chevron-icon ${openOptions ? 'active' : ''}`}
                       viewBox="0 0 24 24"
                       width="20"
                       fill="#67747c"
@@ -128,20 +168,26 @@ const SearchingInput = () => {
                     <div className="optionItem">
                       <span className="optionText">Adult</span>
                       <div className="optionCounter">
-                        <button type='button'
+                        <button
+                          type="button"
                           disabled={options.adult <= 1}
                           className="optionCounterButton"
-                          onClick={() => handleOption("adult", "d")}
-                        >
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent the click event from propagating
+                            handleOption('adult', 'd');
+                          }}>
                           -
                         </button>
                         <span className="optionCounterNumber">
                           {options.adult}
                         </span>
-                        <button  type='button'
+                        <button
+                          type="button"
                           className="optionCounterButton"
-                          onClick={() => handleOption("adult", "i")}
-                        >
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent the click event from propagating
+                            handleOption('adult', 'i');
+                          }}>
                           +
                         </button>
                       </div>
@@ -149,20 +195,26 @@ const SearchingInput = () => {
                     <div className="optionItem">
                       <span className="optionText">Children</span>
                       <div className="optionCounter">
-                        <button  type='button'
+                        <button
+                          type="button"
                           disabled={options.children <= 0}
                           className="optionCounterButton"
-                          onClick={() => handleOption("children", "d")}
-                        >
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent the click event from propagating
+                            handleOption('children', 'd');
+                          }}>
                           -
                         </button>
                         <span className="optionCounterNumber">
                           {options.children}
                         </span>
                         <button
+                          type="button"
                           className="optionCounterButton"
-                          onClick={() => handleOption("children", "i")}
-                        >
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent the click event from propagating
+                            handleOption('children', 'i');
+                          }}>
                           +
                         </button>
                       </div>
@@ -173,8 +225,10 @@ const SearchingInput = () => {
                         <button
                           disabled={options.room <= 1}
                           className="optionCounterButton"
-                          onClick={() => handleOption("room", "d")}
-                        >
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent the click event from propagating
+                            handleOption('room', 'd');
+                          }}>
                           -
                         </button>
                         <span className="optionCounterNumber">
@@ -182,8 +236,10 @@ const SearchingInput = () => {
                         </span>
                         <button
                           className="optionCounterButton"
-                          onClick={() => handleOption("room", "i")}
-                        >
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOption('room', 'i');
+                          }}>
                           +
                         </button>
                       </div>
@@ -219,7 +275,7 @@ const SearchingInput = () => {
           <div className="row">
             <div className="col-12 col-xl-9 col-lg-9">
               <div className="searcing-input">
-                <span>City / Country </span>
+                <label>City / Country </label>
                 <div className="destination_hotel">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -262,7 +318,7 @@ const SearchingInput = () => {
           <div className="row">
             <div className="col-12 col-xl-9 col-lg-9">
               <div className="searcing-input">
-                <span>City / Country </span>
+                <label>City / Country </label>
                 <div className="destination_hotel">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -305,7 +361,7 @@ const SearchingInput = () => {
           <div className="row">
             <div className="col-12 col-xl-9 col-lg-9">
               <div className="searcing-input">
-                <span>City / Country </span>
+                <label>City / Country </label>
                 <div className="destination_hotel">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -348,7 +404,7 @@ const SearchingInput = () => {
           <div className="row">
             <div className="col-12 col-xl-9 col-lg-9">
               <div className="searcing-input">
-                <span>City / Country </span>
+                <label>City / Country </label>
                 <div className="destination_hotel">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,6 @@
 @import '../../css-config/mixins.scss';
 .breadCrumbs {
-  padding: 10px 0;
+  padding: 25px 0px 50px;
   .crumb {
     @include flex();
     #return-back {
@@ -8,9 +8,16 @@
       gap: 3px;
       font-size: 1rem;
       border-right: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 10px;
       color: #ffffff7a;
-      transition: 0.4s;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      padding-right: 20px;
+      &:hover{
+        color: #ffffffbd;
+      }
+    }
+    a {
+    
     }
     h3 {
       @include flex();
@@ -22,6 +29,7 @@
         font-size: 16px;
         color: #fff;
         transition: 0.4s;
+        padding: 0;
         position: relative;
         &:before {
           width: 0;
@@ -35,7 +43,6 @@
         &:hover {
           &::before {
             width: 100%;
-            
           }
         }
       }
