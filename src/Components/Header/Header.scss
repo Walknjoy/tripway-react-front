@@ -23,46 +23,46 @@
         ul {
           li {
             .sub-menu {
-              border-top: 0.1875rem solid #297cbb;
+              border-top: 0.1875rem solid #06A6E3;
               &::after {
                 top: -11px;
-                border-color: transparent transparent #297cbb;
+                border-color: transparent transparent #06A6E3;
               }
             }
             a {
-              color: #1d508d;
+              color: #06A6E3;
             }
           }
         }
         .hamburger {
           button {
-            color: #1d508d;
+            color: #06A6E3;
           }
         }
         .language {
           .select-list {
-            border-top: 0.1875rem solid #297cbb;
+            border-top: 0.1875rem solid #06A6E3;
             &:after {
-              border-color: transparent transparent #297cbb;
+              border-color: transparent transparent #06A6E3;
               top: -13px;
             }
           }
           .select-btn {
-            color: #1d508d;
+            color: #06A6E3;
           }
         }
         .user-login {
           .login {
-            color: #1d508d;
+            color: #06A6E3;
           }
           .login-avatar {
             button {
-              color: #1d508d;
+              color: #06A6E3;
             }
             .user-info {
-              border-top: 0.1875rem solid #297cbb;
+              border-top: 0.1875rem solid #06A6E3;
               &:after {
-                border-color: transparent transparent #297cbb;
+                border-color: transparent transparent #06A6E3;
                 top: -13px;
               }
             }
@@ -121,12 +121,12 @@
           a {
             @include flex();
             padding: 13px 10px;
-            color: #000;
+            color: #112542;
             transition: 0.3s ease-in-out;
             font-size: 16px;
             font-weight: 600;
             &:hover {
-              color: #1d508d;
+              color: #06A6E3;
             }
             @include lg {
               padding: 10px;
@@ -180,7 +180,7 @@
               }
               &:hover {
                 a {
-                  color: #1d508d;
+                  color: #06A6E3;
                 }
               }
               a {
@@ -198,7 +198,7 @@
         .login {
           color: #000;
           &:hover{
-            color: #1d508d;
+            color: #06A6E3;
           }
           svg {
             height: 30px;
@@ -219,7 +219,7 @@
             justify-content: center;
             background: transparent;
             border: none;
-            color: #297cbb;
+            color: #06A6E3;
             img {
               height: 35px;
               width: 35px;
@@ -275,7 +275,7 @@
                 transition: 0.3s ease-in-out;
                 color: #67747c;
                 &:hover {
-                  color: #297cbb;
+                  color: #06A6E3;
                 }
               }
               button {
@@ -287,7 +287,7 @@
                 background-color: transparent;
                 cursor: pointer;
                 &:hover {
-                  color: #297cbb;
+                  color: #06A6E3;
                 }
               }
             }
@@ -301,7 +301,7 @@
         }
         button {
           background-color: transparent;
-          color: #297cbb;
+          color: #06A6E3;
           border: none;
           cursor: pointer;
           svg {
