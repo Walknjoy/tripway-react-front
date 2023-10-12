@@ -1,31 +1,47 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import './Language.scss';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { mainContext } from '../../utils/ContextApi';
-const Language = () => {
+
+const Language = ({currentRoute}) => {
   const [selected, setSelected] = useState('Az');
-  const { click, setClick ,setUserVisible} = useContext(mainContext);
+  const { click, setClick, setUserVisible } = useContext(mainContext);
+  const languageRef = useRef(null);
   const dropdownOptions = [
     { id: 1, label: 'Az' },
     { id: 2, label: 'En' },
   ];
+
   const handleSelect = async (selectedLabel) => {
     setSelected(selectedLabel);
     setClick(false);
   };
+  const handleClick = () => {
+    setClick(!click);
+    setUserVisible(false);
+  };
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (languageRef.current && !languageRef.current.contains(event.target)) {
+        setClick(false);
+      }
+    };
+
+    document.addEventListener('click', handleDocumentClick);
+
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, []);
+
   return (
     <div className="language">
-      <button
-        className="select-btn"
-        onClick={() => {
-          setClick((e) => !e);
-          setUserVisible(false);
-        }}>
+      <button className="select-btn" ref={languageRef} onClick={handleClick} data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>
         {selected}
         {click ? <FaAngleUp /> : <FaAngleDown />}
       </button>
-      {
-        <ul className={`select-list ${click ? 'active' : ''}`}>
+      {click && (
+        <ul className="select-list">
           {dropdownOptions?.map((item) => (
             <li
               key={item.id}
@@ -37,7 +53,7 @@ const Language = () => {
             </li>
           ))}
         </ul>
-      }
+      )}
     </div>
   );
 };

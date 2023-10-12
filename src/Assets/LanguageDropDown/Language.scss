@@ -18,9 +18,14 @@
     text-transform: capitalize;
     @include flex();
     gap: 5px;
-    color: #000;
     justify-content: center;
     background: transparent;
+    &[data-color='color-for-home'] {
+      color: #112542;
+    }
+    &[data-color='color-for-other-routes'] {
+      color: #fff;
+    }
     @include xs {
       font-size: 16px;
     }
@@ -38,17 +43,6 @@
     top: 50px;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s ease-in-out;
-    max-height: 0;
-    &.active {
-      overflow: visible;
-      visibility: visible;
-      opacity: 1;
-      max-height: 200px;
-    }
     &:after {
       border-color: transparent transparent #f8f8f8;
       border-style: solid;
