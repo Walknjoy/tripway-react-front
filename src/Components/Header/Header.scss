@@ -30,13 +30,23 @@
               }
             }
             a {
-              color: #06a6e3;
+              &[data-color='color-for-home'] {
+                color: #112542;
+              }
+              &[data-color='color-for-other-routes'] {
+                color: #112542;
+              }
             }
           }
         }
         .hamburger {
           button {
-            color: #06a6e3;
+            &[data-color='color-for-home'] {
+              color: #112542;
+            }
+            &[data-color='color-for-other-routes'] {
+              color: #112542;
+            }
           }
         }
         .language {
@@ -48,16 +58,31 @@
             }
           }
           .select-btn {
-            color: #06a6e3;
+            &[data-color='color-for-home'] {
+              color: #112542;
+            }
+            &[data-color='color-for-other-routes'] {
+              color: #112542;
+            }
           }
         }
         .user-login {
           .login {
-            color: #06a6e3;
+            &[data-color='color-for-home'] {
+              color: #112542;
+            }
+            &[data-color='color-for-other-routes'] {
+              color: #112542;
+            }
           }
           .login-avatar {
             button {
-              color: #06a6e3;
+              &[data-color='color-for-home'] {
+                color: #112542;
+              }
+              &[data-color='color-for-other-routes'] {
+                color: #112542;
+              }
             }
             .user-info {
               border-top: 0.1875rem solid #06a6e3;
@@ -202,7 +227,12 @@
       }
       .user-login {
         .login {
-          color: #000;
+          &[data-color='color-for-home'] {
+            color: #112542;
+          }
+          &[data-color='color-for-other-routes'] {
+            color: #112542;
+          }
           &:hover {
             color: #06a6e3;
           }
@@ -225,7 +255,12 @@
             justify-content: center;
             background: transparent;
             border: none;
-            color: #06a6e3;
+            &[data-color='color-for-home'] {
+              color: #112542;
+            }
+            &[data-color='color-for-other-routes'] {
+              color: #112542;
+            }
             img {
               height: 35px;
               width: 35px;
