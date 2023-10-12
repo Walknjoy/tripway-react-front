@@ -1,6 +1,9 @@
 @import '../../css-config/mixins.scss';
 .breadCrumbs {
   padding: 25px 0px 50px;
+  @include sm{
+    padding: 20px 0;
+  }
   .crumb {
     @include flex();
     #return-back {
@@ -15,9 +18,6 @@
       &:hover{
         color: #ffffffbd;
       }
-    }
-    a {
-    
     }
     h3 {
       @include flex();
