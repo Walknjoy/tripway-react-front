@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import Logo from '../../Assets/Logo/Logo';
 import './Header.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -25,7 +31,7 @@ const Header = () => {
     setUser,
   } = useContext(mainContext);
   const { data } = useFetch('/users/user/profile');
-
+ 
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
@@ -99,6 +105,29 @@ const Header = () => {
       toast.error(error.response.data.error.error);
     }
   }, [navigate]);
+
+  const handleProfileRef = useRef(null);
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (
+        handleProfileRef.current &&
+        !handleProfileRef.current.contains(event.target)
+      ) {
+        setUserVisible(false);
+      }
+    };
+
+    document.addEventListener('click', handleDocumentClick);
+
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, []);
+
+
+
+  const locationHeader = useLocation();
+  const currentRoute = locationHeader.pathname === '/';
   return (
     <>
       <header className={`sticky-header ${scrolled ? 'fixed-header' : ''} `}>
@@ -110,35 +139,25 @@ const Header = () => {
             <div className="right-side">
               <ul className="nav-list">
                 <li>
-                  <Link to="/">Home</Link>
+                  <Link to="/" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>Home</Link>
                 </li>
                 <li>
-                  <Link to="/about">About</Link>
+                  <Link to="/about" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>About</Link>
                 </li>
                 <li>
-                  <Link to="#">Hotel</Link>
-                  {/* <ul className="sub-menu">
-                    <li>
-                      <Link to="/hotels/hotel-1">Hotel-1</Link>
-                    </li>
-                  </ul> */}
+                  <Link to="#" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>Hotel</Link>
                 </li>
                 <li>
-                  <Link to="#">Tours</Link>
-                  {/* <ul className="sub-menu">
-                    <li>
-                      <Link to="/tours/tours-1">Tours -1</Link>
-                    </li>
-                  </ul> */}
+                  <Link to="#" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>Tours</Link>
                 </li>
                 <li>
-                  <Link to="/entertainments">Entertainments</Link>
+                  <Link to="/entertainments" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>Entertainments</Link>
                 </li>
                 <li>
-                  <Link to="/blog">Blog</Link>
+                  <Link to="/blog" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>Blog</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="#">
+                  <Link className="nav-link" to="#" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>
                     Rental <FaAngleDown />
                   </Link>
                   <ul className="sub-menu">
@@ -152,24 +171,26 @@ const Header = () => {
                 </li>
               </ul>
               <div id="language">
-                <Language />
+                <Language currentRoute={currentRoute}/>
               </div>
               <div className="user-login">
                 {user ? (
                   <div className="login-avatar">
-                    <button onClick={handleToggleUser}>
+                    <button onClick={handleToggleUser} ref={handleProfileRef}>
                       <img src={user} alt="" />
                     </button>
-                    <ul className={`user-info ${userVisible ? 'active' : ''}`}>
-                      <li>
-                        <Link to={`/user-profile/${data.username}`}>
-                          Profile
-                        </Link>
-                      </li>
-                      <li>
-                        <button onClick={handleLogout}>Logout</button>
-                      </li>
-                    </ul>
+                    {userVisible && (
+                      <ul className="user-info">
+                        <li>
+                          <Link to={`/user-profile/${data.username}`}>
+                            Profile
+                          </Link>
+                        </li>
+                        <li>
+                          <button onClick={handleLogout}>Logout</button>
+                        </li>
+                      </ul>
+                    )}
                   </div>
                 ) : (
                   <Link to="/user-login" className="login">
