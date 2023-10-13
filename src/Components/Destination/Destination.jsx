@@ -11,7 +11,7 @@ const Destination = () => {
             <div className="destination_card" id="destination-bg-1">
               <div className="destination-content ">
                 <Link to="/" className="destination-city">
-                  United Kingdom
+                  Baku
                 </Link>
                 <ul className="destination-dropdown">
                   <li>
@@ -46,7 +46,7 @@ const Destination = () => {
             <div className="destination_card" id="destination-bg-2">
               <div className="destination-content">
                 <Link to="/" className="destination-city">
-                  Turkey
+                  Ganja
                 </Link>
                 <ul className="destination-dropdown">
                   <li>
@@ -81,7 +81,7 @@ const Destination = () => {
             <div className="destination_card" id="destination-bg-3">
               <div className="destination-content ">
                 <Link to="/" className="destination-city">
-                  United States
+                  Lenkeran
                 </Link>
                 <ul className="destination-dropdown">
                   <li>
@@ -116,7 +116,7 @@ const Destination = () => {
             <div className="destination_card" id="destination-bg-4">
               <div className="destination-content ">
                 <Link to="/" className="destination-city">
-                  Ukranie
+                 Ismayıllı
                 </Link>
                 <ul className="destination-dropdown">
                   <li>
@@ -151,7 +151,7 @@ const Destination = () => {
             <div className="destination_card" id="destination-bg-5">
               <div className="destination-content ">
                 <Link to="/" className="destination-city">
-                  France
+                 Qebele
                 </Link>
                 <ul className="destination-dropdown">
                   <li>
@@ -186,7 +186,7 @@ const Destination = () => {
             <div className="destination_card" id="destination-bg-6">
               <div className="destination-content">
                 <Link to="/" className="destination-city">
-                  India
+                  Oğuz
                 </Link>
                 <ul className="destination-dropdown">
                   <li>
