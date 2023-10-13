@@ -3,7 +3,13 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
 import Raiting from '../../../Assets/Raiting/Raiting.jsx';
-const TrendingCard = ({ data, loading }) => {
+import {
+  BsCalendarCheck,
+  BsCompass,
+  BsFillFuelPumpDieselFill,
+  BsSpeedometer2,
+} from 'react-icons/bs';
+const TrendingCard = ({ data, loading, endPoint }) => {
   const animatedProps = useSpring({
     opacity: loading ? 0.6 : 1,
     transform: loading ? 'translateY(-2px)' : 'translateY(0px)',
@@ -14,7 +20,6 @@ const TrendingCard = ({ data, loading }) => {
     <div className="trendingCard">
       <div className="row">
         {data?.map((item) => {
-          console.log(data);
           return (
             <div className="col-12 col-lg-3 col-md-4 col-sm-6" key={item?._id}>
               <animated.div style={animatedProps}>
@@ -27,12 +32,21 @@ const TrendingCard = ({ data, loading }) => {
                     />
                   </figure>
                   <article className="card-content">
-                    <h3>
-                      {item?.name || item?.title}{' '}
-                      {item?.model ? <span>{item?.model} </span> : <></>}
+                    {item?.name ? (
+                      <h3 className="hotel-title">{item?.name}</h3>
+                    ) : (
+                      <></>
+                    )}
+                    <h3 className="title">
+                      {' '}
+                      {endPoint === 'cars' || endPoint === 'tours' ? (
+                        <>
+                          {item?.title} {item?.model}
+                        </>
+                      ) : (
+                        ''
+                      )}
                     </h3>
-                    {item?.year ? <p>{item?.year}</p> : <></>}
-
                     <div className="city">
                       <p>{item?.city}</p>
                     </div>
@@ -41,7 +55,7 @@ const TrendingCard = ({ data, loading }) => {
                       reviews={item?.reviews?.length}
                     />
                     <div className="star-review">
-                      <p>{item?.rating}</p>
+                      <p>{item?.rating}.0 / 5.0</p>
                       <span>
                         {item?.rating === 1 ? 'Poor' : ''}
                         {item?.rating === 2 ? 'Fair' : ''}
@@ -50,6 +64,29 @@ const TrendingCard = ({ data, loading }) => {
                         {item?.rating === 5 ? 'Excellent' : ''}
                       </span>
                     </div>
+                    {endPoint === 'cars' ? (
+                      <ul className="cars-about">
+                        <li>
+                          <BsSpeedometer2 />
+                          <span>400km</span>
+                        </li>
+                        <li>
+                          <BsFillFuelPumpDieselFill />
+                          <span>Benzin</span>
+                        </li>
+                        <li>
+                          <BsCompass />
+                          <span>Automatic</span>
+                        </li>
+                        <li>
+                          <BsCalendarCheck />
+                          <span>{item?.year}</span>
+                        </li>
+                      </ul>
+                    ) : (
+                      <></>
+                    )}
+
                     <div className="price">
                       <h4>
                         From

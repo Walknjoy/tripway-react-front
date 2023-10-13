@@ -18,7 +18,7 @@ const Trending = () => {
           onTabChange={onTabChange}
           dataes={['hotels', 'cars', 'tours']}
         />
-        <TrendingCard data={data} loading={loading} />
+        <TrendingCard data={data} loading={loading} endPoint={endPoint} />
       </div>
     </section>
   );
