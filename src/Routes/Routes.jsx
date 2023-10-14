@@ -1,4 +1,4 @@
-import Destination from '../Components/Destination/Destination';
+import SingleDestinations from '../Components/SingleDestinations/SingleDestinations';
 import MainRoot from '../Layout/MainRoot';
 import MainRootTwo from '../Layout/MainRootTwo';
 import About from '../Pages/About/About';
@@ -41,8 +41,8 @@ export const ROUTES = [
         element: <Home />,
       },
       {
-        path: '/destination/:index',
-        element: <Destination />,
+        path: '/hotels/:city',
+        element: <SingleDestinations />,
       },
       {
         path: 'tours',

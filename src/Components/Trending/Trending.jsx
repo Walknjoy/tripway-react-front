@@ -10,6 +10,7 @@ const Trending = () => {
   const onTabChange = (tab) => {
     setEndPoint(tab);
   };
+  console.log(data);
   return (
     <section id="trending_section">
       <div className="container">

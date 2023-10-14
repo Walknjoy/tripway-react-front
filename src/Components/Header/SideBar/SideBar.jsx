@@ -35,36 +35,10 @@ const SideBar = () => {
               <Link to="/about">About</Link>
             </li>
             <li className="side-bar-item">
-              {/* <h3> */}
                 <Link to="#">Hotels </Link>
-                {/* <button onClick={() => toggleMenu(0)}>
-                  {openMenuIndex === 0 ? <FaAngleUp /> : <FaAngleDown />}
-                </button> */}
-              {/* </h3> */}
-              {/* <ul
-                className={`side-bar-menu ${
-                  openMenuIndex === 0 ? 'open' : ''
-                }`}>
-                <li>
-                  <Link to="/hotels/hotel-1">Hotel-1</Link>
-                </li>
-              </ul> */}
             </li>
             <li className="side-bar-item">
-              {/* <h3> */}
                 <Link to="#">Tours</Link>
-                {/* <button onClick={() => toggleMenu(1)}>
-                  {openMenuIndex === 1 ? <FaAngleUp /> : <FaAngleDown />}
-                </button> */}
-              {/* </h3> */}
-              {/* <ul
-                className={`side-bar-menu ${
-                  openMenuIndex === 1 ? 'open' : ''
-                }`}>
-                <li>
-                  <Link to="/tours/tours-1">Tour-1</Link>
-                </li>
-              </ul> */}
             </li>
             <li>
               <Link to="/entertainments">Entertainments</Link>

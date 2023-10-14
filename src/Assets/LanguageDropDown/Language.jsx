@@ -32,7 +32,7 @@ const Language = ({currentRoute}) => {
     return () => {
       document.removeEventListener('click', handleDocumentClick);
     };
-  }, []);
+  }, [setClick]);
 
   return (
     <div className="language">

@@ -10,6 +10,7 @@ import {
   BsSpeedometer2,
 } from 'react-icons/bs';
 const TrendingCard = ({ data, loading, endPoint }) => {
+
   const animatedProps = useSpring({
     opacity: loading ? 0.6 : 1,
     transform: loading ? 'translateY(-2px)' : 'translateY(0px)',

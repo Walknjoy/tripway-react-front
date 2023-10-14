@@ -17,12 +17,12 @@ const Destination = () => {
               {allData
                 ?.filter((item) =>
                   [
-                    'Ganja',
                     'Baku',
+                    'Ganja',
                     'Lankaran',
-                    'Ismailli',
-                    'Qabala',
-                    'Oghuz',
+                    'Ismayilli',
+                    'Gabala',
+                    'Oguz',
                   ].includes(item.city)
                 )
                 .slice(0, 6)
@@ -37,26 +37,24 @@ const Destination = () => {
                     <div key={index} className={className}>
                       <div className="destination_card" id={id}>
                         <div className="destination-content">
-                          <Link
-                            to={`/destination/${item.city}`}
-                            className="destination-city">
+                          <Link to="" className="destination-city">
                             {item.city}
                           </Link>
                           <ul className="destination-dropdown">
                             <li>
-                              <Link to="/">
+                              <Link to={`/hotels/${item.city}`}>
                                 <span>{item.hotels}</span>
                                 <span>Hotel</span>
                               </Link>
                             </li>
                             <li>
-                              <Link to="/">
+                              <Link to={`/tours/${item.city}`}>
                                 <span>{item.tours}</span>
                                 <span>Tours</span>
                               </Link>
                             </li>
                             <li>
-                              <Link to="/">
+                              <Link to={`/cars/${item.city}`}>
                                 <span>{item.cars}</span>
                                 <span>Cars</span>
                               </Link>
@@ -74,5 +72,4 @@ const Destination = () => {
     </div>
   );
 };
-
 export default Destination;
