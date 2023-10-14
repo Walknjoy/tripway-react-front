@@ -1,223 +1,75 @@
 import { Link } from 'react-router-dom';
 import './Destionation.scss';
 import SectionTitle from '../SectionTitle/SectionTitle';
+import useFetch from '../../hooks/useFetch';
 const Destination = () => {
+  const { data, loading } = useFetch('/general/products/countByCity');
+  const allData = data.counts;
   return (
-    <div className="destionation">
+    <div className="destination">
       <div className="container">
         <SectionTitle title={'Top Destination'} />
-        <div className="row">
-          <div className="col-12 col-xl-6 col-lg-6 col-md-6">
-            <div className="destination_card" id="destination-bg-1">
-              <div className="destination-content ">
-                <Link to="/" className="destination-city">
-                  Baku
-                </Link>
-                <ul className="destination-dropdown">
-                  <li>
-                    <Link to="/">
-                      <span>20</span>
-                      <span>Hotel</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>48</span>
-                      <span>Tours</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>46</span>
-                      <span>Activity</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>32</span>
-                      <span>Yachts</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+        {loading ? (
+          <p>loading....</p>
+        ) : (
+          <>
+            <div className="row">
+              {allData
+                ?.filter((item) =>
+                  [
+                    'Ganja',
+                    'Baku',
+                    'Lankaran',
+                    'Ismailli',
+                    'Qabala',
+                    'Oghuz',
+                  ].includes(item.city)
+                )
+                .slice(0, 6)
+                .map((item, index) => {
+                  const className =
+                    index === 0 || index === 1
+                      ? 'col-12 col-lg-6 col-md-6'
+                      : 'col-12 col-lg-3 col-md-6';
+                  const id = `destination-bg-${index + 1}`;
+
+                  return (
+                    <div key={index} className={className}>
+                      <div className="destination_card" id={id}>
+                        <div className="destination-content">
+                          <Link
+                            to={`/destination/${item.city}`}
+                            className="destination-city">
+                            {item.city}
+                          </Link>
+                          <ul className="destination-dropdown">
+                            <li>
+                              <Link to="/">
+                                <span>{item.hotels}</span>
+                                <span>Hotel</span>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link to="/">
+                                <span>{item.tours}</span>
+                                <span>Tours</span>
+                              </Link>
+                            </li>
+                            <li>
+                              <Link to="/">
+                                <span>{item.cars}</span>
+                                <span>Cars</span>
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
-          </div>
-          <div className="col-12  col-xl-6 col-lg-6 col-md-6">
-            <div className="destination_card" id="destination-bg-2">
-              <div className="destination-content">
-                <Link to="/" className="destination-city">
-                  Ganja
-                </Link>
-                <ul className="destination-dropdown">
-                  <li>
-                    <Link to="/">
-                      <span>20</span>
-                      <span>Hotel</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>48</span>
-                      <span>Tours</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>46</span>
-                      <span>Activity</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>32</span>
-                      <span>Yachts</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-12  col-xl-3 col-lg-3 col-md-6">
-            <div className="destination_card" id="destination-bg-3">
-              <div className="destination-content ">
-                <Link to="/" className="destination-city">
-                  Lenkeran
-                </Link>
-                <ul className="destination-dropdown">
-                  <li>
-                    <Link to="/">
-                      <span>20</span>
-                      <span>Hotel</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>48</span>
-                      <span>Tours</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>46</span>
-                      <span>Activity</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>32</span>
-                      <span>Yachts</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-xl-3 col-lg-3 col-md-6">
-            <div className="destination_card" id="destination-bg-4">
-              <div className="destination-content ">
-                <Link to="/" className="destination-city">
-                 Ismayıllı
-                </Link>
-                <ul className="destination-dropdown">
-                  <li>
-                    <Link to="/">
-                      <span>20</span>
-                      <span>Hotel</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>48</span>
-                      <span>Tours</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>46</span>
-                      <span>Activity</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>32</span>
-                      <span>Yachts</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-xl-3 col-lg-3 col-md-6">
-            <div className="destination_card" id="destination-bg-5">
-              <div className="destination-content ">
-                <Link to="/" className="destination-city">
-                 Qebele
-                </Link>
-                <ul className="destination-dropdown">
-                  <li>
-                    <Link to="/">
-                      <span>20</span>
-                      <span>Hotel</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>48</span>
-                      <span>Tours</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>46</span>
-                      <span>Activity</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>32</span>
-                      <span>Yachts</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-12  col-xl-3 col-lg-3 col-md-6">
-            <div className="destination_card" id="destination-bg-6">
-              <div className="destination-content">
-                <Link to="/" className="destination-city">
-                  Oğuz
-                </Link>
-                <ul className="destination-dropdown">
-                  <li>
-                    <Link to="/">
-                      <span>20</span>
-                      <span>Hotel</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>48</span>
-                      <span>Tours</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>46</span>
-                      <span>Activity</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/">
-                      <span>32</span>
-                      <span>Yachts</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );

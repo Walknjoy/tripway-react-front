@@ -1,3 +1,4 @@
+import Destination from '../Components/Destination/Destination';
 import MainRoot from '../Layout/MainRoot';
 import MainRootTwo from '../Layout/MainRootTwo';
 import About from '../Pages/About/About';
@@ -26,6 +27,8 @@ import {
   LoginRegisterUser,
   ProtectRoute,
 } from '../middleware/auth';
+  
+
 
 
 export const ROUTES = [
@@ -36,6 +39,10 @@ export const ROUTES = [
       {
         path: '',
         element: <Home />,
+      },
+      {
+        path: '/destination/:index',
+        element: <Destination />,
       },
       {
         path: 'tours',
