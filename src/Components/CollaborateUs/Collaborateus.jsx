@@ -39,7 +39,7 @@ const Collaborateus = () => {
 
       if (res.status === 200) {
         toast.success(res.data.success);
-        setCollabrate(initialState); // Reset form fields
+        setCollabrate(initialState); 
       }
     } catch (error) {
       console.error(error);

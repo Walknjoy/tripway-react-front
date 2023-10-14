@@ -33,6 +33,9 @@
           svg {
             position: absolute;
             left: 10px;
+            height: 24px;
+            width: 34px;
+            fill: #67747c;
           }
           input {
             height: 45px;
@@ -41,7 +44,7 @@
             border: 0;
             outline-color: transparent;
             &:focus {
-              outline-color: #06A6E3;
+              outline-color: #06a6e3;
             }
             @include lg {
               &::placeholder {
@@ -68,15 +71,21 @@
           @include lg {
             gap: 10px;
             padding: 10px;
-            font-size: 14px;
+            font-size: 12px;
           }
           @include xs {
             padding: 10px;
             gap: 10px;
+            font-size: 14px;
           }
           &.active-btn {
-            fill: #06A6E3;
-            border-bottom: 2px solid #06A6E3;
+            fill: #06a6e3;
+            border-bottom: 2px solid #06a6e3;
+          }
+          svg{
+            fill: #67747c;
+            height: 24px;
+            width: 24px;
           }
           p {
             @include flex();
@@ -105,8 +114,8 @@
             gap: 10px;
           }
           &.active-btn {
-            fill: #06A6E3;
-            border-bottom: 2px solid #06A6E3;
+            fill: #06a6e3;
+            border-bottom: 2px solid #06a6e3;
           }
           p {
             @include flex();
@@ -120,13 +129,12 @@
             @include md {
               font-size: 14px;
             }
-            .chevron-icon{
+            .chevron-icon {
               transform: rotate(0);
-              &.active{
+              &.active {
                 transform: rotate(180deg);
               }
             }
-           
           }
         }
         .date {
@@ -136,10 +144,10 @@
           width: 100%;
           box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
           background-color: #fff;
-          .rdrMonth{
-            width: 100%;  
+          .rdrMonth {
+            width: 100%;
           }
-          @include sm{
+          @include sm {
             width: 100%;
           }
         }
@@ -150,15 +158,15 @@
           padding: 0 20px;
           max-width: 300px;
           width: 100%;
-          left:0;
+          left: 0;
           background-color: white;
           color: gray;
           border-radius: 5px;
           -webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
           box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
-          @include md{
-              max-width: 992px;
-              top: 90px;
+          @include md {
+            max-width: 992px;
+            top: 90px;
           }
           .optionItem {
             max-width: 100%;
@@ -174,8 +182,8 @@
               .optionCounterButton {
                 width: 30px;
                 height: 30px;
-                border: 1px solid #06A6E3;
-                color: #06A6E3;
+                border: 1px solid #06a6e3;
+                color: #06a6e3;
                 cursor: pointer;
                 background-color: white;
                 &:disabled {
@@ -191,8 +199,8 @@
         align-items: flex-end;
         height: 100%;
         button {
-          background-color: #06A6E3;
-          border-color: #06A6E3;
+          background-color: #06a6e3;
+          border-color: #06a6e3;
           display: flex;
           align-items: center;
           justify-content: center;
