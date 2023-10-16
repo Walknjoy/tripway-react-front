@@ -8,7 +8,7 @@ import { AiOutlineComment, AiTwotoneCalendar } from 'react-icons/ai';
 import { GrView } from 'react-icons/gr';
 import useFetch from '../../../hooks/useFetch';
 const BlogCard = () => {
-  const { data } = useFetch('/blogs/');
+  const { data, loading } = useFetch('/blogs/');
   console.log(data);
   const optionsDeal = {
     items: 1,
@@ -41,47 +41,54 @@ const BlogCard = () => {
     },
   };
   return (
-    <OwlCarousel {...optionsDeal} className="owl-theme deals-carousel">
-      {data?.map((blogItem, index) => {
-        console.log(blogItem);
-        return (
-          <div className="item" key={index}>
-            <div className="row">
-              <div className="col-12 col-lg-6 col-md-6">
-                <figure className="deals-image">
-                  <img src={blogItem?.img} alt={blogItem?.title} />
-                </figure>
+    <>
+      {loading ? (
+        <p>loading...</p>
+      ) : (
+        <OwlCarousel {...optionsDeal} className="owl-theme deals-carousel">
+          {data?.map((blogItem, index) => {
+            return (
+              <div key={blogItem._id} className="item">
+                <div className="row">
+                  <div className="col-12 col-lg-6 col-md-6">
+                    <figure className="deals-image">
+                      <img src={blogItem?.img} alt={blogItem?.title} />
+                    </figure>
+                  </div>
+                  <div className="col-12 col-lg-6 col-md-6">
+                    <article className="deals-content">
+                      <div className="addition">{blogItem?.city}</div>
+                      <h3>
+                        <Link to={`/blog/${blogItem?._id}`}>
+                          {blogItem?.title}
+                        </Link>
+                      </h3>
+                      <p>{blogItem?.desc}</p>
+                      <ul className="blog_list">
+                        <li>
+                          <AiTwotoneCalendar />
+                          <span>
+                            {dayjs(blogItem?.createdAt).format('MM/D/YYYY')}
+                          </span>
+                        </li>
+                        <li>
+                          <GrView />
+                          <span>{blogItem?.viewedUsers?.length}</span>
+                        </li>
+                        <li>
+                          <AiOutlineComment />
+                          <span>{blogItem?.reviews?.length}</span>
+                        </li>
+                      </ul>
+                    </article>
+                  </div>
+                </div>
               </div>
-              <div className="col-12 col-lg-6 col-md-6">
-                <article className="deals-content">
-                  <div className="addition">Lorem, ipsum.</div>
-                  <h3>
-                    <Link to={`/blog/${blogItem?.id}`}>{blogItem?.title}</Link>
-                  </h3>
-                  <p>{blogItem?.desc}</p>
-                  <ul className="blog_list">
-                    <li>
-                      <AiTwotoneCalendar />
-                      <span>
-                        {dayjs(blogItem?.createdAt).format('MM/D/YYYY')}
-                      </span>
-                    </li>
-                    <li>
-                      <GrView />
-                      <span>{blogItem?.viewedUsers?.length}</span>
-                    </li>
-                    <li>
-                      <AiOutlineComment />
-                      <span>{blogItem?.reviews?.length}</span>
-                    </li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </OwlCarousel>
+            );
+          })}
+        </OwlCarousel>
+      )}
+    </>
   );
 };
 

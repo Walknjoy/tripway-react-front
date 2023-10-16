@@ -1,0 +1,81 @@
+@import '../../css-config/mixins.scss';
+.pagination {
+  width: 100%;
+  ul {
+    border: 1px solid #e7eaf3;
+    padding: 0.5rem 0;
+    border-radius: 0.25rem;
+    width: 100%;
+    @include flex();
+    justify-content: center;
+    li {
+        cursor: pointer;
+      margin-left: 0.25rem;
+      margin-right: 0.25rem;
+      span {
+        border-right: 1px solid #e7eaf3;
+        position: relative;
+        display: block;
+        padding: 0.5rem 0.75rem;
+        margin-left: 0;
+        line-height: 1.25;
+        text-align: center;
+        min-width: 2.25rem;
+        font-size: 0.875rem;
+        color: #77838f;
+        background-color: transparent;
+        border: 0 solid #77838f;
+        &:hover {
+          background-color: #297cbb;
+          color: #fff !important;
+          transition: 0.3s;
+          border-radius: 0.3125rem !important;
+        }
+      }
+    }
+    .last-child {
+      span {
+        border-left: 1px solid #e7eaf3 !important;
+        position: relative;
+        display: block;
+        padding: 0.5rem 0.75rem;
+        margin-left: 0;
+        line-height: 1.25;
+        text-align: center;
+        min-width: 2.25rem;
+        font-size: 0.875rem;
+        color: #77838f;
+        border: 0 solid #77838f;
+        background-color: transparent;
+        &:hover {
+          background-color: #297cbb;
+          color: #fff !important;
+          transition: 0.3s;
+          border-radius: 0.3125rem !important;
+        }
+      }
+    }
+    .pageItem {
+      border-top-right-radius: 0.3125rem;
+      border-bottom-right-radius: 0.3125rem;
+      border-top-left-radius: 0.3125rem;
+      border-bottom-left-radius: 0.3125rem;
+      font-size: 0.875rem;
+      text-align: center;
+      min-width: 2.25rem;
+      position: relative;
+      display: block;
+      padding: 0.5rem 0.75rem;
+      margin-left: 0;
+      line-height: 1.25;
+      color: #77838f;
+      background-color: #fff;
+      border: 0 solid #77838f;
+    }
+    .active {
+      color: #fff;
+      background-color: #297cbb;
+      border-color: #297cbb;
+    }
+  }
+}

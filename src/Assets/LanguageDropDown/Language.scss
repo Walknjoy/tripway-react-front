@@ -20,12 +20,13 @@
     gap: 5px;
     justify-content: center;
     background: transparent;
-    &[data-color='color-for-home'] {
-      color: #112542;
-    }
-    &[data-color='color-for-other-routes'] {
-      color: #fff;
-    }
+    // &[data-color='color-for-home'] {
+    //   color: #112542;
+    // }
+    // &[data-color='color-for-other-routes'] {
+    //   color: #fff;
+    // }
+    color: #fff;
     @include xs {
       font-size: 16px;
     }

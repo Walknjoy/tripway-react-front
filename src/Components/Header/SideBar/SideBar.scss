@@ -63,7 +63,7 @@
           font-size: 16px;
           padding: 0;
           width: 60%;
-          color: #67747c;
+          color: #112542;
         }
         button {
           @include flex();
@@ -71,7 +71,7 @@
           background-color: transparent;
           border: none;
           cursor: pointer;
-          color: #67747c;
+          color: #112542;
           width: 40%;
           svg {
             height: 20px !important;
@@ -80,7 +80,7 @@
         }
       }
       a {
-        color: #67747c;
+        color: #112542;
         padding: 10px;
         font-weight: bold;
         display: block;
