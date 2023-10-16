@@ -1,10 +1,11 @@
 @import '../../css-config/mixins.scss';
 .sticky-header {
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.1);
   height: 88px;
   z-index: 99;
   width: 100%;
   position: fixed;
+
   top: 0;
   &.fixed-header {
     min-height: 60px;
@@ -30,23 +31,13 @@
               }
             }
             a {
-              &[data-color='color-for-home'] {
-                color: #112542;
-              }
-              &[data-color='color-for-other-routes'] {
-                color: #112542;
-              }
+              color: #112542;
             }
           }
         }
         .hamburger {
           button {
-            &[data-color='color-for-home'] {
-              color: #112542;
-            }
-            &[data-color='color-for-other-routes'] {
-              color: #112542;
-            }
+            color: #112542;
           }
         }
         .language {
@@ -58,31 +49,16 @@
             }
           }
           .select-btn {
-            &[data-color='color-for-home'] {
-              color: #112542;
-            }
-            &[data-color='color-for-other-routes'] {
-              color: #112542;
-            }
+            color: #112542;
           }
         }
         .user-login {
           .login {
-            &[data-color='color-for-home'] {
-              color: #112542;
-            }
-            &[data-color='color-for-other-routes'] {
-              color: #112542;
-            }
+            color: #112542;
           }
           .login-avatar {
             button {
-              &[data-color='color-for-home'] {
-                color: #112542;
-              }
-              &[data-color='color-for-other-routes'] {
-                color: #112542;
-              }
+              color: #112542;
             }
             .user-info {
               border-top: 0.1875rem solid #06a6e3;
@@ -146,16 +122,10 @@
           a {
             @include flex();
             padding: 13px 10px;
-
             transition: 0.3s ease-in-out;
             font-size: 16px;
             font-weight: 600;
-            &[data-color='color-for-home'] {
-              color: #112542;
-            }
-            &[data-color='color-for-other-routes'] {
-              color: #fff;
-            }
+            color: #fff;
             &:hover {
               color: #06a6e3;
             }
@@ -216,7 +186,7 @@
               }
               a {
                 padding: 0;
-                color: #67747c;
+                color: #112542;
                 transition: 0.4s;
                 font-weight: 500;
                 font-size: 18px;
@@ -227,12 +197,7 @@
       }
       .user-login {
         .login {
-          &[data-color='color-for-home'] {
-            color: #112542;
-          }
-          &[data-color='color-for-other-routes'] {
-            color: #112542;
-          }
+          color: #fff;
           &:hover {
             color: #06a6e3;
           }
@@ -255,93 +220,89 @@
             justify-content: center;
             background: transparent;
             border: none;
-            &[data-color='color-for-home'] {
-              color: #112542;
-            }
-            &[data-color='color-for-other-routes'] {
-              color: #112542;
-            }
-            img {
-              height: 35px;
-              width: 35px;
-              border-radius: 9999px;
-              object-fit: cover;
-              object-position: top;
-            }
+            color: #112542;
           }
-          .user-info {
+          img {
+            height: 35px;
+            width: 35px;
+            border-radius: 9999px;
+            object-fit: cover;
+            object-position: top;
+          }
+        }
+        .user-info {
+          position: absolute;
+          width: 100px;
+          display: flex;
+          flex-direction: column;
+          padding: 0 10px !important;
+          z-index: 100;
+          top: 50px;
+          right: -15px;
+          background-color: #fff;
+          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          &:after {
+            border-color: transparent transparent #f8f8f8;
+            border-style: solid;
+            border-width: 0 10px 10px;
+            bottom: 100%;
+            height: 0;
+            right: 20px;
             position: absolute;
-            width: 100px;
-            display: flex;
-            flex-direction: column;
-            padding: 0 10px !important;
-            z-index: 100;
-            top: 50px;
-            right: -15px;
-            background-color: #fff;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-            &:after {
-              border-color: transparent transparent #f8f8f8;
-              border-style: solid;
-              border-width: 0 10px 10px;
-              bottom: 100%;
-              height: 0;
-              right: 20px;
-              position: absolute;
-              width: 0;
-              transition: 0.3s ease-in;
-              top: -9px;
-              z-index: 99;
-              content: '';
-            }
-            li {
-              line-height: 32px;
-              padding: 10px 0;
-              a {
-                font-size: 16px;
-                padding: 0;
-                width: 100%;
-                transition: 0.3s ease-in-out;
-                color: #67747c;
-                &:hover {
-                  color: #06a6e3;
-                }
+            width: 0;
+            transition: 0.3s ease-in;
+            top: -9px;
+            z-index: 99;
+            content: '';
+          }
+          li {
+            line-height: 32px;
+            padding: 10px 0;
+            a {
+              font-size: 16px;
+              padding: 0;
+              width: 100%;
+              transition: 0.3s ease-in-out;
+              color: #67747c;
+              &:hover {
+                color: #06a6e3;
               }
-              button {
-                border: none;
-                width: 100%;
-                color: #67747c;
-                font-weight: 500;
-                transition: 0.3s ease-in-out;
-                background-color: transparent;
-                cursor: pointer;
-                &:hover {
-                  color: #06a6e3;
-                }
+            }
+            button {
+              border: none;
+              width: 100%;
+              color: #112542;
+              font-weight: 500;
+              transition: 0.3s ease-in-out;
+              background-color: transparent;
+              cursor: pointer;
+              &:hover {
+                color: #06a6e3;
               }
             }
           }
         }
       }
-      .hamburger {
-        display: none;
-        @include md {
-          display: block;
-        }
-        button {
-          background-color: transparent;
-          color: #06a6e3;
-          border: none;
-          cursor: pointer;
-          svg {
-            width: 20px;
-            height: 30px;
-          }
+    }
+    .hamburger {
+      display: none;
+      @include md {
+        display: block;
+      }
+      button {
+        background-color: transparent;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        svg {
+          width: 20px;
+          height: 30px;
         }
       }
     }
   }
 }
+
 
 @keyframes stickyHeader {
   0% {

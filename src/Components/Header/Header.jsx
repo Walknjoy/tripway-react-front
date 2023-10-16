@@ -122,7 +122,7 @@ const Header = () => {
     return () => {
       document.removeEventListener('click', handleDocumentClick);
     };
-  }, []);
+  }, [setUserVisible]);
 
 
 

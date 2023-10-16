@@ -1,0 +1,21 @@
+@import '../../css-config/mixins.scss';
+.blog_category_area {
+  padding: 40px 0;
+  background: #f9f9f9;
+  .row {
+    row-gap: 20px;
+    @include sm{
+        flex-direction: column-reverse;
+    }
+    .blog_left_wrapper{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+    .blog_right_wrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 30px;
+    }
+  }
+}

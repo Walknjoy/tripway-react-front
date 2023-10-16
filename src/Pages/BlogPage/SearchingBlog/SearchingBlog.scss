@@ -1,0 +1,37 @@
+@import '../../../css-config/mixins.scss';
+.searching_blog_area {
+  height: 45px;
+  @include flex();
+  form {
+    position:relative;
+    display: block;
+    width: 100%;
+    background: #fff;
+    input {
+      display: block;
+      width: 100%;
+      height: calc(1.5em + 1.8rem + 4px);
+      padding: 0.9rem 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #3b444f;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 2px solid #ebf0f7;
+      border-radius: 0.3125rem;
+      outline: none;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    button{
+        position: absolute;
+        top: 10px;
+        font-size: 20px;
+        background-color: transparent;
+        border: none;
+        right: 20px;
+        color: #3b444f;
+        font-weight: bold;
+    }
+  }
+}
