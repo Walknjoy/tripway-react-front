@@ -6,6 +6,7 @@ import WhyChoose from '../../Components/WhyChoose/WhyChoose';
 import { Helmet } from 'react-helmet';
 import Hero from '../../Components/Hero/Hero';
 import Blogs from '../../Components/Blog/Blogs';
+import GridCard from '../../Components/GridCard/GridCard';
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
         <Hero />
         <Destination />
         <Trending />
+        <GridCard/>
         <Collaborateus />
         <WhyChoose />
         <Blogs />
