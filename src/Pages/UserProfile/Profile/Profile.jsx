@@ -2,6 +2,7 @@ import React from 'react';
 import './Profile.scss';
 import useFetch from '../../../hooks/useFetch';
 import { Helmet } from 'react-helmet';
+import ProfileLoader from '../../../Assets/ProfileLoader/ProfileLoader';
 const Profile = () => {
   const { data, loading } = useFetch('/users/user/profile');
   return (
@@ -10,7 +11,7 @@ const Profile = () => {
         <title>User</title>
       </Helmet>
       {loading ? (
-        <p>loading....</p>
+        <ProfileLoader />
       ) : (
         <div className="profile_area">
           <div className="profile_wrapper">

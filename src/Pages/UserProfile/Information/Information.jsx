@@ -5,6 +5,7 @@ import { AiFillEdit } from 'react-icons/ai';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import ProfileLoader from '../../../Assets/ProfileLoader/ProfileLoader';
 
 const Information = () => {
   const navigate = useNavigate();
@@ -82,7 +83,7 @@ const Information = () => {
         <title>User information</title>
       </Helmet>
       {loading ? (
-        <p>loading....</p>
+       <ProfileLoader/>
       ) : (
         <div className="information_area">
           <form onSubmit={handleEdit}>

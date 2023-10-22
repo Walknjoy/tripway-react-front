@@ -2,17 +2,19 @@ import { Link } from 'react-router-dom';
 import './Destionation.scss';
 import SectionTitle from '../SectionTitle/SectionTitle';
 import useFetch from '../../hooks/useFetch';
+import { useSpring, animated } from 'react-spring';
 const Destination = () => {
   const { data, loading } = useFetch('/general/products/countByCity');
+  const animatedProps = useSpring({
+    opacity: loading ? 0.6 : 1,
+    filter: loading ? 'blur(1px)' : 'blur(0px)',
+    config: { duration: 500 },
+  });
   const allData = data.counts;
   return (
     <div className="destination">
       <div className="container">
         <SectionTitle title={'Top Destination'} />
-        {loading ? (
-          <p>loading....</p>
-        ) : (
-          <>
             <div className="row">
               {allData
                 ?.filter((item) =>
@@ -34,7 +36,7 @@ const Destination = () => {
                   const id = `destination-bg-${index + 1}`;
 
                   return (
-                    <div key={index} className={className}>
+                    <animated.div key={index} className={className} style={animatedProps}>
                       <div className="destination_card" id={id}>
                         <div className="destination-content">
                           <Link to="" className="destination-city">
@@ -62,12 +64,10 @@ const Destination = () => {
                           </ul>
                         </div>
                       </div>
-                    </div>
+                    </animated.div>
                   );
                 })}
             </div>
-          </>
-        )}
       </div>
     </div>
   );

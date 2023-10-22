@@ -60,7 +60,7 @@ const Collaborateus = () => {
                 expertise, and make lasting connections in the travel industry.
               </p>
               <button className="send-btn" type="submit">
-                    Send
+              <span>Send</span>
                   </button>
             </div>
             <div className="collabrateus--right-form">

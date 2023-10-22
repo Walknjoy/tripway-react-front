@@ -128,7 +128,7 @@ function UserProfile() {
                     </div>
                     <div className="home_icon">
                       <Link to="/">
-                        {' '}
+                      
                         Home
                         <BiHomeAlt />
                       </Link>
