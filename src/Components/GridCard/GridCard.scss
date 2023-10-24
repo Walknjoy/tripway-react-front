@@ -3,58 +3,186 @@
 #card {
     padding: 40px 0;
 }
+
 .card-wrapper {
     display: flex;
     padding: 5px 0px;
     flex-wrap: wrap;
-    .card{
+    justify-content: space-around;
+
+    .card {
         border: 1px solid black;
+
     }
-    .card-left{
-        img{
+
+    .card-left {
+        img {
+            width: 100% !important;
             border-radius: 0.3rem;
         }
     }
+
     .card-center {
-        padding: 0 12px;
-        .card-header {
-            @include flex();
-            p:first-child {
-                transition: all 0.2s ease-in-out;
-                vertical-align: baseline;
-                border-radius: 0.3125rem;
-                font-weight: 700;
-                line-height: 1.5;
-                padding: 0.25em 0.4em;
-                color: #fff;
-                background-color: #f05700;
-                width: max-content;
-            }
-        }
-        .card-title{
-            font-size: 17px;
-            margin-bottom: 5px;
+        padding-left: 8px;
+
+        .hotel-card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-weight: 500;
-            a{
-                color: #3b444f;
-                text-decoration: none;
-                background-color: transparent;
+            font-size: 20px;
+
+            a {
+                color: #0071c2;
+            }
+
+        }
+
+        .card-location {
+            @include flex();
+            padding-top: 5px;
+            gap: 7px;
+
+            span {
+                font-size: 15px;
+
+                a {
+                    text-decoration: underline !important;
+                }
             }
         }
-        .card-location{
-            @include flex();
+
+        .card-futures {
+            padding: 12px 0;
+
+            p {
+                font-weight: 500;
+                font-size: 15px;
+                background-color: #008234;
+                color: white;
+                width: max-content;
+                padding: 2px;
+                border-radius: 5px;
+            }
+        }
+
+        .card-description {
+            .room--card-name {
+                font-size: 15px;
+                span {
+                    font-weight: 700;
+                }
+            }
+            .room--card-futures{
+                gap: 2px;
+                span{
+                    color: #008234;
+                }
+                p{
+                    display: flex;
+                    align-items: center;
+                    color: #008234;
+                    gap:4px;
+                    margin: 0;
+                    font-size: 13px;
+                }
+            }
         }
     }
     .card-right{
-        button {
-            border: none;
-            color: #fff;
-            background-image: linear-gradient(30deg, #0400ff, #4ce3f7);
-            border-radius: 20px;
-            background-size: 100% auto;
-            font-family: inherit;
-            font-size: 17px;
-            padding: 0.3em 1em;
-           }           
+        text-align: end;
+        .hotel--raiting-degree{
+            display: flex;
+            gap: 5px;
+            justify-content: end;
+            p{
+                margin: 0;
+                background-color: #06a6e3;
+                color: white;
+                padding: 5px 8px;
+                border-radius: 5px;
+                font-weight: 500;
+                font-size: 14px;
+
+            }
+        }
+        .hotel-location{
+            padding: 8px 0;
+            text-align: end;
+            p{
+                font-weight: 600;
+                line-height: 20px;
+                font-size: 15px;
+            }
+        }
+        .hotel--price-details{
+            padding: 8px 0;
+            p{
+                font-size: 12px;
+                line-height: 14px;
+                font-weight: 400;
+            }
+            .price{
+                display: flex;
+                gap: 2px;
+                span{
+                    text-decoration:line-through !important;
+                    color: #d4111e;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 18px;
+                    margin: 0 3px;
+                }
+                p{
+                    font-weight: 500;
+                    color: #1A1A1A;
+                    font-size: 20px;
+                }
+            }
+            .taxes{
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 18px;
+                margin: 0 3px;
+                margin-top: -10px;
+            }
+        }
+        .details-button{
+            padding-top: 8px;
+            button {
+                position: relative;
+                border-radius: 5px;
+                box-shadow: 0px 4px 0px 0px;
+                background-repeat: no-repeat;
+                box-sizing: border-box;
+                transition: all .3s ease-in-out;
+                z-index: 1;
+                overflow: hidden;
+                background-color: #0071c2;
+                color: white;
+                font-weight: bold;
+                padding: 10px 5px;
+                border: none;
+                cursor: pointer;
+              }
+              
+              button::before {
+                content: "";
+                background-color: rgba(156, 207, 207, 0.441);
+                width: 0;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                transition: width 700ms ease-in-out;
+                display: inline-block;
+              }
+              
+              button:hover::before {
+                width: 100%;
+              }
+        }
+        
     }
 }
