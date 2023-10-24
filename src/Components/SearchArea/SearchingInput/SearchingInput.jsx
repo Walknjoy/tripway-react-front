@@ -9,11 +9,11 @@ import { format } from 'date-fns';
 import { BiSearch } from 'react-icons/bi';
 import { GrMapLocation } from 'react-icons/gr';
 import { BsCalendarDate } from 'react-icons/bs';
+import { useLocation, useNavigate } from 'react-router-dom';
 const SearchingInput = () => {
   const { activeTab } = useContext(mainContext);
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
-  const dateAreaRef = useRef(null);
   const optionsAreaRef = useRef(null);
 
   const scaleVariants = {
@@ -32,19 +32,7 @@ const SearchingInput = () => {
     children: 0,
     room: 1,
   });
-  useEffect(() => {
-    const handleDocumentClick = (event) => {
-      if (dateAreaRef.current && !dateAreaRef.current.contains(event.target)) {
-        setOpenDate(false);
-      }
-    };
 
-    document.addEventListener('click', handleDocumentClick);
-
-    return () => {
-      document.removeEventListener('click', handleDocumentClick);
-    };
-  }, []);
   useEffect(() => {
     const handleDocumentClick = (event) => {
       if (
@@ -71,8 +59,77 @@ const SearchingInput = () => {
     });
   };
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [sideBarHotel, setSideBarHotel] = useState({
+    city: '',
+    rooms: '',
+    type: 'all',
+    startDate: '',
+    endDate: '',
+    featured: true,
+    guests: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [listings, setListings] = useState([]);
+
+  useEffect(() => {
+    const UrlParams = new URLSearchParams(location.search);
+    const typeFromUrl = UrlParams.get('type');
+    const roomFromUrl = UrlParams.get('rooms');
+    const cityFromUrl = UrlParams.get('city');
+    const startDateFromUrl = UrlParams.get('startDate');
+    const endDateFromUrl = UrlParams.get('endDate');
+    const featuredFromUrl = UrlParams.get('featured');
+    const guestsFromUrl = UrlParams.get('guests');
+
+    if (
+      typeFromUrl ||
+      cityFromUrl ||
+      startDateFromUrl ||
+      endDateFromUrl ||
+      featuredFromUrl ||
+      guestsFromUrl ||
+      roomFromUrl
+    ) {
+      setSideBarHotel({
+        city: cityFromUrl || '',
+        rooms: roomFromUrl || '',
+        type: typeFromUrl || 'all',
+        startDate: startDateFromUrl || '',
+        endDate: endDateFromUrl || '',
+        featured: featuredFromUrl || true,
+        guests: featuredFromUrl || '',
+      });
+    }
+    const fetchListing = async () => {
+      setLoading(true);
+      const searchQuery = UrlParams.toString();
+      const res = await fetch(`/hotel/get?${searchQuery}`);
+      const data = await res.json();
+      setListings(data);
+      setLoading(false);
+    };
+    fetchListing();
+  }, [location.search, loading, listings]);
+  const handleChangeSearch = (e) => {
+    if (e.target.name === 'city') {
+      setSideBarHotel({ ...sideBarHotel, city: e.target.value });
+    }
+  };
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    const urlParams = new URLSearchParams();
+    urlParams.set('type', sideBarHotel.type);
+    urlParams.set('city', sideBarHotel.city);
+    urlParams.set('rooms', options.room);
+    urlParams.set('featured', sideBarHotel.featured);
+    urlParams.set('startDate', format(date[0].startDate, 'yyyy-MM-dd'));
+    urlParams.set('endDate', format(date[0].endDate, 'yyyy-MM-dd'));
+    urlParams.set('guests', Number(options.adult + options.children));
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
   };
   return (
     <div className="all-searching-fields">
@@ -88,7 +145,13 @@ const SearchingInput = () => {
                 <label>Destination or Hotel Name</label>
                 <div className="destination_hotel">
                   <GrMapLocation />
-                  <input type="search" placeholder="Where are you going?" />
+                  <input
+                    type="search"
+                    placeholder="Where are you going?"
+                    name="city"
+                    value={setSideBarHotel.city}
+                    onChange={handleChangeSearch}
+                  />
                 </div>
               </div>
             </div>
@@ -97,7 +160,6 @@ const SearchingInput = () => {
                 <label>Check In - Out</label>
                 <div
                   className="date-area"
-                  ref={dateAreaRef}
                   onClick={() => setOpenDate(!openDate)}>
                   <BsCalendarDate />
                   <p>{`${format(date[0].startDate, 'MM/dd/yyyy')} to ${format(
@@ -188,7 +250,7 @@ const SearchingInput = () => {
                           type="button"
                           className="optionCounterButton"
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent the click event from propagating
+                            e.stopPropagation();
                             handleOption('children', 'i');
                           }}>
                           +
@@ -201,8 +263,9 @@ const SearchingInput = () => {
                         <button
                           disabled={options.room <= 1}
                           className="optionCounterButton"
+                          type="button"
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent the click event from propagating
+                            e.stopPropagation();
                             handleOption('room', 'd');
                           }}>
                           -
@@ -212,6 +275,7 @@ const SearchingInput = () => {
                         </span>
                         <button
                           className="optionCounterButton"
+                          type="button"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleOption('room', 'i');

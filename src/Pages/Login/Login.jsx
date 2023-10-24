@@ -122,7 +122,7 @@ const Login = () => {
                     </div>
                   </div>
                   <div className="col-12">
-                    <button class="google-login" type='button'>
+                    <button className="google-login" type='button'>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         preserveAspectRatio="xMidYMid"
