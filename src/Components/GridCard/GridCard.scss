@@ -139,8 +139,10 @@
       .first_line_right {
         display: flex;
         align-items: flex-start;
+        justify-content: flex-end;
         width: 40%;
         flex: 0 0 40%;
+      
         @include md{
           width: 30%;
           flex:0 0 30%;
@@ -148,6 +150,7 @@
         @include sm{
           width: 100%;
           flex: 0 0 100%;
+          justify-content: flex-start;
         }
         .rating_and_emations {
           display: flex;
