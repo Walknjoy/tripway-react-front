@@ -24,7 +24,7 @@ function ContextApi({ children }) {
     username: '',
     password: '',
   });
-
+  const [filterList,setFilteredList]=useState('')
   //! function area
   const activeTabToggle = (index) => {
     setActiveTab(index);
@@ -54,7 +54,7 @@ function ContextApi({ children }) {
     setLogin,
     activeTabToggle,
     activeTab,
-    setActiveTab,
+    setActiveTab,filterList,setFilteredList
   };
   return <mainContext.Provider value={values}>{children}</mainContext.Provider>;
 }

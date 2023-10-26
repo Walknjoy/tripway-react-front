@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { mainContext } from '../../../utils/ContextApi';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './SearchingInput.scss';
@@ -9,12 +9,12 @@ import { format } from 'date-fns';
 import { BiSearch } from 'react-icons/bi';
 import { GrMapLocation } from 'react-icons/gr';
 import { BsCalendarDate } from 'react-icons/bs';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import useFetch from '../../../hooks/useFetch';
 const SearchingInput = () => {
-  const { activeTab } = useContext(mainContext);
+  const { activeTab,setFilteredList } = useContext(mainContext);
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
-  const optionsAreaRef = useRef(null);
 
   const scaleVariants = {
     initial: { scale: 0.99 },
@@ -33,22 +33,6 @@ const SearchingInput = () => {
     room: 1,
   });
 
-  useEffect(() => {
-    const handleDocumentClick = (event) => {
-      if (
-        optionsAreaRef.current &&
-        !optionsAreaRef.current.contains(event.target)
-      ) {
-        setOpenOptions(false);
-      }
-    };
-
-    document.addEventListener('click', handleDocumentClick);
-
-    return () => {
-      document.removeEventListener('click', handleDocumentClick);
-    };
-  }, []);
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -60,78 +44,45 @@ const SearchingInput = () => {
   };
 
   const navigate = useNavigate();
-  const location = useLocation();
   const [sideBarHotel, setSideBarHotel] = useState({
     city: '',
-    rooms: '',
+    rooms: options.room,
     type: 'all',
-    startDate: '',
-    endDate: '',
+    startDate:format(date[0].startDate, 'MM/dd/yyyy') ,
+    endDate: format( date[0].endDate, 'MM/dd/yyyy'),
     featured: true,
-    guests: '',
+    guests: Number(options.children + options.adult),
   });
-  const [loading, setLoading] = useState(false);
-  const [listings, setListings] = useState([]);
-
-  useEffect(() => {
-    const UrlParams = new URLSearchParams(location.search);
-    const typeFromUrl = UrlParams.get('type');
-    const roomFromUrl = UrlParams.get('rooms');
-    const cityFromUrl = UrlParams.get('city');
-    const startDateFromUrl = UrlParams.get('startDate');
-    const endDateFromUrl = UrlParams.get('endDate');
-    const featuredFromUrl = UrlParams.get('featured');
-    const guestsFromUrl = UrlParams.get('guests');
-
-    if (
-      typeFromUrl ||
-      cityFromUrl ||
-      startDateFromUrl ||
-      endDateFromUrl ||
-      featuredFromUrl ||
-      guestsFromUrl ||
-      roomFromUrl
-    ) {
-      setSideBarHotel({
-        city: cityFromUrl || '',
-        rooms: roomFromUrl || '',
-        type: typeFromUrl || 'all',
-        startDate: startDateFromUrl || '',
-        endDate: endDateFromUrl || '',
-        featured: featuredFromUrl || true,
-        guests: featuredFromUrl || '',
-      });
-    }
-    const fetchListing = async () => {
-      setLoading(true);
-      const searchQuery = UrlParams.toString();
-      const res = await fetch(`/hotel/get?${searchQuery}`);
-      const data = await res.json();
-      setListings(data);
-      setLoading(false);
-    };
-    fetchListing();
-  }, [location.search, loading, listings]);
+  
+ const {data}=useFetch('/hotels')
   const handleChangeSearch = (e) => {
     if (e.target.name === 'city') {
       setSideBarHotel({ ...sideBarHotel, city: e.target.value });
     }
+    
   };
-
+  
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    const urlParams = new URLSearchParams();
-    urlParams.set('type', sideBarHotel.type);
-    urlParams.set('city', sideBarHotel.city);
-    urlParams.set('rooms', options.room);
-    urlParams.set('featured', sideBarHotel.featured);
-    urlParams.set('startDate', format(date[0].startDate, 'yyyy-MM-dd'));
-    urlParams.set('endDate', format(date[0].endDate, 'yyyy-MM-dd'));
-    urlParams.set('guests', Number(options.adult + options.children));
-    const searchQuery = urlParams.toString();
-    navigate(`/search?${searchQuery}`);
+    const filteredData = data.filter((hotel) => hotel.city.includes(sideBarHotel.city));
+    setFilteredList(filteredData);
+    const queryParams = new URLSearchParams();
+    queryParams.set('type', sideBarHotel.type);
+    queryParams.set('city', sideBarHotel.city);
+    queryParams.set('rooms', sideBarHotel.rooms);
+    queryParams.set('featured', sideBarHotel.featured);
+    queryParams.set('startDate', sideBarHotel.startDate);
+    queryParams.set('endDate', sideBarHotel.endDate);
+    queryParams.set('guests', sideBarHotel.guests);
+    navigate(`/search/hotels?${queryParams.toString()}`);
   };
+
+  // useEffect(() => {
+  //   const filteredData = data.filter((hotel) => hotel.city.includes(sideBarHotel.city));
+  //   setFilteredList(filteredData);
+  // }, [data, sideBarHotel.city,setFilteredList]);
   return (
+
     <div className="all-searching-fields">
       <motion.div
         initial="initial"
@@ -184,7 +135,6 @@ const SearchingInput = () => {
                 <label>Rooms and Guests</label>
                 <div
                   className="rooms_area"
-                  ref={optionsAreaRef}
                   onClick={() => setOpenOptions(!openOptions)}>
                   <BiSearch />
                   <p>
@@ -211,7 +161,6 @@ const SearchingInput = () => {
                           disabled={options.adult <= 1}
                           className="optionCounterButton"
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent the click event from propagating
                             handleOption('adult', 'd');
                           }}>
                           -
@@ -223,7 +172,6 @@ const SearchingInput = () => {
                           type="button"
                           className="optionCounterButton"
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent the click event from propagating
                             handleOption('adult', 'i');
                           }}>
                           +
@@ -238,7 +186,6 @@ const SearchingInput = () => {
                           disabled={options.children <= 0}
                           className="optionCounterButton"
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent the click event from propagating
                             handleOption('children', 'd');
                           }}>
                           -
@@ -250,7 +197,6 @@ const SearchingInput = () => {
                           type="button"
                           className="optionCounterButton"
                           onClick={(e) => {
-                            e.stopPropagation();
                             handleOption('children', 'i');
                           }}>
                           +
@@ -265,7 +211,6 @@ const SearchingInput = () => {
                           className="optionCounterButton"
                           type="button"
                           onClick={(e) => {
-                            e.stopPropagation();
                             handleOption('room', 'd');
                           }}>
                           -
@@ -277,7 +222,6 @@ const SearchingInput = () => {
                           className="optionCounterButton"
                           type="button"
                           onClick={(e) => {
-                            e.stopPropagation();
                             handleOption('room', 'i');
                           }}>
                           +
@@ -290,7 +234,7 @@ const SearchingInput = () => {
             </div>
             <div className="col-12 col-xl-3 col-lg-3 col-md-6 col-sm-6">
               <div className="searching_btn">
-                <button>
+                <button type='submit' value="Search">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     id="Outline"
