@@ -9,6 +9,7 @@ import {
   BsFillFuelPumpDieselFill,
   BsSpeedometer2,
 } from 'react-icons/bs';
+import GridCard from '../../GridCard/GridCard.jsx';
 const TrendingCard = ({ data, loading, endPoint }) => {
 
   const animatedProps = useSpring({
@@ -101,6 +102,8 @@ const TrendingCard = ({ data, loading, endPoint }) => {
             </div>
           );
         })}
+
+        <GridCard/>
       </div>
     </div>
   );

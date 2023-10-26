@@ -1,0 +1,306 @@
+@import '../../css-config/mixins.scss';
+.grid_card_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  @include md{
+    row-gap: 20px;
+  }
+  @include xs{
+    padding: 10px;
+  }
+  .grid_card_image {
+    height: 200px;
+    width: 200px;
+    margin: 0;
+    border-radius: 10px;
+    @include md{
+    width: 100%;
+    height: 300px;
+    }
+    @include xs{
+      height: 200px;
+    }
+   span{
+    @include md{
+      width: 100% !important;
+    height: 100% !important;
+    }
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+   }
+  }
+  .grid_card_content {
+    width: calc(100% - 220px);
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    @include md{
+      width: 100%;
+    }
+    .content_top {
+      width: 100%;
+      flex: 0 0 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .first_line_left {
+        width: 60%;
+        flex: 0 0 60%;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 15px;
+        @include md{
+          width: 70%;
+          flex: 0 0 70%;
+        }
+        @include sm{
+          width: 100%;
+          flex: 0 0 100%;
+        }
+        .title_line_top {
+          width: 100%;
+          flex: 0 0 100%;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          @include md{
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          h3 {
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            margin: 0;
+          }
+        }
+        .locations_side {
+          width: 100%;
+          flex: 0 0 100%;
+          @include flex();
+          flex-wrap: wrap;
+          row-gap: 10px;
+          svg {
+            color: #666;
+            content: '\b7';
+            display: inline-block;
+            font-weight: 600;
+            padding: 0 5px;
+            text-decoration: none;
+            transform: scale(1.4);
+          }
+          a {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            text-decoration: underline !important;
+            span {
+              font-weight: bold;
+              color: #006ce4;
+            }
+          }
+          span {
+            color: #111;
+            letter-spacing: -1px;
+            font-size: 14px;
+          }
+        }
+        .travel_sustainable {
+          background-color: #f1fef6;
+          padding: 5px;
+          border-radius: 5px;
+          @include flex();
+          gap: 3px;
+          svg {
+            fill: #008234;
+            height: 16px;
+          }
+          span {
+            font-size: 16px;
+            color: #008234;
+            font-weight: bold;
+          }
+          @include xs{
+            flex-wrap: wrap;
+            
+          }
+        }
+      }
+      .first_line_right {
+        display: flex;
+        align-items: flex-start;
+        width: 40%;
+        flex: 0 0 40%;
+        @include md{
+          width: 30%;
+          flex:0 0 30%;
+        }
+        @include sm{
+          width: 100%;
+          flex: 0 0 100%;
+        }
+        .rating_and_emations {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          span {
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            color: #111;
+          }
+          p {
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            background-color: #003b95;
+            color: #fff;
+          }
+        }
+      }
+    }
+    .content_center {
+      width: 100%;
+      flex: 0 0 100%;
+      span {
+        background-color: #008234;
+        color: #fff;
+        font-size: 14px;
+        display: inline-block;
+        padding: 5px;
+        border-radius: 5px;
+      }
+    }
+    .content_end {
+      width: 100%;
+      flex: 0 0 100%;
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 10px;
+      .content_end_left {
+        padding: 5px 0;
+        width: 50%;
+        flex: 0 0 50%;
+        @include xs{
+          width: 100%;
+          flex: 0 0 100%;
+        }
+        h4 {
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: -1px;
+        }
+        .content_end_left_list {
+          position: relative;
+          padding-left: 15px;
+          @include sm{
+            padding-left: 0;
+          }
+          &:before {
+            border-left: 2px solid #e7e7e7;
+            content: ' ';
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 2px;
+            width: 1px;
+            z-index: 0;
+            @include sm{
+              all: unset;
+            }
+          }
+         li{
+          font-size: 14px;
+          &:nth-child(1){
+            font-weight: bold;
+            letter-spacing: -1px;
+          }
+          &:nth-child(2){
+            color: #008234;
+          }
+          &:nth-child(3){
+            color: #008234;
+          }
+          &:nth-child(4){
+            color: #d31b1b;
+          }
+         }
+        }
+      }
+      .content_end_right{
+        width: 50%;
+        flex: 0 0 50%;
+     
+        @include xs{
+          width: 100%;
+          flex: 0 0 100%;
+        }
+        .content_end_list_count{
+          @include flex();
+          margin: 0;
+          padding: 0;
+          gap: 5px;
+          justify-content: flex-end;
+          @include xs{
+            justify-content: flex-start;
+          }
+         span{
+          font-size: 14px;
+          color: #111;
+         }
+         li{
+          color: #111;
+          letter-spacing: -1px;
+         }
+        }
+        .price_area{
+          @include flex();
+          gap: 5px;
+          font-weight: bold;
+          letter-spacing: -1px;
+          text-transform: capitalize;
+          justify-content: flex-end;
+          @include xs{
+            justify-content: flex-start;
+          }
+          del{
+          font-size: 14px;
+            text-decoration:line-through !important;
+            color: #d31b1b;
+          }
+          span{
+            color: #111;
+            font-size: 18px;
+          }
+        }
+        .taxes_and_changes{
+          @include flex();
+          justify-content: flex-end;
+          @include xs{
+            justify-content: flex-start;
+          }
+          span{
+            color: #111;
+            opacity: .8;
+            font-weight: normal;
+            line-height: 1.5;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
