@@ -7,7 +7,7 @@ import { BsDot } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 const GridCard = () => {
   return (
-    <div className="col-12">
+    <div className="col-12 col-xl-9 col-lg-9">
       <div className="grid_card_wrapper">
         <figure className="grid_card_image">
           <LazyLoadImg
