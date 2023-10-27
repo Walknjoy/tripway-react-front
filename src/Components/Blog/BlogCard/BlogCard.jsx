@@ -9,7 +9,6 @@ import { GrView } from 'react-icons/gr';
 import useFetch from '../../../hooks/useFetch';
 const BlogCard = () => {
   const { data, loading } = useFetch('/blogs/');
-  console.log(data);
   const optionsDeal = {
     items: 1,
     loop: true,

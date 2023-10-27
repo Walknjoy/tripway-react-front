@@ -16,6 +16,7 @@ import Register from '../Pages/Register/Register';
 import Cars from '../Pages/Rental/Cars/Cars';
 import Rental from '../Pages/Rental/Rental';
 import Yachts from '../Pages/Rental/Yachts/Yachts';
+import SearchResult from '../Pages/SearchResult/SearchResult';
 import Tours from '../Pages/Tours/Tours';
 import ToursOne from '../Pages/Tours/ToursOne';
 import Information from '../Pages/UserProfile/Information/Information';
@@ -43,6 +44,10 @@ export const ROUTES = [
       {
         path: '/hotels/:city',
         element: <SingleDestinations />,
+      },
+      {
+        path: 'search/hotels',
+        element: <SearchResult/>,
       },
       {
         path: 'tours',
