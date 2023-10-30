@@ -102,8 +102,6 @@ const TrendingCard = ({ data, loading, endPoint }) => {
             </div>
           );
         })}
-
-        <GridCard/>
       </div>
     </div>
   );
