@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Footer.scss';
 import { Link } from 'react-router-dom';
 import Logo from '../../Assets/Logo/Logo';
@@ -13,7 +13,49 @@ import {
   FaYoutube,
 } from 'react-icons/fa';
 import LazyLoadImg from '../../Assets/LazyLoadImg';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const Footer = () => {
+  const[post, setPost]=useState({
+    email:''
+  })
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setPost({
+      ...post,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      if (!post.email) {
+        toast.error('Please enter the fields value');
+        return;
+      }
+
+      const res = await axios.post('/auth/subscribe', post, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (res.status === 200) {
+        toast.success(res.data.success);
+        setPost({
+          email: '',
+        });
+      } else {
+        console.log(res.info.error);
+        return;
+      }
+    } catch (error) {
+      toast.error(error.response.data.error.error);
+    }
+  };
+
   const currentYear = new Date().getFullYear();
   return (
     <footer id="footer">
@@ -124,12 +166,16 @@ const Footer = () => {
                   email.
                 </p>
                 <div className="subscribe_area">
-                  <form>
+                  <form
+                  onSubmit={handleSubmit}
+                  >
                     <input
                       type="email"
                       name="email"
                       id="#"
                       placeholder="example@example.com"
+                      value={post.email}
+                      onChange={handleChange}
                     />
                     <button type="submit">
                       <BsSendFill />
