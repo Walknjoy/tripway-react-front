@@ -9,9 +9,9 @@ import ContextApi from './utils/ContextApi';
 import { FilterContextProvider } from './utils/FilterContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <FilterContextProvider>
   <ContextApi>
+    <FilterContextProvider>
       <App />
-  </ContextApi>
     </FilterContextProvider>
+  </ContextApi>
 );

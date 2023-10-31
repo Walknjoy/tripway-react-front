@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useReducer } from 'react';
 import { useContext } from 'react';
 import reducer from '../Reducer/FilterReducer';
-import useFetch from '../hooks/useFetch';
 import { createContext } from 'react';
+import { mainContext } from './ContextApi';
 
 const initialState = {
   filter_products: [],
@@ -13,8 +13,7 @@ const initialState = {
 
 const FilterContext = createContext(null);
 export const FilterContextProvider = ({ children }) => {
-  const { data } = useFetch('/hotels');
-  console.log(data);
+  const { filterList } = useContext(mainContext);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // ?  to set the grid view
@@ -25,11 +24,11 @@ export const FilterContextProvider = ({ children }) => {
     return dispatch({ type: 'SET_LIST_VIEW' });
   };
   useEffect(() => {
-    dispatch({ type: 'LOAD_FILTER_PRODUCTS', payload: data });
-  }, [data]);
+    dispatch({ type: 'LOAD_FILTER_PRODUCTS', payload: filterList });
+  }, [filterList]);
 
   return (
-    <FilterContext.Provider value={{ ...state, setGridView,setListView }}>
+    <FilterContext.Provider value={{ ...state, setGridView, setListView }}>
       {children}
     </FilterContext.Provider>
   );
