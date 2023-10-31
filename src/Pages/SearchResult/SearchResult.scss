@@ -6,7 +6,7 @@
   .result_wrapper {
     width: 100%;
     display: flex;
-    align-items:flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
     row-gap: 20px;
     .result_left {
@@ -25,6 +25,34 @@
       @include md {
         max-width: 100%;
         flex: 0 0 100%;
+      }
+      .row {
+        .products-header {
+          @include flex();
+          justify-content: space-between;
+          .grid_btn {
+            @include flex();
+            gap: 20px;
+            button{
+              width: 30px;
+              height: 30px;
+              background-color: transparent;
+              color: #000;
+              cursor: pointer;
+              border: none;
+              font-size: 20px;
+              &.active{
+                color: #1194d1;
+              }
+            }
+          }
+        }
+      }
+      .products_card {
+        margin: 20px 0;
+        .row {
+          row-gap: 20px;
+        }
       }
     }
   }

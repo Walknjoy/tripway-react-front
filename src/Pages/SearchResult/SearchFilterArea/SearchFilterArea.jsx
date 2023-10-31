@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, {  useState } from 'react';
 import Slider from 'react-slider';
 import mapImage from '../../../Media/image/map.jpg';
 import { Link } from 'react-router-dom';
