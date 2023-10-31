@@ -3,7 +3,10 @@ import './SearchResult.scss';
 import SearchFilterArea from './SearchFilterArea/SearchFilterArea';
 import GridViews from './GridViews/GridViews';
 import ProductList from './ProductList/ProductList';
+import { useContext } from 'react';
+import { mainContext } from '../../utils/ContextApi';
 const SearchResult = () => {
+  const {filterList } = useContext(mainContext);
   return (
     <>
       <PageTitle
@@ -25,7 +28,7 @@ const SearchResult = () => {
                     <div className="products_title">
                       <h3>
                         Hotel:
-                        <span>7 results found</span>
+                        <span>{filterList?.length} results found</span>
                       </h3>
                     </div>
                     <div className="products_grid_btn">
