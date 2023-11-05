@@ -1,0 +1,9 @@
+@import '../../../../css-config/mixins.scss';
+.filters_card_areas {
+  padding: 1rem;
+  border-radius: 0.188rem;
+  width: 100%;
+  flex: 0 0 100%;
+  max-height: fit-content;
+  border: 1px solid #ebf0f7;
+}

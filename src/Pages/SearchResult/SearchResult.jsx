@@ -1,12 +1,7 @@
 import PageTitle from '../../Components/PageTitle/PageTitle';
 import './SearchResult.scss';
-import SearchFilterArea from './SearchFilterArea/SearchFilterArea';
-import GridViews from './GridViews/GridViews';
-import ProductList from './ProductList/ProductList';
-import { useContext } from 'react';
-import { mainContext } from '../../utils/ContextApi';
+import SearchPageLeft from './SearchPageLeft/SearchPageLeft';
 const SearchResult = () => {
-  const {filterList } = useContext(mainContext);
   return (
     <>
       <PageTitle
@@ -19,9 +14,9 @@ const SearchResult = () => {
         <div className="container">
           <div className="result_wrapper">
             <div className="result_left">
-              <SearchFilterArea />
+              <SearchPageLeft/>
             </div>
-            <div className="result_right">
+            {/* <div className="result_right">
               <div className="row">
                 <div className="col-12">
                   <div className="products-header">
@@ -42,7 +37,7 @@ const SearchResult = () => {
                   <ProductList />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

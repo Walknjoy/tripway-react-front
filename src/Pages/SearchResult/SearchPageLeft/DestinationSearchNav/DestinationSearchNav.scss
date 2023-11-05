@@ -1,0 +1,92 @@
+@import '../../../../css-config/mixins.scss';
+.destination_search_nav {
+  padding: 24px;
+  width: 100%;
+  flex: 0 0 auto;
+  border: 1px solid #ebf0f7;
+  border-radius: 0.188rem;
+  form {
+    width: 100%;
+    height: fit-content;
+    display: block;
+    .search_form {
+      label {
+        font-size: 1.063rem;
+        font-weight: normal;
+        color: #67747c;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .form-control_for_search {
+        position: relative;
+        --width-of-input: 100%;
+        --border-before-color: #ebf0f7;
+        --border-height: 2px;
+        --border-after-color: transparent;
+        margin-bottom: 10px;
+        input {
+          color: #3b444f;
+          background-color: transparent;
+          width: 100%;
+          box-sizing: border-box;
+          padding-inline: 0.5em;
+
+          height: calc(1.5em + 1.8rem + 4px);
+          padding-block: 0.7em;
+          border: none;
+          border-bottom: var(--border-height) solid var(--border-before-color);
+          &:focus {
+            outline: none;
+            + .input-border {
+              width: 100%;
+            }
+          }
+          &.input-alt {
+            font-size: 0.938rem;
+            padding: 10px;
+            &:focus {
+              + .input-border-alt {
+                width: 100%;
+              }
+            }
+          }
+        }
+        .input-border {
+          position: absolute;
+          background: var(--border-after-color);
+          width: 0%;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          transition: width 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+          &.input-border-alt {
+            height: 3px;
+            background: #06a4e3b7;
+            transition: width 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+          }
+        }
+      }
+      button {
+        background-color: #297cbb;
+        color: #fff;
+        border-radius: 0.3125rem;
+        padding: 0.9rem 1rem;
+        line-height: 1.5;
+        font-size: 1rem;
+        height: 3.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease-in-out;
+        border: none;
+        width: 100%;
+        svg{
+            margin-right: 3px;
+        }
+        &:hover {
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
