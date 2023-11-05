@@ -1,7 +1,6 @@
 import PageTitle from '../../Components/PageTitle/PageTitle';
-import "./SearchResult.scss"
-import {BsFillGrid3X3GapFill, BsListUl} from "react-icons/bs"
-import SearchFilterArea from './SearchFilterArea/SearchFilterArea';
+import './SearchResult.scss';
+import SearchPageLeft from './SearchPageLeft/SearchPageLeft';
 const SearchResult = () => {
   return (
     <>
@@ -15,30 +14,30 @@ const SearchResult = () => {
         <div className="container">
           <div className="result_wrapper">
             <div className="result_left">
-             <SearchFilterArea/>
+              <SearchPageLeft/>
             </div>
-            <div className="result_right">
+            {/* <div className="result_right">
               <div className="row">
                 <div className="col-12">
                   <div className="products-header">
                     <div className="products_title">
                       <h3>
                         Hotel:
-                        <span>7 results found</span>
+                        <span>{filterList?.length} results found</span>
                       </h3>
                     </div>
                     <div className="products_grid_btn">
-                        <button>
-                            <BsListUl/>
-                        </button>
-                        <button>
-                            <BsFillGrid3X3GapFill/>
-                        </button>
+                      <GridViews />
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+              <div className="products_card">
+                <div className="row">
+                  <ProductList />
+                </div>
+              </div>
+            </div> */}
           </div>
         </div>
       </div>

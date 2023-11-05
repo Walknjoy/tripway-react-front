@@ -1,0 +1,74 @@
+@import '../../../../../css-config/mixins.scss';
+.price_range_search {
+  width: 100%;
+  max-height: fit-content;
+  transition: all 0.2s ease-in-out;
+  border-bottom: 1px solid #ebf0f7;
+  button {
+    padding: 10px 0;
+    border: none;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    font-size: 1.063rem;
+    color: #3b444f;
+    font-weight: bold;
+  }
+  .filters_areas {
+    .price_amount_between {
+      p {
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #06a6e3;
+      }
+      small {
+        color: #3b444f;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+
+    .react_range_slider {
+      width: 100%;
+      height: 3px;
+      background-color: #cdd9ed;
+      margin: 20px 0;
+      .track-1 {
+        background-color: #297cbb;
+        height: 3px;
+      }
+      .thumb {
+        width: 25px;
+        height: 25px;
+        cursor: grab;
+        background-color: #fff;
+        border-radius: 50%;
+        border: 2px solid #297cbb;
+        top: -10px;
+        &:focus-visible {
+          outline-color: #297cbb;
+        }
+      }
+    }
+    .filter_btn {
+      margin-top: 1.5rem;
+      button {
+        padding: 0.625rem 1.125rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        border: none;
+        cursor: pointer;
+        background-color: #297cbb;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

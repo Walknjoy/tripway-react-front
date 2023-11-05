@@ -1,6 +1,5 @@
 import React from 'react';
 import './PageTitle.scss';
-import BreadCrumps from '../../Assets/BreadCrumps/BreadCrumps';
 const PageTitle = ({ title, backgroundImg }) => {
   return (
     <>
@@ -12,7 +11,6 @@ const PageTitle = ({ title, backgroundImg }) => {
             <div className="col-12">
               <div className="page_description">
                 <h2>{title}</h2>
-                <BreadCrumps />
               </div>
             </div>
           </div>

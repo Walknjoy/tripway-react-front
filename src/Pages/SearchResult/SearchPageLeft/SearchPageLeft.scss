@@ -1,0 +1,7 @@
+@import '../../../css-config/mixins.scss';
+.search-page-left {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}

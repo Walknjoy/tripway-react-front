@@ -6,9 +6,12 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import ContextApi from './utils/ContextApi';
+import { FilterContextProvider } from './utils/FilterContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ContextApi>
-    <App />
+    <FilterContextProvider>
+      <App />
+    </FilterContextProvider>
   </ContextApi>
 );
