@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { format } from 'date-fns';
+
 export const mainContext = createContext(null);
 function ContextApi({ children }) {
   const [openBar, setOpenBar] = useState(false);
@@ -24,35 +24,11 @@ function ContextApi({ children }) {
     username: '',
     password: '',
   });
-  const [filterList, setFilteredList] = useState([]);
+  const [filterList,setFilteredList]=useState('')
   //! function area
   const activeTabToggle = (index) => {
     setActiveTab(index);
   };
-
-  const [grid, setGrid] = useState(false);
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
-  ]);
-  const [options, setOptions] = useState({
-    adult: 1,
-    children: 0,
-    room: 1,
-  });
-  const initialSideBarHotel = {
-    city: '',
-    rooms: options.room,
-    type: 'all',
-    startDate: format(date[0].startDate, 'MM/dd/yyyy'),
-    endDate: format(date[0].endDate, 'MM/dd/yyyy'),
-    featured: true,
-    guests: Number(options.children + options.adult),
-  };
-  const [sideBarHotel, setSideBarHotel] = useState(initialSideBarHotel);
   const values = {
     openBar,
     setOpenBar,
@@ -61,8 +37,6 @@ function ContextApi({ children }) {
     passwordVisible,
     setConfirmPasswordVisible,
     setPasswordVisible,
-    grid,
-    setGrid,
     confirmPasswordVisible,
     openMenuIndex,
     setOpenMenuIndex,
@@ -80,15 +54,7 @@ function ContextApi({ children }) {
     setLogin,
     activeTabToggle,
     activeTab,
-    setActiveTab,
-    filterList,
-    setFilteredList,
-    date,
-    setDate,
-    options,
-    setOptions,
-    sideBarHotel,
-    setSideBarHotel,
+    setActiveTab,filterList,setFilteredList
   };
   return <mainContext.Provider value={values}>{children}</mainContext.Provider>;
 }

@@ -38,7 +38,19 @@
           color: #06A6E3;
           fill: #06A6E3;
           background-color: #fff;
-        
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: -25px;
+            left: 10px;
+            width: 0;
+            z-index: 2;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #fff;
+          }
         }
       }
     }
