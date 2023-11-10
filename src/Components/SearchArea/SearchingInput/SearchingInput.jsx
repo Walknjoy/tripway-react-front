@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { mainContext } from '../../../utils/ContextApi';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './SearchingInput.scss';
@@ -10,9 +10,16 @@ import { BiSearch } from 'react-icons/bi';
 import { GrMapLocation } from 'react-icons/gr';
 import { BsCalendarDate } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
-import useFetch from '../../../hooks/useFetch';
 const SearchingInput = () => {
-  const { activeTab,setFilteredList } = useContext(mainContext);
+  const {
+    date,
+    setDate,
+    options,
+    setOptions,
+    activeTab,
+    sideBarHotel,
+    setSideBarHotel,
+  } = useContext(mainContext);
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
 
@@ -20,19 +27,6 @@ const SearchingInput = () => {
     initial: { scale: 0.99 },
     animate: { scale: 1, transition: { duration: 0.5 } },
   };
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
-  ]);
-  const [options, setOptions] = useState({
-    adult: 1,
-    children: 0,
-    room: 1,
-  });
-
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -44,45 +38,51 @@ const SearchingInput = () => {
   };
 
   const navigate = useNavigate();
-  const [sideBarHotel, setSideBarHotel] = useState({
-    city: '',
-    rooms: options.room,
-    type: 'all',
-    startDate:format(date[0].startDate, 'MM/dd/yyyy') ,
-    endDate: format( date[0].endDate, 'MM/dd/yyyy'),
-    featured: true,
-    guests: Number(options.children + options.adult),
-  });
-  
- const {data}=useFetch('/hotels')
+
   const handleChangeSearch = (e) => {
-    if (e.target.name === 'city') {
-      setSideBarHotel({ ...sideBarHotel, city: e.target.value });
+    const { name, value } = e.target;
+    if (name === 'city') {
+      setSideBarHotel({ ...sideBarHotel, city: value });
     }
-    
   };
-  
+  useEffect(() => {
+    let type = '';
+    switch (activeTab) {
+      case 1:
+        type = 'Hotels';
+        break;
+      case 2:
+        type = 'Tours';
+        break;
+      case 3:
+        type = 'Entertainments';
+        break;
+      case 4:
+        type = 'Cars';
+        break;
+      case 5:
+        type = 'Yachts';
+        break;
+      default:
+        type = 'defaultType';
+    }
+    setSideBarHotel((prev) => ({ ...prev, type }));
+  }, [activeTab, setSideBarHotel]);
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    const filteredData = data.filter((hotel) => hotel.city.includes(sideBarHotel.city));
-    setFilteredList(filteredData);
+    if (!sideBarHotel.city) return;
+
     const queryParams = new URLSearchParams();
-    queryParams.set('type', sideBarHotel.type);
-    queryParams.set('city', sideBarHotel.city);
-    queryParams.set('rooms', sideBarHotel.rooms);
-    queryParams.set('featured', sideBarHotel.featured);
-    queryParams.set('startDate', sideBarHotel.startDate);
-    queryParams.set('endDate', sideBarHotel.endDate);
-    queryParams.set('guests', sideBarHotel.guests);
-    navigate(`/search/hotels?${queryParams.toString()}`);
+    Object.entries(sideBarHotel).forEach(([key, value]) => {
+      queryParams.set(key, value);
+    });
+    navigate(`/search/hotels?${queryParams.toString()}`, {
+      state: { sideBarHotel },
+    });
   };
 
-  // useEffect(() => {
-  //   const filteredData = data.filter((hotel) => hotel.city.includes(sideBarHotel.city));
-  //   setFilteredList(filteredData);
-  // }, [data, sideBarHotel.city,setFilteredList]);
   return (
-
     <div className="all-searching-fields">
       <motion.div
         initial="initial"
@@ -91,7 +91,7 @@ const SearchingInput = () => {
         className={`searching_area ${activeTab === 1 ? 'active-bar' : ''}`}>
         <form onSubmit={handleSearchSubmit}>
           <div className="row">
-            <div className="col-12 col-xl-3 col-lg-3">
+            <div className="col-12 col-xl-3 col-lg-3 col-md-6">
               <div className="searcing-input">
                 <label>Destination or Hotel Name</label>
                 <div className="destination_hotel">
@@ -106,7 +106,7 @@ const SearchingInput = () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-xl-3 col-lg-3">
+            <div className="col-12 col-xl-3 col-lg-3 col-md-6">
               <div className="searcing-input">
                 <label>Check In - Out</label>
                 <div
@@ -130,7 +130,7 @@ const SearchingInput = () => {
                 )}
               </div>
             </div>
-            <div className="col-12 col-xl-3 col-lg-3">
+            <div className="col-12 col-xl-4 col-lg-4">
               <div className="searcing-input">
                 <label>Rooms and Guests</label>
                 <div
@@ -232,9 +232,9 @@ const SearchingInput = () => {
                 )}
               </div>
             </div>
-            <div className="col-12 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+            <div className="col-12 col-xl-2 col-lg-2 col-md-6 col-sm-6">
               <div className="searching_btn">
-                <button type='submit' value="Search">
+                <button type="submit" value="Search">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     id="Outline"

@@ -1,6 +1,8 @@
 import PageTitle from '../../Components/PageTitle/PageTitle';
 import './SearchResult.scss';
 import SearchPageLeft from './SearchPageLeft/SearchPageLeft';
+import SearchPageRight from './SearchPageRight/SearchPageRight';
+import SideBarSearch from './SideBarSearch/SideBarSearch';
 const SearchResult = () => {
   return (
     <>
@@ -13,31 +15,14 @@ const SearchResult = () => {
       <div className="all_result_page">
         <div className="container">
           <div className="result_wrapper">
+            
             <div className="result_left">
-              <SearchPageLeft/>
+              <SideBarSearch/>
+              <SearchPageLeft />
             </div>
-            {/* <div className="result_right">
-              <div className="row">
-                <div className="col-12">
-                  <div className="products-header">
-                    <div className="products_title">
-                      <h3>
-                        Hotel:
-                        <span>{filterList?.length} results found</span>
-                      </h3>
-                    </div>
-                    <div className="products_grid_btn">
-                      <GridViews />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="products_card">
-                <div className="row">
-                  <ProductList />
-                </div>
-              </div>
-            </div> */}
+            <div className="result_right">
+              <SearchPageRight />
+            </div>
           </div>
         </div>
       </div>
