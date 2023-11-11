@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { mainContext } from '../../../utils/ContextApi';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './SearchingInput.scss';
@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 import { BiSearch } from 'react-icons/bi';
 import { GrMapLocation } from 'react-icons/gr';
 import { BsCalendarDate } from 'react-icons/bs';
+import useFetch from '../../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 const SearchingInput = () => {
   const {
@@ -19,10 +20,12 @@ const SearchingInput = () => {
     activeTab,
     sideBarHotel,
     setSideBarHotel,
+    filterList,
+    setFilteredList,
   } = useContext(mainContext);
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
-
+  const navigate = useNavigate();
   const scaleVariants = {
     initial: { scale: 0.99 },
     animate: { scale: 1, transition: { duration: 0.5 } },
@@ -36,52 +39,26 @@ const SearchingInput = () => {
       };
     });
   };
-
-  const navigate = useNavigate();
-
+  const { data } = useFetch('/hotels');
   const handleChangeSearch = (e) => {
     const { name, value } = e.target;
-    if (name === 'city') {
-      setSideBarHotel({ ...sideBarHotel, city: value });
-    }
+    setSideBarHotel({ ...sideBarHotel, [name]: value });
   };
-  useEffect(() => {
-    let type = '';
-    switch (activeTab) {
-      case 1:
-        type = 'Hotels';
-        break;
-      case 2:
-        type = 'Tours';
-        break;
-      case 3:
-        type = 'Entertainments';
-        break;
-      case 4:
-        type = 'Cars';
-        break;
-      case 5:
-        type = 'Yachts';
-        break;
-      default:
-        type = 'defaultType';
-    }
-    setSideBarHotel((prev) => ({ ...prev, type }));
-  }, [activeTab, setSideBarHotel]);
 
-  const handleSearchSubmit = (e) => {
+  const filterData = () => {
+    const filterData = data.filter((hotel) =>
+      hotel.city.includes(sideBarHotel.city)
+    );
+    setFilteredList(filterData);
+  };
+
+  const handleSearch = (e) => {
     e.preventDefault();
-    if (!sideBarHotel.city) return;
-
-    const queryParams = new URLSearchParams();
-    Object.entries(sideBarHotel).forEach(([key, value]) => {
-      queryParams.set(key, value);
-    });
-    navigate(`/search/hotels?${queryParams.toString()}`, {
-      state: { sideBarHotel },
-    });
+    filterData();
+    navigate(`/search/hotels?city=${sideBarHotel.city}`);
   };
 
+  console.log(filterList);
   return (
     <div className="all-searching-fields">
       <motion.div
@@ -89,9 +66,9 @@ const SearchingInput = () => {
         animate={activeTab === 1 ? 'animate' : 'initial'}
         variants={scaleVariants}
         className={`searching_area ${activeTab === 1 ? 'active-bar' : ''}`}>
-        <form onSubmit={handleSearchSubmit}>
+        <form onSubmit={handleSearch}>
           <div className="row">
-            <div className="col-12 col-xl-3 col-lg-3 col-md-6">
+            <div className="col-12 col-xl-3 col-lg-3">
               <div className="searcing-input">
                 <label>Destination or Hotel Name</label>
                 <div className="destination_hotel">
@@ -106,7 +83,7 @@ const SearchingInput = () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-xl-3 col-lg-3 col-md-6">
+            <div className="col-12 col-xl-3 col-lg-3">
               <div className="searcing-input">
                 <label>Check In - Out</label>
                 <div
@@ -232,7 +209,7 @@ const SearchingInput = () => {
                 )}
               </div>
             </div>
-            <div className="col-12 col-xl-2 col-lg-2 col-md-6 col-sm-6">
+            <div className="col-12 col-xl-2 col-lg-2">
               <div className="searching_btn">
                 <button type="submit" value="Search">
                   <svg
