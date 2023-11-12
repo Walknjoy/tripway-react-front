@@ -26,11 +26,8 @@ import UserProfile from '../Pages/UserProfile/UserProfile';
 import {
   AuthorizeUser,
   LoginRegisterUser,
-  ProtectRoute,
+  // ProtectRoute,
 } from '../middleware/auth';
-  
-
-
 
 export const ROUTES = [
   {
@@ -46,8 +43,8 @@ export const ROUTES = [
         element: <SingleDestinations />,
       },
       {
-        path: 'search/hotels',
-        element: <SearchResult/>,
+        path: 'search',
+        element: <SearchResult />,
       },
       {
         path: 'tours',
@@ -165,11 +162,7 @@ export const ROUTES = [
       },
       {
         path: 'reset-password',
-        element: (
-          <ProtectRoute>
-            <NewPassword />
-          </ProtectRoute>
-        ),
+        element: <NewPassword />,
       },
       {
         path: '*',

@@ -61,6 +61,12 @@ const Destination = () => {
                                 <span>Cars</span>
                               </Link>
                             </li>
+                               <li>
+                              <Link to={`/entertainments/${item.city}`}>
+                                <span>{item.entertainments}</span>
+                                <span>Entertainments</span>
+                              </Link>
+                            </li>
                           </ul>
                         </div>
                       </div>

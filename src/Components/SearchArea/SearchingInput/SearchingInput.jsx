@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { mainContext } from '../../../utils/ContextApi';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './SearchingInput.scss';
@@ -9,25 +9,31 @@ import { format } from 'date-fns';
 import { BiSearch } from 'react-icons/bi';
 import { GrMapLocation } from 'react-icons/gr';
 import { BsCalendarDate } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useFetch from '../../../hooks/useFetch';
 const SearchingInput = () => {
   const {
-    date,
-    setDate,
+    selectionRange,
     options,
     setOptions,
     activeTab,
     sideBarHotel,
     setSideBarHotel,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    setFilteredList,
   } = useContext(mainContext);
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
-
+  const navigate = useNavigate();
   const scaleVariants = {
     initial: { scale: 0.99 },
     animate: { scale: 1, transition: { duration: 0.5 } },
   };
-
+  const { data } = useFetch('/hotels');
+  const { search } = useLocation();
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -36,49 +42,47 @@ const SearchingInput = () => {
       };
     });
   };
-
-  const navigate = useNavigate();
-
   const handleChangeSearch = (e) => {
     const { name, value } = e.target;
-    if (name === 'city') {
-      setSideBarHotel({ ...sideBarHotel, city: value });
-    }
+    setSideBarHotel({ ...sideBarHotel, [name]: value });
   };
-  useEffect(() => {
-    let type = '';
-    switch (activeTab) {
-      case 1:
-        type = 'Hotels';
-        break;
-      case 2:
-        type = 'Tours';
-        break;
-      case 3:
-        type = 'Entertainments';
-        break;
-      case 4:
-        type = 'Cars';
-        break;
-      case 5:
-        type = 'Yachts';
-        break;
-      default:
-        type = 'defaultType';
-    }
-    setSideBarHotel((prev) => ({ ...prev, type }));
-  }, [activeTab, setSideBarHotel]);
 
-  const handleSearchSubmit = (e) => {
+  const handleSelect = (date) => {
+    const filteredForDate = data.filter((product) => {
+      let productDate = new Date(product['createdAt']);
+      return (
+        productDate >= date.selection.startDate &&
+        productDate <= date.selection.endDate
+      );
+    });
+    setFilteredList(filteredForDate);
+    setStartDate(date.selection.startDate);
+    setEndDate(date.selection.endDate);
+  };
+  const handleSearch = (e) => {
     e.preventDefault();
     if (!sideBarHotel.city) return;
-
-    const queryParams = new URLSearchParams();
+    const newqueryParams = new URLSearchParams(search);
     Object.entries(sideBarHotel).forEach(([key, value]) => {
-      queryParams.set(key, value);
+      newqueryParams.set(key, value);
     });
-    navigate(`/search/hotels?${queryParams.toString()}`, {
-      state: { sideBarHotel },
+
+    navigate(`/search?${newqueryParams.toString()}`, {
+      state: {
+        ...sideBarHotel,
+      },
+    });
+
+    setSideBarHotel({
+      city: '',
+      rooms: options.room,
+      type: 'all',
+      startDate: format(startDate, 'MM/dd/yyyy'),
+      endDate: format(endDate, 'MM/dd/yyyy'),
+      featured: true,
+      min: '',
+      max: '',
+      guests: Number(options.children + options.adult),
     });
   };
 
@@ -89,9 +93,9 @@ const SearchingInput = () => {
         animate={activeTab === 1 ? 'animate' : 'initial'}
         variants={scaleVariants}
         className={`searching_area ${activeTab === 1 ? 'active-bar' : ''}`}>
-        <form onSubmit={handleSearchSubmit}>
+        <form onSubmit={handleSearch}>
           <div className="row">
-            <div className="col-12 col-xl-3 col-lg-3 col-md-6">
+            <div className="col-12 col-xl-3 col-lg-3">
               <div className="searcing-input">
                 <label>Destination or Hotel Name</label>
                 <div className="destination_hotel">
@@ -100,30 +104,30 @@ const SearchingInput = () => {
                     type="search"
                     placeholder="Where are you going?"
                     name="city"
-                    value={setSideBarHotel.city}
+                    value={sideBarHotel.city}
                     onChange={handleChangeSearch}
                   />
                 </div>
               </div>
             </div>
-            <div className="col-12 col-xl-3 col-lg-3 col-md-6">
+            <div className="col-12 col-xl-3 col-lg-3">
               <div className="searcing-input">
                 <label>Check In - Out</label>
                 <div
                   className="date-area"
                   onClick={() => setOpenDate(!openDate)}>
                   <BsCalendarDate />
-                  <p>{`${format(date[0].startDate, 'MM/dd/yyyy')} to ${format(
-                    date[0].endDate,
+                  <p>{`${format(startDate, 'MM/dd/yyyy')} to ${format(
+                    endDate,
                     'MM/dd/yyyy'
                   )}`}</p>
                 </div>
                 {openDate && (
                   <DateRange
+                    ranges={[selectionRange]}
                     editableDateInputs={true}
-                    onChange={(item) => setDate([item.selection])}
+                    onChange={handleSelect}
                     moveRangeOnFirstSelection={false}
-                    ranges={date}
                     className="date"
                     minDate={new Date()}
                   />
@@ -232,7 +236,7 @@ const SearchingInput = () => {
                 )}
               </div>
             </div>
-            <div className="col-12 col-xl-2 col-lg-2 col-md-6 col-sm-6">
+            <div className="col-12 col-xl-2 col-lg-2">
               <div className="searching_btn">
                 <button type="submit" value="Search">
                   <svg

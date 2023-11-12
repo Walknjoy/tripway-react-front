@@ -115,26 +115,6 @@
             font-size: 14px;
           }
         }
-        .travel_sustainable {
-          background-color: #f1fef6;
-          padding: 5px;
-          border-radius: 5px;
-          @include flex();
-          gap: 3px;
-          svg {
-            fill: #008234;
-            height: 16px;
-          }
-          span {
-            font-size: 16px;
-            color: #008234;
-            font-weight: bold;
-          }
-          @include xs{
-            flex-wrap: wrap;
-            
-          }
-        }
       }
       .first_line_right {
         display: flex;
@@ -173,18 +153,6 @@
             color: #fff;
           }
         }
-      }
-    }
-    .content_center {
-      width: 100%;
-      flex: 0 0 100%;
-      span {
-        background-color: #008234;
-        color: #fff;
-        font-size: 14px;
-        display: inline-block;
-        padding: 5px;
-        border-radius: 5px;
       }
     }
     .content_end {
@@ -288,20 +256,6 @@
           span{
             color: #111;
             font-size: 18px;
-          }
-        }
-        .taxes_and_changes{
-          @include flex();
-          justify-content: flex-end;
-          @include xs{
-            justify-content: flex-start;
-          }
-          span{
-            color: #111;
-            opacity: .8;
-            font-weight: normal;
-            line-height: 1.5;
-            font-size: 14px;
           }
         }
       }

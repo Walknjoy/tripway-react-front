@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ContextApi from './utils/ContextApi';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ContextApi>
-    <App />
-  </ContextApi>
+    <ContextApi>
+      <App />
+    </ContextApi>
 );

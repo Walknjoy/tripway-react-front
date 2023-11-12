@@ -149,3 +149,24 @@
     }
   }
 }
+
+.price_area{
+          @include flex();
+          gap: 5px;
+          font-weight: bold;
+          letter-spacing: -1px;
+          text-transform: capitalize;
+          justify-content: flex-end;
+          @include xs{
+            justify-content: flex-start;
+          }
+          del{
+          font-size: 14px;
+            text-decoration:line-through !important;
+            color: #d31b1b;
+          }
+          span{
+            color: #111;
+            font-size: 18px;
+          }
+        }

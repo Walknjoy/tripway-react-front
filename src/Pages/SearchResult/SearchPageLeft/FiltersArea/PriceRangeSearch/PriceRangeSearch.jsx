@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './PriceRangeSearch.scss';
 import { FaAngleDown } from 'react-icons/fa';
 import Slider from 'react-slider';
-const min = 10;
-const max = 1500;
+import { mainContext } from '../../../../../utils/ContextApi';
+
 const PriceRangeSearch = () => {
-  const [rangeValues, setRangeValues] = useState([min, max]);
+  const { rangeValues, setRangeValues, max, min } = useContext(mainContext);
+  const currentRange = rangeValues[1] - rangeValues[0];
+
   return (
     <div className="price_range_search">
       <button type="button">
@@ -17,7 +19,7 @@ const PriceRangeSearch = () => {
           <p>
             ${rangeValues[0]}-${rangeValues[1]}
           </p>
-          <small>Current range:${rangeValues[1] - rangeValues[0]}</small>
+          <small>Current range:${currentRange}</small>
         </div>
         <Slider
           className="react_range_slider"
