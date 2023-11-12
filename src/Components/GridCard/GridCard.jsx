@@ -103,7 +103,7 @@ const GridCard = ({products}) => {
                                         </ul>
                                         <div className="price_area">
                                             {element?.percent === 0 ? (
-                                                <span>AZN {element.price.toFixed(2)}</span> // Display the original price
+                                                <span>AZN {element.price.toFixed(2) * nightCount * guests * rooms}</span> // Display the original price
                                             ) : (
                                                 <>
                                                     <del>
