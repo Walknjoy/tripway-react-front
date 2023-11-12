@@ -20,12 +20,12 @@ const GridViews = () => {
       <button
         className={`${grid === false ? 'active' : ''}`}
         onClick={handleGridFalse}>
-        <AiOutlineUnorderedList />
+        <BsFillGrid3X3GapFill />
       </button>
       <button
         className={`${grid === true ? 'active' : ''}`}
         onClick={handleGridTrue}>
-        <BsFillGrid3X3GapFill />
+        < AiOutlineUnorderedList/>
       </button>
     </div>
   );
