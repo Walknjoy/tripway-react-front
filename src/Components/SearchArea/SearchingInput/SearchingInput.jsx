@@ -9,18 +9,20 @@ import { format } from 'date-fns';
 import { BiSearch } from 'react-icons/bi';
 import { GrMapLocation } from 'react-icons/gr';
 import { BsCalendarDate } from 'react-icons/bs';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useFetch from '../../../hooks/useFetch';
-import { useNavigate } from 'react-router-dom';
 const SearchingInput = () => {
   const {
-    date,
-    setDate,
+    selectionRange,
     options,
     setOptions,
     activeTab,
     sideBarHotel,
     setSideBarHotel,
-    filterList,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
     setFilteredList,
   } = useContext(mainContext);
   const [openDate, setOpenDate] = useState(false);
@@ -30,7 +32,8 @@ const SearchingInput = () => {
     initial: { scale: 0.99 },
     animate: { scale: 1, transition: { duration: 0.5 } },
   };
-
+  const { data } = useFetch('/hotels');
+  const { search } = useLocation();
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -39,26 +42,50 @@ const SearchingInput = () => {
       };
     });
   };
-  const { data } = useFetch('/hotels');
   const handleChangeSearch = (e) => {
     const { name, value } = e.target;
     setSideBarHotel({ ...sideBarHotel, [name]: value });
   };
 
-  const filterData = () => {
-    const filterData = data.filter((hotel) =>
-      hotel.city.includes(sideBarHotel.city)
-    );
-    setFilteredList(filterData);
+  const handleSelect = (date) => {
+    const filteredForDate = data.filter((product) => {
+      let productDate = new Date(product['createdAt']);
+      return (
+        productDate >= date.selection.startDate &&
+        productDate <= date.selection.endDate
+      );
+    });
+    setFilteredList(filteredForDate);
+    setStartDate(date.selection.startDate);
+    setEndDate(date.selection.endDate);
   };
-
   const handleSearch = (e) => {
     e.preventDefault();
-    filterData();
-    navigate(`/search/hotels?city=${sideBarHotel.city}`);
+    if (!sideBarHotel.city) return;
+    const newqueryParams = new URLSearchParams(search);
+    Object.entries(sideBarHotel).forEach(([key, value]) => {
+      newqueryParams.set(key, value);
+    });
+
+    navigate(`/search?${newqueryParams.toString()}`, {
+      state: {
+        ...sideBarHotel,
+      },
+    });
+
+    setSideBarHotel({
+      city: '',
+      rooms: options.room,
+      type: 'all',
+      startDate: format(startDate, 'MM/dd/yyyy'),
+      endDate: format(endDate, 'MM/dd/yyyy'),
+      featured: true,
+      min: '',
+      max: '',
+      guests: Number(options.children + options.adult),
+    });
   };
 
-  console.log(filterList);
   return (
     <div className="all-searching-fields">
       <motion.div
@@ -77,7 +104,7 @@ const SearchingInput = () => {
                     type="search"
                     placeholder="Where are you going?"
                     name="city"
-                    value={setSideBarHotel.city}
+                    value={sideBarHotel.city}
                     onChange={handleChangeSearch}
                   />
                 </div>
@@ -90,17 +117,17 @@ const SearchingInput = () => {
                   className="date-area"
                   onClick={() => setOpenDate(!openDate)}>
                   <BsCalendarDate />
-                  <p>{`${format(date[0].startDate, 'MM/dd/yyyy')} to ${format(
-                    date[0].endDate,
+                  <p>{`${format(startDate, 'MM/dd/yyyy')} to ${format(
+                    endDate,
                     'MM/dd/yyyy'
                   )}`}</p>
                 </div>
                 {openDate && (
                   <DateRange
+                    ranges={[selectionRange]}
                     editableDateInputs={true}
-                    onChange={(item) => setDate([item.selection])}
+                    onChange={handleSelect}
                     moveRangeOnFirstSelection={false}
-                    ranges={date}
                     className="date"
                     minDate={new Date()}
                   />

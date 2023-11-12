@@ -18,6 +18,10 @@
     font-weight: bold;
   }
   .filters_areas {
+    display: block;
+    &.active_filters {
+      display: none;
+    }
     .price_amount_between {
       p {
         margin-bottom: 10px;

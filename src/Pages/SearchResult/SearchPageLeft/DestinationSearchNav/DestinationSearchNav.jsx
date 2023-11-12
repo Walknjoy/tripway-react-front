@@ -1,37 +1,35 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './DestinationSearchNav.scss';
 import { AiOutlineSearch } from 'react-icons/ai';
-import useFetch from '../../../../hooks/useFetch';
-import { mainContext } from '../../../../utils/ContextApi';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const DestinationSearchNav = () => {
-  const { filterList, setFilteredList } = useContext(mainContext);
   const navigate = useNavigate();
-  const { data } = useFetch('/hotels');
+
   const [destination, setDestination] = useState({
     destination: '',
+    type: 'Search Result',
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setDestination({ ...destination, [name]: value });
   };
 
-  const handleFilter = () => {
-    const searchDestinationData = data.filter((hotel) =>
-      hotel?.name?.includes(destination.destination)
-    );
-    setFilteredList(searchDestinationData);
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleFilter();
-    navigate(`/search/hotels?destination=${destination.destination}`);
+    const queryParams = new URLSearchParams();
+    Object.entries(destination).forEach(([key, value]) => {
+      queryParams.set(key, value);
+    });
+    navigate(`/search?${queryParams.toString()}`, {
+      state: {
+        ...destination,
+      },
+    });
     setDestination({
       destination: '',
     });
   };
 
-  console.log('destination', filterList);
   return (
     <div className="destination_search_nav">
       <form action="" onSubmit={handleSubmit}>

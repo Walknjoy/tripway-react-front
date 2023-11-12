@@ -1,12 +1,11 @@
 import { createContext, useState } from 'react';
 import { format } from 'date-fns';
-import useFetch from '../hooks/useFetch';
 export const mainContext = createContext(null);
+
 function ContextApi({ children }) {
   const [openBar, setOpenBar] = useState(false);
   const [click, setClick] = useState(false);
   const [openMenuIndex, setOpenMenuIndex] = useState(-1);
-  const [openMenuIndexTwo, setOpenMenuIndexTwo] = useState(-1);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [user, setUser] = useState(false);
@@ -30,30 +29,35 @@ function ContextApi({ children }) {
   const activeTabToggle = (index) => {
     setActiveTab(index);
   };
-
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [grid, setGrid] = useState(false);
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
-  ]);
+  const min = 0;
+  const max = 1500;
+  const [rangeValues, setRangeValues] = useState([min, max]);
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: 'selection',
+  };
+
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
     room: 1,
   });
-  const initialSideBarHotel = {
+
+  const [sideBarHotel, setSideBarHotel] = useState({
     city: '',
     rooms: options.room,
     type: 'all',
-    startDate: format(date[0].startDate, 'MM/dd/yyyy'),
-    endDate: format(date[0].endDate, 'MM/dd/yyyy'),
+    startDate: format(startDate, 'MM/dd/yyyy'),
+    endDate: format(endDate, 'MM/dd/yyyy'),
     featured: true,
+    min: min,
+    max: max,
     guests: Number(options.children + options.adult),
-  };
-  const [sideBarHotel, setSideBarHotel] = useState(initialSideBarHotel);
+  });
   const values = {
     openBar,
     setOpenBar,
@@ -67,8 +71,6 @@ function ContextApi({ children }) {
     confirmPasswordVisible,
     openMenuIndex,
     setOpenMenuIndex,
-    openMenuIndexTwo,
-    setOpenMenuIndexTwo,
     userVisible,
     setUserVisible,
     user,
@@ -84,12 +86,19 @@ function ContextApi({ children }) {
     setActiveTab,
     filterList,
     setFilteredList,
-    date,
-    setDate,
     options,
     setOptions,
     sideBarHotel,
     setSideBarHotel,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    selectionRange,
+    rangeValues,
+    setRangeValues,
+    min,
+    max,
   };
   return <mainContext.Provider value={values}>{children}</mainContext.Provider>;
 }
