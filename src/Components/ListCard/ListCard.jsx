@@ -60,7 +60,7 @@ const ListCard = ({products}) => {
 
                                 <div className="price_area">
                                     {currElm?.percent === 0 ? (
-                                        <span>AZN {currElm.price.toFixed(2)}</span> // Display the original price
+                                        <span>AZN {currElm.price.toFixed(2) * nightCount * guests * rooms}</span> // Display the original price
                                     ) : (
                                         <>
                                             <del>
