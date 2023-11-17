@@ -1,0 +1,23 @@
+@import '../../css-config/mixins.scss';
+#breadCrumbs {
+  position: relative;
+  padding: 20px 0;
+  .breadcrumb-link {
+    @include flex();
+    gap: 10px;
+    .homeBread {
+      a {
+        font-size: 20px;
+        line-height: 1.5;
+        color: #666;
+      }
+    }
+    .breadcrumb-not-active {
+      color: #cccccc;
+    }
+
+    .breadcrumb-active {
+      color: #000000;
+    }
+  }
+}

@@ -62,11 +62,7 @@ export const ROUTES = [
       },
       {
         path: 'hotels',
-        element: (
-          <AuthorizeUser>
-            <Hotel />
-          </AuthorizeUser>
-        ),
+        element: <Hotel />,
         children: [
           {
             path: 'hotel-1',
@@ -76,11 +72,7 @@ export const ROUTES = [
       },
       {
         path: 'rental',
-        element: (
-          <AuthorizeUser>
-            <Rental />
-          </AuthorizeUser>
-        ),
+        element: <Rental />,
         children: [
           {
             path: 'cars',
@@ -94,11 +86,7 @@ export const ROUTES = [
       },
       {
         path: 'entertainments',
-        element: (
-          <AuthorizeUser>
-            <Entertainments />
-          </AuthorizeUser>
-        ),
+        element: <Entertainments />,
       },
       {
         path: 'about',

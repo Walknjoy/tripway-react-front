@@ -1,5 +1,6 @@
 import React from 'react';
 import './PageTitle.scss';
+import BreadCrumb from '../../Assets/BreadCrumbs/BreadCrumb';
 const PageTitle = ({ title, backgroundImg }) => {
   return (
     <>
@@ -14,6 +15,7 @@ const PageTitle = ({ title, backgroundImg }) => {
               </div>
             </div>
           </div>
+          <BreadCrumb/>
         </div>
       </div>
     </>
