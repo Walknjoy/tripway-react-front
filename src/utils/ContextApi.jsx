@@ -54,8 +54,8 @@ function ContextApi({ children }) {
     startDate: format(startDate, 'MM/dd/yyyy'),
     endDate: format(endDate, 'MM/dd/yyyy'),
     featured: true,
-    min: min,
-    max: max,
+    min: rangeValues[0],
+    max: rangeValues[1],
     guests: Number(options.children + options.adult),
   });
   const values = {

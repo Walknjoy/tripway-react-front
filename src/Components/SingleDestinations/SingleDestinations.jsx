@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
-import PageTitle from '../PageTitle/PageTitle';
 import BreadCrumb from '../../Assets/BreadCrumbs/BreadCrumb';
 
 const SingleDestinations = () => {

@@ -8,10 +8,13 @@ const BreadCrumb = () => {
   const breadcrumbs = useBreadcrumbs(ROUTES);
   const { pathname } = useLocation();
   return (
-    <div id="breadCrumbs">
+    <div
+      className={`breadCrumbs ${
+        pathname === '/about' || pathname === '/blog' ? 'othersBreadcrumbs' : ''
+      }`}>
       <div className="container">
         <ul className="breadcrumb-link">
-          {breadcrumbs.map(({ match, breadcrumb },index) => {
+          {breadcrumbs.map(({ match, breadcrumb }, index) => {
             return (
               <li key={index}>
                 {index === breadcrumbs.length - 1 ? (

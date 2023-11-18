@@ -7,7 +7,6 @@ import { mainContext } from '../../../../../utils/ContextApi';
 const PriceRangeSearch = () => {
   const { rangeValues, setRangeValues, max, min } = useContext(mainContext);
   const currentRange = rangeValues[1] - rangeValues[0];
-
   return (
     <div className="price_range_search">
       <button type="button">
@@ -21,16 +20,18 @@ const PriceRangeSearch = () => {
           </p>
           <small>Current range:${currentRange}</small>
         </div>
-        <Slider
-          className="react_range_slider"
-          value={rangeValues}
-          min={min}
-          max={max}
-          onChange={setRangeValues}
-        />
-        <div className="filter_btn">
-          <button type="submit">Filter</button>
-        </div>
+        <form>
+          <Slider
+            className="react_range_slider"
+            value={rangeValues}
+            min={min}
+            max={max}
+            onChange={setRangeValues}
+          />
+          <div className="filter_btn">
+            <button type="submit">Filter</button>
+          </div>
+        </form>
       </div>
     </div>
   );
