@@ -1,4 +1,3 @@
-import PageTitle from '../../Components/PageTitle/PageTitle';
 import './SearchResult.scss';
 import SearchPageLeft from './SearchPageLeft/SearchPageLeft';
 import SearchPageRight from './SearchPageRight/SearchPageRight';
@@ -7,14 +6,15 @@ import useFetch from '../../hooks/useFetch';
 import { useContext, useEffect } from 'react';
 import { mainContext } from '../../utils/ContextApi';
 import { useLocation } from 'react-router-dom';
+import BreadCrumb from '../../Assets/BreadCrumbs/BreadCrumb';
 const SearchResult = () => {
-  const { setFilteredList } = useContext(mainContext);
+  const { setFilteredList, filterList } = useContext(mainContext);
   const { data } = useFetch('/hotels');
   const { search } = useLocation();
+  const { pathname } = useLocation();
   const searchParams = new URLSearchParams(search);
   const city = searchParams.get('city');
   const destination = searchParams.get('destination');
-
   useEffect(() => {
     if (!data) {
       return;
@@ -29,27 +29,32 @@ const SearchResult = () => {
       setFilteredList(filteredData);
     }
   }, [data, setFilteredList, city, destination]);
+  console.log('data', filterList);
+
   return (
     <>
-      <PageTitle
-        title={'Hotel result'}
-        backgroundImg={
-          'https://cdn2.paraty.es/bg-corporativa/images/6a92de9242aca95=s1600'
-        }
-      />
-      <div className="all_result_page">
-        <div className="container">
-          <div className="result_wrapper">
-            <div className="result_left">
-              <SideBarSearch />
-              <SearchPageLeft />
-            </div>
-            <div className="result_right">
-              <SearchPageRight />
+      <main id={pathname === '/search' ? 'main' : ''}>
+        <BreadCrumb />
+        <div className="all_result_page">
+          <div className="container">
+            <div className="result_wrapper">
+              <div className="result_left">
+                <SideBarSearch />
+                <SearchPageLeft />
+              </div>
+              <div className="result_right">
+                {!filterList.length ? (
+                  <p className="no-data">
+                    No products were found matching your selection.
+                  </p>
+                ) : (
+                  <SearchPageRight />
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };

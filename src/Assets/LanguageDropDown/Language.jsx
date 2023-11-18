@@ -3,7 +3,7 @@ import './Language.scss';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { mainContext } from '../../utils/ContextApi';
 
-const Language = ({currentRoute}) => {
+const Language = () => {
   const [selected, setSelected] = useState('Az');
   const { click, setClick, setUserVisible } = useContext(mainContext);
   const languageRef = useRef(null);
@@ -36,7 +36,7 @@ const Language = ({currentRoute}) => {
 
   return (
     <div className="language">
-      <button className="select-btn" ref={languageRef} onClick={handleClick} data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>
+      <button className="select-btn" ref={languageRef} onClick={handleClick}>
         {selected}
         {click ? <FaAngleUp /> : <FaAngleDown />}
       </button>

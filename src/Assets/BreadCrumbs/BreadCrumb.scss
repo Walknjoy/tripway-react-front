@@ -2,22 +2,38 @@
 #breadCrumbs {
   position: relative;
   padding: 20px 0;
+  background: #fcfcfc;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   .breadcrumb-link {
     @include flex();
-    gap: 10px;
-    .homeBread {
+    li {
       a {
-        font-size: 20px;
+        font-size: 0.875rem;
         line-height: 1.5;
-        color: #666;
+        color: #cccccc;
+        @include flex();
+        transition: 0.3s ease-in-out;
+        &:hover {
+          color: #000000;
+          svg {
+            color: #67747c;
+          }
+        }
+        svg {
+          color: #67747c;
+          margin: 0 0.2rem;
+          height:0.875rem;
+          width:0.875rem;
+        }
       }
-    }
-    .breadcrumb-not-active {
-      color: #cccccc;
-    }
-
-    .breadcrumb-active {
-      color: #000000;
+      span {
+        font-size: 0.875rem;
+        font-weight: normal;
+      }
+      .breadcrumb-active {
+        color: #000000;
+      }
     }
   }
 }

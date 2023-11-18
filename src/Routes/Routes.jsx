@@ -33,13 +33,14 @@ export const ROUTES = [
   {
     path: '/',
     element: <MainRoot />,
+   
     children: [
       {
         path: '',
         element: <Home />,
       },
       {
-        path: '/hotels/:city',
+        path: 'hotels/:city',
         element: <SingleDestinations />,
       },
       {
@@ -48,11 +49,7 @@ export const ROUTES = [
       },
       {
         path: 'tours',
-        element: (
-          <AuthorizeUser>
-            <Tours />
-          </AuthorizeUser>
-        ),
+        element: <Tours />,
         children: [
           {
             path: 'tours-1',

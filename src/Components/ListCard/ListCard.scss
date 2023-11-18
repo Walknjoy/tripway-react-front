@@ -1,5 +1,4 @@
 @import '../../css-config/mixins.scss';
-
 .trending_card {
   transition: 0.3s ease-in;
   min-height: 280px;
@@ -63,12 +62,13 @@
       font-weight: bold;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      line-height: 1.5;
+      text-overflow: ellipsis;
       font-size: 16px;
+      line-height: 1;
       transition: 0.3s ease-in;
       -webkit-line-clamp: 2;
       overflow: hidden;
-      height: calc(1.5 * 2em);
+      height: auto;
       color: #112542;
       margin: 0;
     }

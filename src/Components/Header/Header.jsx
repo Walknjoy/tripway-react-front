@@ -31,7 +31,7 @@ const Header = () => {
     setUser,
   } = useContext(mainContext);
   const { data } = useFetch('/users/user/profile');
- 
+
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const Header = () => {
   }, [openBar, setOpenMenuIndex, setClick, setOpenBar]);
   const handleScroll = useCallback(() => {
     const offSet = window.scrollY;
-    if (offSet > 0) {
+    if (offSet > 150) {
       setScrolled(true);
       setClick(false);
       setUserVisible(false);
@@ -85,10 +85,8 @@ const Header = () => {
       setUser(false);
     }
   }, [setUser]);
-
   // logout
   const handleLogout = useCallback(async () => {
-    console.log('logout olundu');
     try {
       const response = await axios.post('/auth/logout', {
         headers: {
@@ -124,13 +122,14 @@ const Header = () => {
     };
   }, [setUserVisible]);
 
-
-
-  const locationHeader = useLocation();
-  const currentRoute = locationHeader.pathname === '/';
   return (
     <>
-      <header className={`sticky-header ${scrolled ? 'fixed-header' : ''} `}>
+      <header
+        className={
+          location.pathname === '/' &&  location.pathname === '/about'
+          ? `sticky-header ${scrolled ? 'fixed-header' : ''} `
+          : `sticky-another ${scrolled ? 'fixed-header' : ''} `
+        }>
         <div className="container">
           <nav className="navbar-wrapper">
             <div className="left-side">
@@ -139,25 +138,52 @@ const Header = () => {
             <div className="right-side">
               <ul className="nav-list">
                 <li>
-                  <Link to="/" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>Home</Link>
+                  <Link
+                    to="/"
+                   >
+                    Home
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/about" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>About</Link>
+                  <Link
+                    to="/about"
+                   >
+                    About
+                  </Link>
                 </li>
                 <li>
-                  <Link to="#" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>Hotel</Link>
+                  <Link
+                    to="#"
+                    >
+                    Hotel
+                  </Link>
                 </li>
                 <li>
-                  <Link to="#" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>Tours</Link>
+                  <Link
+                    to="#"
+                   >
+                    Tours
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/entertainments" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>Entertainments</Link>
+                  <Link
+                    to="/entertainments"
+                   >
+                    Entertainments
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/blog" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>Blog</Link>
+                  <Link
+                    to="/blog"
+                    >
+                    Blog
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="#" data-color={currentRoute  ? 'color-for-home' : 'color-for-other-routes'}>
+                  <Link
+                    className="nav-link"
+                    to="#"
+                   >
                     Rental <FaAngleDown />
                   </Link>
                   <ul className="sub-menu">
@@ -171,7 +197,7 @@ const Header = () => {
                 </li>
               </ul>
               <div id="language">
-                <Language currentRoute={currentRoute}/>
+                <Language />
               </div>
               <div className="user-login">
                 {user ? (
