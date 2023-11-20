@@ -15,6 +15,7 @@ const SearchResult = () => {
   const searchParams = new URLSearchParams(search);
   const city = searchParams.get('city');
   const destination = searchParams.get('destination');
+
   useEffect(() => {
     if (!data) {
       return;
@@ -29,7 +30,7 @@ const SearchResult = () => {
       setFilteredList(filteredData);
     }
   }, [data, setFilteredList, city, destination]);
-  console.log('data', filterList);
+
 
   return (
     <>

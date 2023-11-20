@@ -22,6 +22,7 @@ const SearchingInput = () => {
     startDate,
     setStartDate,
     endDate,
+    rangeValues,
     setEndDate,
     setFilteredList,
   } = useContext(mainContext);
@@ -34,6 +35,7 @@ const SearchingInput = () => {
   };
   const { data } = useFetch('/hotels');
   const { search } = useLocation();
+
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -63,9 +65,14 @@ const SearchingInput = () => {
     e.preventDefault();
     if (!sideBarHotel.city) return;
     const newqueryParams = new URLSearchParams(search);
-    Object.entries(sideBarHotel).forEach(([key, value]) => {
-      newqueryParams.set(key, value);
-    });
+    newqueryParams.set('city', sideBarHotel.city);
+    newqueryParams.set('rooms', options.room);
+    newqueryParams.set('startDate', format(startDate, 'MM/dd/yyyy'));
+    newqueryParams.set('endDate', format(endDate, 'MM/dd/yyyy'));
+    newqueryParams.set('featured', 'true');
+    newqueryParams.set('min', rangeValues[0]);
+    newqueryParams.set('max', rangeValues[1]);
+    newqueryParams.set('guests', Number(options.children + options.adult));
 
     navigate(`/search?${newqueryParams.toString()}`, {
       state: {
@@ -124,10 +131,10 @@ const SearchingInput = () => {
                 </div>
                 {openDate && (
                   <DateRange
-                    ranges={[selectionRange]}
                     editableDateInputs={true}
-                    onChange={handleSelect}
                     moveRangeOnFirstSelection={false}
+                    onChange={handleSelect}
+                    ranges={[selectionRange]}
                     className="date"
                     minDate={new Date()}
                   />
