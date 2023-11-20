@@ -27,6 +27,7 @@ const DestinationSearchNav = () => {
     });
     setDestination({
       destination: '',
+      type: 'Search Result',
     });
   };
 

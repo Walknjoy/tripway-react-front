@@ -1,1 +1,13 @@
-@import "../../../css-config/mixins.scss";
+@import '../../../css-config/mixins.scss';
+
+.result_right {
+  .no-data {
+    color: #007483;
+    background-color: #ccf9fe;
+    border-color: #b8f6fe;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 0 solid transparent;
+    border-radius: 0.3125rem;
+  }
+}

@@ -33,13 +33,14 @@ export const ROUTES = [
   {
     path: '/',
     element: <MainRoot />,
+   
     children: [
       {
         path: '',
         element: <Home />,
       },
       {
-        path: '/hotels/:city',
+        path: 'hotels/:city',
         element: <SingleDestinations />,
       },
       {
@@ -48,11 +49,7 @@ export const ROUTES = [
       },
       {
         path: 'tours',
-        element: (
-          <AuthorizeUser>
-            <Tours />
-          </AuthorizeUser>
-        ),
+        element: <Tours />,
         children: [
           {
             path: 'tours-1',
@@ -62,11 +59,7 @@ export const ROUTES = [
       },
       {
         path: 'hotels',
-        element: (
-          <AuthorizeUser>
-            <Hotel />
-          </AuthorizeUser>
-        ),
+        element: <Hotel />,
         children: [
           {
             path: 'hotel-1',
@@ -76,11 +69,7 @@ export const ROUTES = [
       },
       {
         path: 'rental',
-        element: (
-          <AuthorizeUser>
-            <Rental />
-          </AuthorizeUser>
-        ),
+        element: <Rental />,
         children: [
           {
             path: 'cars',
@@ -94,11 +83,7 @@ export const ROUTES = [
       },
       {
         path: 'entertainments',
-        element: (
-          <AuthorizeUser>
-            <Entertainments />
-          </AuthorizeUser>
-        ),
+        element: <Entertainments />,
       },
       {
         path: 'about',

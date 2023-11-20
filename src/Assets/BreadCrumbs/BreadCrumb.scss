@@ -1,0 +1,55 @@
+@import '../../css-config/mixins.scss';
+.breadCrumbs {
+  position: relative;
+  padding: 20px 0;
+  background: #fcfcfc;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  &.othersBreadcrumbs {
+    border: none;
+    background-color: transparent;
+    .breadcrumb-link{
+      li{
+        a{
+          &:hover{
+            color: #fff;
+          }
+        }
+        .breadcrumb-active{
+          color: #fff;
+        }
+      }
+    }
+  }
+  .breadcrumb-link {
+    @include flex();
+    li {
+      a {
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: #cccccc;
+        @include flex();
+        transition: 0.3s ease-in-out;
+        &:hover {
+          color: #000000;
+          svg {
+            color: #67747c;
+          }
+        }
+        svg {
+          color: #67747c;
+          margin: 0 0.2rem;
+          height: 0.875rem;
+          width: 0.875rem;
+        }
+      }
+      span {
+        font-size: 0.875rem;
+        font-weight: normal;
+      }
+      .breadcrumb-active {
+        color: #000000;
+      }
+    }
+  }
+}
