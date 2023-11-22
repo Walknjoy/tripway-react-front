@@ -153,7 +153,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    to="#"
+                    to="/hotels"
                     >
                     Hotel
                   </Link>

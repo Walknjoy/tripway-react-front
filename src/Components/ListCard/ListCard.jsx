@@ -1,10 +1,10 @@
 import React from 'react';
-import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {Link} from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
 import Raiting from '../../Assets/Raiting/Raiting.jsx';
 import './ListCard.scss';
 
-const ListCard = ({products}) => {
+const ListCard = ({ products }) => {
     const urlParams = new URLSearchParams(window.location.search);
 
     // Get values from the URL
@@ -50,12 +50,12 @@ const ListCard = ({products}) => {
                                 <div className="star-review">
                                     <p>{currElm.rating}.0 / 5.0</p>
                                     <span>
-                    {currElm?.rating === 1 ? 'Poor' : ''}
+                                        {currElm?.rating === 1 ? 'Poor' : ''}
                                         {currElm?.rating === 2 ? 'Fair' : ''}
                                         {currElm?.rating === 3 ? 'Good' : ''}
                                         {currElm?.rating === 4 ? 'Very Good' : ''}
                                         {currElm?.rating === 5 ? 'Excellent' : ''}
-                  </span>
+                                    </span>
                                 </div>
 
                                 <div className="price_area">
@@ -68,7 +68,7 @@ const ListCard = ({products}) => {
                                                 {(
                                                     (currElm?.price * nightCount * guests * rooms * currElm?.percent) / 100).toFixed(2)}
                                             </del>
-                                            <br/>
+                                            <br />
                                             <span>AZN {(
                                                 currElm?.price * nightCount * guests * rooms -
                                                 ((currElm?.price * nightCount * guests * rooms * currElm?.percent) / 100)
