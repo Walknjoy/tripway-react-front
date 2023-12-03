@@ -4,8 +4,8 @@ import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { mainContext } from '../../utils/ContextApi';
 
 const Language = () => {
+  const { header, setHeader } = useContext(mainContext);
   const [selected, setSelected] = useState('Az');
-  const { click, setClick, setUserVisible } = useContext(mainContext);
   const languageRef = useRef(null);
   const dropdownOptions = [
     { id: 1, label: 'Az' },
@@ -14,16 +14,25 @@ const Language = () => {
 
   const handleSelect = async (selectedLabel) => {
     setSelected(selectedLabel);
-    setClick(false);
+    setHeader((prevHeader) => ({
+      ...prevHeader,
+      click: false,
+    }));
   };
   const handleClick = () => {
-    setClick(!click);
-    setUserVisible(false);
+    setHeader((prevHeader) => ({
+      ...prevHeader,
+      click: !prevHeader.click,
+      userVisible: false,
+    }));
   };
   useEffect(() => {
     const handleDocumentClick = (event) => {
       if (languageRef.current && !languageRef.current.contains(event.target)) {
-        setClick(false);
+        setHeader((prevHeader) => ({
+          ...prevHeader,
+          click: false,
+        }));
       }
     };
 
@@ -32,22 +41,25 @@ const Language = () => {
     return () => {
       document.removeEventListener('click', handleDocumentClick);
     };
-  }, [setClick]);
+  }, [setHeader]);
 
   return (
     <div className="language">
       <button className="select-btn" ref={languageRef} onClick={handleClick}>
         {selected}
-        {click ? <FaAngleUp /> : <FaAngleDown />}
+        {header.click ? <FaAngleUp /> : <FaAngleDown />}
       </button>
-      {click && (
+      {header.click && (
         <ul className="select-list">
           {dropdownOptions?.map((item) => (
             <li
               key={item.id}
               onClick={() => {
                 handleSelect(item.label);
-                setClick(false);
+                setHeader((prevHeader) => ({
+                  ...prevHeader,
+                  click: false,
+                }));
               }}>
               <span> {item.label}</span>
             </li>
