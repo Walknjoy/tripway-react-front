@@ -11,6 +11,10 @@
       color: #3b444f;
       line-height: 1.5;
       margin: 0;
+      span{
+        text-transform: capitalize;
+        font-weight: bold;
+      }
     }
   }
   .gridViews {

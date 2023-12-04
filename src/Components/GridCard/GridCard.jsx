@@ -1,4 +1,3 @@
-import React from 'react';
 import './GridCard.scss';
 import LazyLoadImg from '../../Assets/LazyLoadImg';
 import Raiting from '../../Assets/Raiting/Raiting';
@@ -7,21 +6,16 @@ import { BsDot } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 
 const GridCard = ({ products }) => {
-  const { search } = useLocation();
-  const urlParams = new URLSearchParams(search);
-  // Get values from the URL
-  const guests = parseInt(urlParams.get('guests'));
-  const rooms = parseInt(urlParams.get('rooms'));
-  const startDateString = urlParams.get('startDate');
-  const endDateString = urlParams.get('endDate');
+  const { state } = useLocation();
+  const guests = parseInt(state.options.adult + state.options.children);
+  const rooms = parseInt(state.options.room);
+  const startDateString = state.dates[0].startDate;
+  const endDateString = state.dates[0].endDate;
 
-  // Convert date strings to Date objects
   const startDate = new Date(startDateString);
   const endDate = new Date(endDateString);
-
-  // Calculate the difference in nights
   const timeDifference = endDate.getTime() - startDate.getTime();
-  console.log(timeDifference);
+
   const nightCount = Math.ceil(timeDifference / (1000 * 3600 * 24));
 
   return (
@@ -45,7 +39,6 @@ const GridCard = ({ products }) => {
                       <h3>{element?.name}</h3>
                     </div>
                     <div>
-                      {' '}
                       <Raiting
                         stars={element.rating}
                         reviews={element.reviews.length}
