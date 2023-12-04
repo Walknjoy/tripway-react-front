@@ -33,7 +33,7 @@ export const ROUTES = [
   {
     path: '/',
     element: <MainRoot />,
-   
+
     children: [
       {
         path: '',
@@ -44,7 +44,7 @@ export const ROUTES = [
         element: <SingleDestinations />,
       },
       {
-        path: 'search',
+        path: 'search/:type',
         element: <SearchResult />,
       },
       {

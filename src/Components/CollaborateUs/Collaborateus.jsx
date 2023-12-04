@@ -131,7 +131,7 @@ const Collaborateus = () => {
                       onChange={handleCollabrate}
                       required
                     />
-                    <label htmlFor="businessphone">Business Phone</label>
+                    <label htmlFor="businessPhone">Business Phone</label>
                   </div>
                 </div>
                 <div className="col-12">

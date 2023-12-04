@@ -10,7 +10,7 @@ const FiltersArea = () => {
   return (
     <div className="filters_card_areas">
       <StarRatingSearch handleClick={handleClick} activeIndex={activeIndex} />
-      <PriceRangeSearch handleClick={handleClick} activeIndex={activeIndex} />
+      <PriceRangeSearch   handleClick={handleClick} activeIndex={activeIndex} />
     </div>
   );
 };

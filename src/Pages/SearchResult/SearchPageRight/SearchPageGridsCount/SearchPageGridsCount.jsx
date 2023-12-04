@@ -1,16 +1,18 @@
 import React, { useContext } from 'react';
 import './SearchPageGridsCount.scss';
 import GridViews from '../GridViews/GridViews';
-import { mainContext } from '../../../../utils/ContextApi';
-import { useLocation } from 'react-router-dom';
+import { SearchContext } from '../../../../utils/SearchContext';
+import { useParams } from 'react-router-dom';
 const SearchPageGridsCount = () => {
-  const { filterList } = useContext(mainContext);
-  const { state } = useLocation();
+  const { type } = useParams();
+  const { filteredList, city } = useContext(SearchContext);
+  console.log();
   return (
     <section id="search_page_count_and_gridView">
       <div className="counts">
-        <h3 title="">
-          <span>{state ? state.type : 'Search Result'}</span>: {filterList.length} result found
+        <h3 title={`${city}`}>
+          <span>{filteredList ? type : 'Search Result'}</span>:{' '}
+          {filteredList.length} result found
         </h3>
       </div>
       <div className="gridViews">

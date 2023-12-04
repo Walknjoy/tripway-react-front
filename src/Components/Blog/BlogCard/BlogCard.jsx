@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import { AiOutlineComment, AiTwotoneCalendar } from 'react-icons/ai';
 import { GrView } from 'react-icons/gr';
 import useFetch from '../../../hooks/useFetch';
+
 const BlogCard = () => {
   const { data, loading } = useFetch('/blogs/');
   const optionsDeal = {

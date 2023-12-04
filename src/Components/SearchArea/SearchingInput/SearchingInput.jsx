@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { mainContext } from '../../../utils/ContextApi';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './SearchingInput.scss';
@@ -9,32 +9,29 @@ import { format } from 'date-fns';
 import { BiSearch } from 'react-icons/bi';
 import { GrMapLocation } from 'react-icons/gr';
 import { BsCalendarDate } from 'react-icons/bs';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { SearchContext } from '../../../utils/SearchContext';
 import useFetch from '../../../hooks/useFetch';
 const SearchingInput = () => {
-  const {
-    selectionRange,
-    options,
-    setOptions,
-    activeTab,
-    sideBarHotel,
-    setSideBarHotel,
-    startDate,
-    setStartDate,
-    endDate,
-    rangeValues,
-    setEndDate,
-    setFilteredList,
-  } = useContext(mainContext);
+  const { options, setOptions, activeTab } = useContext(mainContext);
+  const { searchDispatch } = useContext(SearchContext);
+  const { data, reFetch } = useFetch(`/${activeTab}`);
+  const [dates, setDates] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection',
+    },
+  ]);
+  const [city, setCity] = useState('');
   const [openDate, setOpenDate] = useState(false);
+
   const [openOptions, setOpenOptions] = useState(false);
   const navigate = useNavigate();
   const scaleVariants = {
     initial: { scale: 0.99 },
     animate: { scale: 1, transition: { duration: 0.5 } },
   };
-  const { data } = useFetch('/hotels');
-  const { search } = useLocation();
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -44,62 +41,54 @@ const SearchingInput = () => {
       };
     });
   };
-  const handleChangeSearch = (e) => {
-    const { name, value } = e.target;
-    setSideBarHotel({ ...sideBarHotel, [name]: value });
-  };
 
-  const handleSelect = (date) => {
-    const filteredForDate = data.filter((product) => {
-      let productDate = new Date(product['createdAt']);
-      return (
-        productDate >= date.selection.startDate &&
-        productDate <= date.selection.endDate
-      );
-    });
-    setFilteredList(filteredForDate);
-    setStartDate(date.selection.startDate);
-    setEndDate(date.selection.endDate);
-  };
-  const handleSearch = (e) => {
+  const cityFilter = data?.filter((cities) => cities?.city?.includes(city));
+
+  const handleSearch = async (e) => {
     e.preventDefault();
-    if (!sideBarHotel.city) return;
-    const newqueryParams = new URLSearchParams(search);
-    newqueryParams.set('city', sideBarHotel.city);
-    newqueryParams.set('rooms', options.room);
-    newqueryParams.set('startDate', format(startDate, 'MM/dd/yyyy'));
-    newqueryParams.set('endDate', format(endDate, 'MM/dd/yyyy'));
-    newqueryParams.set('featured', 'true');
-    newqueryParams.set('min', rangeValues[0]);
-    newqueryParams.set('max', rangeValues[1]);
-    newqueryParams.set('guests', Number(options.children + options.adult));
+    if (!city) return;
 
-    navigate(`/search?${newqueryParams.toString()}`, {
-      state: {
-        ...sideBarHotel,
-      },
-    });
+    try {
+      // Assuming reFetch is an asynchronous function
+      await reFetch();
 
-    setSideBarHotel({
-      city: '',
-      rooms: options.room,
-      type: 'all',
-      startDate: format(startDate, 'MM/dd/yyyy'),
-      endDate: format(endDate, 'MM/dd/yyyy'),
-      featured: true,
-      min: '',
-      max: '',
-      guests: Number(options.children + options.adult),
-    });
+      searchDispatch({
+        type: 'new_search',
+        payload: { city: city, dates, options, filteredList: cityFilter },
+      });
+
+      const newqueryParams = new URLSearchParams();
+      newqueryParams.set('city', city);
+      newqueryParams.set('rooms', options.room);
+      newqueryParams.set('startDate', format(dates[0].startDate, 'dd-MM-yyyy'));
+      newqueryParams.set('endDate', format(dates[0].endDate, 'dd-MM-yyyy'));
+      newqueryParams.set('featured', 'true');
+      newqueryParams.set('guests', Number(options.children + options.adult));
+
+      // Assuming navigate is a synchronous function
+      navigate(`/search/${activeTab}?${newqueryParams.toString()}`, {
+        state: { city: city, dates, options },
+      });
+    } catch (error) {
+      console.error('Error during handleSearch:', error);
+      // Handle the error appropriately, e.g., show an error message
+    }
   };
+
+  useEffect(() => {
+    // Assuming reFetch is a dependency and reFetch is a function
+    reFetch();
+  }, [reFetch]);
 
   return (
     <div className="all-searching-fields">
       <motion.div
         initial="initial"
-        animate={activeTab === 1 ? 'animate' : 'initial'}
+        animate={activeTab === 'hotels' ? 'animate' : 'initial'}
         variants={scaleVariants}
-        className={`searching_area ${activeTab === 1 ? 'active-bar' : ''}`}>
+        className={`searching_area ${
+          activeTab === 'hotels' ? 'active-bar' : ''
+        }`}>
         <form onSubmit={handleSearch}>
           <div className="row">
             <div className="col-12 col-xl-3 col-lg-3">
@@ -111,8 +100,8 @@ const SearchingInput = () => {
                     type="search"
                     placeholder="Where are you going?"
                     name="city"
-                    value={sideBarHotel.city}
-                    onChange={handleChangeSearch}
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
                   />
                 </div>
               </div>
@@ -124,17 +113,20 @@ const SearchingInput = () => {
                   className="date-area"
                   onClick={() => setOpenDate(!openDate)}>
                   <BsCalendarDate />
-                  <p>{`${format(startDate, 'MM/dd/yyyy')} to ${format(
-                    endDate,
-                    'MM/dd/yyyy'
-                  )}`}</p>
+                  <p>
+                    {' '}
+                    {`${format(dates[0].startDate, 'dd-MM-yyyy')} to ${format(
+                      dates[0].endDate,
+                      'dd-MM-yyyy'
+                    )}`}
+                  </p>
                 </div>
                 {openDate && (
                   <DateRange
                     editableDateInputs={true}
+                    onChange={(item) => setDates([item.selection])}
                     moveRangeOnFirstSelection={false}
-                    onChange={handleSelect}
-                    ranges={[selectionRange]}
+                    ranges={dates}
                     className="date"
                     minDate={new Date()}
                   />
@@ -261,7 +253,7 @@ const SearchingInput = () => {
           </div>
         </form>
       </motion.div>
-      <motion.div
+      {/* <motion.div
         initial="initial"
         animate={activeTab === 2 ? 'animate' : 'initial'}
         variants={scaleVariants}
@@ -432,7 +424,7 @@ const SearchingInput = () => {
             </div>
           </div>
         </form>
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 };

@@ -6,8 +6,8 @@ const SearchingList = () => {
   return (
     <ul className="searching_list">
       <li>
-        <button onClick={() => activeTabToggle(1)}>
-          <span className={activeTab === 1 ? 'active-span' : ''}>
+        <button onClick={() => activeTabToggle('hotels')}>
+          <span className={activeTab === 'hotels' ? 'active-span' : ''}>
             <svg
               id="Layer_1"
               height="25"

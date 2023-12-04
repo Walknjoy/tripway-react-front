@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import Logo from '../../Assets/Logo/Logo';
 import './Header.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -13,69 +7,69 @@ import { FaUser } from 'react-icons/fa';
 import { RiMenu2Line } from 'react-icons/ri';
 import Language from '../../Assets/LanguageDropDown/Language';
 import { AiOutlineClose } from 'react-icons/ai';
-import SideBar from './SideBar/SideBar';
 import { mainContext } from '../../utils/ContextApi';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import useFetch from '../../hooks/useFetch';
+import MemoizedSideBar from './SideBar/SideBar';
 
 const Header = () => {
-  const {
-    openBar,
-    setOpenBar,
-    setClick,
-    setOpenMenuIndex,
-    userVisible,
-    setUserVisible,
-    user,
-    setUser,
-  } = useContext(mainContext);
+  const { header, setHeader, user, setUser } = useContext(mainContext);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const { data } = useFetch('/users/user/profile');
 
-  const location = useLocation();
-  const [scrolled, setScrolled] = useState(false);
-  const navigate = useNavigate();
   const handleOpen = useCallback(() => {
-    setOpenBar(!openBar);
+    setHeader((prevHeader) => ({
+      ...prevHeader,
+      openBar: !prevHeader.openBar,
+    }));
     document.body.classList.toggle('no-scroll');
-    setClick(false);
-    setOpenMenuIndex(-1);
-  }, [openBar, setOpenMenuIndex, setClick, setOpenBar]);
+  }, [setHeader]);
   const handleScroll = useCallback(() => {
     const offSet = window.scrollY;
     if (offSet > 150) {
-      setScrolled(true);
-      setClick(false);
-      setUserVisible(false);
+      setHeader((prevHeader) => ({
+        ...prevHeader,
+        scrolled: true,
+        click: false,
+        userVisible: false,
+      }));
     } else {
-      setScrolled(false);
+      setHeader((prevHeader) => ({
+        ...prevHeader,
+        scrolled: false,
+      }));
     }
-  }, [setClick, setUserVisible]);
-
+  }, [setHeader]);
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [handleScroll]);
+  }, [setHeader, handleScroll]);
 
   const resetStateOnPathChange = useCallback(() => {
-    setOpenBar(false);
-    setClick(false);
-    setUserVisible(false);
-  }, [setOpenBar, setClick, setUserVisible]);
+    setHeader((prevHeader) => ({
+      ...prevHeader,
+      openBar: false,
+      click: false,
+      userVisible: false,
+    }));
+  }, [setHeader]);
 
   useEffect(() => {
-    if (location.pathname) {
-      resetStateOnPathChange();
-      window.scrollTo(0, 0);
-    }
-  }, [location.pathname, resetStateOnPathChange]);
-
+    pathname && resetStateOnPathChange();
+    pathname && window.scrollTo(0, 0);
+  }, [pathname, resetStateOnPathChange]);
   const handleToggleUser = useCallback(() => {
-    setUserVisible(!userVisible);
-    setClick(false);
-  }, [setUserVisible, userVisible, setClick]);
+    setHeader((prevHeader) => ({
+      ...prevHeader,
+      userVisible: !prevHeader.userVisible,
+      click: false,
+    }));
+  }, [setHeader]);
 
   useEffect(() => {
     const storedImg = localStorage.getItem('img');
@@ -104,31 +98,13 @@ const Header = () => {
     }
   }, [navigate]);
 
-  const handleProfileRef = useRef(null);
-  useEffect(() => {
-    const handleDocumentClick = (event) => {
-      if (
-        handleProfileRef.current &&
-        !handleProfileRef.current.contains(event.target)
-      ) {
-        setUserVisible(false);
-      }
-    };
-
-    document.addEventListener('click', handleDocumentClick);
-
-    return () => {
-      document.removeEventListener('click', handleDocumentClick);
-    };
-  }, [setUserVisible]);
-
   return (
     <>
       <header
         className={
-          location.pathname === '/' &&  location.pathname === '/about'
-          ? `sticky-header ${scrolled ? 'fixed-header' : ''} `
-          : `sticky-another ${scrolled ? 'fixed-header' : ''} `
+          pathname === '/' && pathname === '/about'
+            ? `sticky-header ${header?.scrolled ? 'fixed-header' : ''} `
+            : `sticky-another ${header?.scrolled ? 'fixed-header' : ''} `
         }>
         <div className="container">
           <nav className="navbar-wrapper">
@@ -138,52 +114,25 @@ const Header = () => {
             <div className="right-side">
               <ul className="nav-list">
                 <li>
-                  <Link
-                    to="/"
-                   >
-                    Home
-                  </Link>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link
-                    to="/about"
-                   >
-                    About
-                  </Link>
+                  <Link to="/about">About</Link>
                 </li>
                 <li>
-                  <Link
-                    to="/hotels"
-                    >
-                    Hotel
-                  </Link>
+                  <Link to="/hotels">Hotel</Link>
                 </li>
                 <li>
-                  <Link
-                    to="#"
-                   >
-                    Tours
-                  </Link>
+                  <Link to="#">Tours</Link>
                 </li>
                 <li>
-                  <Link
-                    to="/entertainments"
-                   >
-                    Entertainments
-                  </Link>
+                  <Link to="/entertainments">Entertainments</Link>
                 </li>
                 <li>
-                  <Link
-                    to="/blog"
-                    >
-                    Blog
-                  </Link>
+                  <Link to="/blog">Blog</Link>
                 </li>
                 <li className="nav-item">
-                  <Link
-                    className="nav-link"
-                    to="#"
-                   >
+                  <Link className="nav-link" to="#">
                     Rental <FaAngleDown />
                   </Link>
                   <ul className="sub-menu">
@@ -202,10 +151,10 @@ const Header = () => {
               <div className="user-login">
                 {user ? (
                   <div className="login-avatar">
-                    <button onClick={handleToggleUser} ref={handleProfileRef}>
+                    <button onClick={handleToggleUser}>
                       <img src={user} alt="" />
                     </button>
-                    {userVisible && (
+                    {header.userVisible && (
                       <ul className="user-info">
                         <li>
                           <Link to={`/user-profile/${data.username}`}>
@@ -226,16 +175,15 @@ const Header = () => {
               </div>
               <div className="hamburger">
                 <button onClick={handleOpen}>
-                  {openBar ? <AiOutlineClose /> : <RiMenu2Line />}
+                  {header.openBar ? <AiOutlineClose /> : <RiMenu2Line />}
                 </button>
               </div>
             </div>
           </nav>
         </div>
       </header>
-      <SideBar />
+      <MemoizedSideBar />
     </>
   );
 };
-
-export default Header;
+export default React.memo(Header);

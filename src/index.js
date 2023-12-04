@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom/client';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
-import "./reset.css"
+import './reset.css';
 import './index.scss';
 import ContextApi from './utils/ContextApi';
 import App from './App';
+import SearchContextProvider from './utils/SearchContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <ContextApi>
+  <ContextApi>
+    <SearchContextProvider>
       <App />
-    </ContextApi>
+    </SearchContextProvider>
+  </ContextApi>
 );

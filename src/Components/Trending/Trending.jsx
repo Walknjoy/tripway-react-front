@@ -5,7 +5,7 @@ import TrendingCard from './TrendingCard/TrendingCard';
 import useFetch from '../../hooks/useFetch';
 import SectionTitle from '../SectionTitle/SectionTitle';
 const Trending = () => {
-  const [endPoint, setEndPoint] = useState('cars');
+  const [endPoint, setEndPoint] = useState('hotels');
   const { data, loading } = useFetch(`/${endPoint}`);
   const onTabChange = (tab) => {
     setEndPoint(tab);

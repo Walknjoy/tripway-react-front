@@ -25,7 +25,7 @@ const useFetch = (url) => {
         const res = await axios.get(url);
         setData(res.data);
       } catch (err) {
-        setError(err.response.data.error.error);
+        setError(err.error);
       } finally {
         setLoading(false);
       }
@@ -33,7 +33,10 @@ const useFetch = (url) => {
     fetchData();
   }, [url]);
 
-  return useMemo(() => ({ data, loading, error, reFetch }), [data, loading, error, reFetch]);
+  return useMemo(
+    () => ({ data, loading, error, reFetch }),
+    [data, loading, error, reFetch]
+  );
 };
 
 export default useFetch;

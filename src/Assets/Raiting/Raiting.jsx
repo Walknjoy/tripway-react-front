@@ -20,7 +20,7 @@ const Raiting = ({ stars, reviews }) => {
   return (
     <div className="raiting_star">
       {RaitingStar}
-      <span>({reviews} review)</span>
+      {reviews ? <span>({reviews} review)</span> : <></>}
     </div>
   );
 };
