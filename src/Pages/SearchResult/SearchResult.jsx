@@ -4,14 +4,12 @@ import SearchPageRight from './SearchPageRight/SearchPageRight';
 import SideBarSearch from './SideBarSearch/SideBarSearch';
 import { useLocation,  } from 'react-router-dom';
 import BreadCrumb from '../../Assets/BreadCrumbs/BreadCrumb';
-import { useContext, useEffect } from 'react';
+import { useContext,  } from 'react';
 import { SearchContext } from '../../utils/SearchContext';
 
 const SearchResult = () => { 
   const { pathname } = useLocation();
   const { filteredList } = useContext(SearchContext);
- 
-  console.log(filteredList);
   return (
     <>
       <main id={pathname === '/search' ? 'main' : ''}>

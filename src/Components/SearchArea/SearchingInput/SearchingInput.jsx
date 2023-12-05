@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { mainContext } from '../../../utils/ContextApi';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './SearchingInput.scss';
@@ -11,11 +11,9 @@ import { GrMapLocation } from 'react-icons/gr';
 import { BsCalendarDate } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../../utils/SearchContext';
-import useFetch from '../../../hooks/useFetch';
 const SearchingInput = () => {
   const { options, setOptions, activeTab } = useContext(mainContext);
   const { searchDispatch } = useContext(SearchContext);
-  const { data, reFetch } = useFetch(`/${activeTab}`);
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -42,21 +40,11 @@ const SearchingInput = () => {
     });
   };
 
-  const cityFilter = data?.filter((cities) => cities?.city?.includes(city));
-
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!city) return;
 
     try {
-      // Assuming reFetch is an asynchronous function
-      await reFetch();
-
-      searchDispatch({
-        type: 'new_search',
-        payload: { city: city, dates, options, filteredList: cityFilter },
-      });
-
       const newqueryParams = new URLSearchParams();
       newqueryParams.set('city', city);
       newqueryParams.set('rooms', options.room);
@@ -65,20 +53,17 @@ const SearchingInput = () => {
       newqueryParams.set('featured', 'true');
       newqueryParams.set('guests', Number(options.children + options.adult));
 
-      // Assuming navigate is a synchronous function
       navigate(`/search/${activeTab}?${newqueryParams.toString()}`, {
         state: { city: city, dates, options },
       });
+      searchDispatch({
+        type: 'new_search',
+        payload: { city: city, dates, options },
+      });
     } catch (error) {
       console.error('Error during handleSearch:', error);
-      // Handle the error appropriately, e.g., show an error message
     }
   };
-
-  useEffect(() => {
-    // Assuming reFetch is a dependency and reFetch is a function
-    reFetch();
-  }, [reFetch]);
 
   return (
     <div className="all-searching-fields">
