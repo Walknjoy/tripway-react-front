@@ -26,8 +26,8 @@ const GridCard = ({ products }) => {
             <div className="grid_card_wrapper">
               <figure className="grid_card_image">
                 <LazyLoadImg
-                  src="https://cf.bstatic.com/xdata/images/hotel/square200/481507081.webp?k=7222326b25b24e0b65a8e684f9637c98afde3e22ffc85e7bd098ece033b1d73b&o="
-                  alt=""
+                  src={element.logo}
+                  alt={element?.name}
                   width="200px"
                   height="200px"
                 />

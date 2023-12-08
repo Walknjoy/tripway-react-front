@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './FiltersArea.scss';
 import StarRatingSearch from './StarRatingSearch/StarRatingSearch';
 import PriceRangeSearch from './PriceRangeSearch/PriceRangeSearch';
+import GuestRatingSearch from './GuestRatingSearch/GuestRatingSearch';
 const FiltersArea = () => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const handleClick = (index) => {
@@ -10,6 +11,7 @@ const FiltersArea = () => {
   return (
     <div className="filters_card_areas">
       <StarRatingSearch handleClick={handleClick} activeIndex={activeIndex} />
+      <GuestRatingSearch handleClick={handleClick} activeIndex={activeIndex} />
       <PriceRangeSearch   handleClick={handleClick} activeIndex={activeIndex} />
     </div>
   );

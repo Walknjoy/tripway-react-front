@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './PriceRangeSearch.scss';
 import { FaAngleDown } from 'react-icons/fa';
 import Slider from 'react-slider';
@@ -14,11 +14,10 @@ const PriceRangeSearch = () => {
   const { searchDispatch } = useContext(SearchContext);
   const navigate = useNavigate();
   const { search } = useLocation();
-
   const { data } = useFetch(
     `/${type}?city=${state.city}&${
-      state.price ? `&min=${state.price[0]}&max=${state.price[1]}` : ''
-    }`
+      state.price ? `min=${state.price[0]}&max=${state.price[1]}` : ''
+    }&${state?.byRating > 0 ? `stars=${state.byRating}` : ''}`
   );
 
   useEffect(() => {
@@ -30,35 +29,32 @@ const PriceRangeSearch = () => {
     });
   }, [searchDispatch, data]);
 
-  const handleFilterPrice = useCallback(
-    async (e) => {
-      e.preventDefault();
+  const handleFilterPrice = (e) => {
+    e.preventDefault();
 
-      try {
-        searchDispatch({
-          type: 'new_search',
-          payload: {
-            price: rangeValues,
-            options: state.options,
-          },
-        });
+    try {
+      searchDispatch({
+        type: 'new_search',
+        payload: {
+          price: rangeValues,
+          options: state.options,
+        },
+      });
 
-        const queryParams = new URLSearchParams(search);
-        queryParams.set('min', rangeValues[0]);
-        queryParams.set('max', rangeValues[1]);
+      const queryParams = new URLSearchParams(search);
+      queryParams.set('min', rangeValues[0]);
+      queryParams.set('max', rangeValues[1]);
 
-        navigate(`/search/${type}?${queryParams.toString()}`, {
-          state: {
-            ...state,
-            price: rangeValues,
-          },
-        });
-      } catch (error) {
-        console.log('error', error);
-      }
-    },
-    [navigate, rangeValues, search, searchDispatch, state, type]
-  );
+      navigate(`/search/${type}?${queryParams.toString()}`, {
+        state: {
+          ...state,
+          price: rangeValues,
+        },
+      });
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
 
   return (
     <div className="price_range_search">
