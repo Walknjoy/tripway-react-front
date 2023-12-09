@@ -10,7 +10,6 @@ function ContextApi({ children }) {
     scrolled: false,
     activeIndex: false,
   };
-
   const [header, setHeader] = useState(initialState);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);

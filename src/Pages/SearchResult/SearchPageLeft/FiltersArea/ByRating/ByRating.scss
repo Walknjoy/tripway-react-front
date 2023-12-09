@@ -1,0 +1,12 @@
+@import '../../../../../css-config/mixins.scss';
+.inside_rating {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 20px 0;
+  color: rgb(255, 102, 0);
+svg{
+    width: 20px;
+    height: 20px;
+}
+}

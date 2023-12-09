@@ -1,46 +1,48 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 import './StarRatingSearch.scss';
-import Raiting from '../../../../../Assets/Raiting/Raiting';
+import ByRating from '../ByRating/ByRating';
+import { SearchContext } from '../../../../../utils/SearchContext';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 const StarRatingSearch = () => {
+  const { searchDispatch, searchState } = useContext(SearchContext);
+  const { byRating } = searchState;
+  const { type } = useParams();
+  const navigate = useNavigate();
+  const { search, state } = useLocation();
+  const handleClick = (star) => {
+    const queryParams = new URLSearchParams(search);
+    const newRating = star + 1;
+    const updatedRating = state.byRating === newRating ? 0 : newRating;
+
+    queryParams.set('gold_star_rating', updatedRating);
+    searchDispatch({
+      type: 'filter_by_rating',
+      payload: updatedRating,
+    });
+
+    navigate(`/search/${type}?${queryParams.toString()}`, {
+      state: {
+        city: state.city,
+        dates: state.dates,
+        options: state.options,
+        byRating: updatedRating,
+      },
+    });
+  };
+
   return (
     <div className="star_rating_area">
       <button type="button">
-        <span>Star rating</span>
+        <span>Guest rating</span>
         <FaAngleDown />
       </button>
-      <ul className="star-rating-list">
-        <li>
-          <input type="radio" name="starRating" value="1" id="first" />
-          <label htmlFor="first">
-            <Raiting stars={1} />
-          </label>
-        </li>
-        <li>
-          <input type="radio" name="starRating" value="2" id="second" />
-          <label htmlFor="second">
-            <Raiting stars={2} />
-          </label>
-        </li>
-        <li>
-          <input type="radio" name="starRating" value="3" id="third" />
-          <label htmlFor="third">
-            <Raiting stars={3} />
-          </label>
-        </li>
-        <li>
-          <input type="radio" name="starRating" value="4" id="fourth" />
-          <label htmlFor="fourth">
-            <Raiting stars={4} />
-          </label>
-        </li>
-        <li>
-          <input type="radio" name="starRating" value="5" id="fifth" />
-          <label htmlFor="fifth">
-            <Raiting stars={5} />
-          </label>
-        </li>
-      </ul>
+      <ByRating
+        rating={byRating}
+        onClick={handleClick}
+        style={{ cursor: 'pointer' }}
+        state={state}
+      />
     </div>
   );
 };

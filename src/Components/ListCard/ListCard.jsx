@@ -1,10 +1,10 @@
- import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link, useLocation } from 'react-router-dom';
 import Raiting from '../../Assets/Raiting/Raiting.jsx';
-import './ListCard.scss'; 
+import './ListCard.scss';
 
 const ListCard = ({ products }) => {
-  const {state}=useLocation() 
+  const { state } = useLocation();
   const guests = parseInt(state.options.adult + state.options.children);
   const rooms = parseInt(state.options.room);
   const startDateString = state.dates[0].startDate;
@@ -28,7 +28,8 @@ const ListCard = ({ products }) => {
                 <LazyLoadImage
                   effect="blur"
                   className="image-transition"
-                  src="https://mytravel.madrasthemes.com/wp-content/uploads/2022/02/img4-2-300x225.jpeg"
+                  src={currElm.logo}
+                  alt={currElm?.name}
                 />
               </figure>
               <article className="card-content">

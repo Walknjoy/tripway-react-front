@@ -10,7 +10,6 @@ import {
   BsSpeedometer2,
 } from 'react-icons/bs';
 const TrendingCard = ({ data, loading, endPoint }) => {
-
   const animatedProps = useSpring({
     opacity: loading ? 0.6 : 1,
     transform: loading ? 'translateY(-2px)' : 'translateY(0px)',
@@ -29,7 +28,8 @@ const TrendingCard = ({ data, loading, endPoint }) => {
                     <LazyLoadImage
                       effect="blur"
                       className="image-transition"
-                      src="https://mytravel.madrasthemes.com/wp-content/uploads/2022/02/img4-2-300x225.jpeg"
+                      src={item?.logo}
+                      alt={item?.name}
                     />
                   </figure>
                   <article className="card-content">

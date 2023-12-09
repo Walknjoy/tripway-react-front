@@ -5,8 +5,8 @@ import { SearchContext } from '../../../../utils/SearchContext';
 import { useParams } from 'react-router-dom';
 const SearchPageGridsCount = () => {
   const { type } = useParams();
-  const { filteredList, city } = useContext(SearchContext);
-  console.log();
+  const { searchState } = useContext(SearchContext);
+  const { filteredList, city } = searchState;
   return (
     <section id="search_page_count_and_gridView">
       <div className="counts">
