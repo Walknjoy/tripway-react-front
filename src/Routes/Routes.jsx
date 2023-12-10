@@ -3,6 +3,7 @@ import MainRoot from '../Layout/MainRoot';
 import MainRootTwo from '../Layout/MainRootTwo';
 import About from '../Pages/About/About';
 import BlogPage from '../Pages/BlogPage/BlogPage';
+import DetailsProduct from '../Pages/DetailsProduct/DetailsProduct';
 import Entertainments from '../Pages/Entertainments/Entertainments';
 import ForgotPassword from '../Pages/ForgotPassword/ForgotPassword';
 import Home from '../Pages/Home/Home';
@@ -92,6 +93,10 @@ export const ROUTES = [
       {
         path: 'blog',
         element: <BlogPage />,
+      },
+      {
+        path: ':type/:name',
+        element: <DetailsProduct />,
       },
     ],
   },

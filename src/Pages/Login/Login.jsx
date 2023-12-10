@@ -45,11 +45,11 @@ const Login = () => {
         });
         navigate('/');
       } else {
-        console.log(res.info.error);
+        toast.error(res.data.error);
         return;
       }
     } catch (error) {
-      toast.error(error.response.data.error.error);
+      toast.error(error);
     }
   };
   return (
@@ -122,7 +122,7 @@ const Login = () => {
                     </div>
                   </div>
                   <div className="col-12">
-                    <button className="google-login" type='button'>
+                    <button className="google-login" type="button">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         preserveAspectRatio="xMidYMid"

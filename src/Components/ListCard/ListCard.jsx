@@ -1,5 +1,5 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import Raiting from '../../Assets/Raiting/Raiting.jsx';
 import './ListCard.scss';
 
@@ -15,14 +15,14 @@ const ListCard = ({ products }) => {
   const timeDifference = endDate.getTime() - startDate.getTime();
 
   const nightCount = Math.ceil(timeDifference / (1000 * 3600 * 24));
-
+  const { type } = useParams();
   return (
     <>
       {products?.map((currElm) => {
         return (
           <div className="col-12 col-lg-4 col-md-6" key={currElm?._id}>
             <Link
-              to={`/singleproducts/${currElm._id}`}
+              to={`/${type}/${currElm.name}`}
               className="trending_card">
               <figure className="card-image">
                 <LazyLoadImage

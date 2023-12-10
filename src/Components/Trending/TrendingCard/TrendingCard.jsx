@@ -16,6 +16,7 @@ const TrendingCard = ({ data, loading, endPoint }) => {
     filter: loading ? 'blur(1px)' : 'blur(0px)',
     config: { duration: 500 },
   });
+
   return (
     <div className="trendingCard">
       <div className="row">
@@ -23,7 +24,7 @@ const TrendingCard = ({ data, loading, endPoint }) => {
           return (
             <div className="col-12 col-lg-3 col-md-4 col-sm-6" key={item?._id}>
               <animated.div style={animatedProps}>
-                <Link to="" className="card">
+                <Link to={`/${endPoint}/${item.name}`} className="card">
                   <figure className="card-image">
                     <LazyLoadImage
                       effect="blur"

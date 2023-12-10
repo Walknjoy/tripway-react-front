@@ -1,7 +1,7 @@
 import './GridCard.scss';
 import LazyLoadImg from '../../Assets/LazyLoadImg';
 import Raiting from '../../Assets/Raiting/Raiting';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { BsDot } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 
@@ -17,7 +17,8 @@ const GridCard = ({ products }) => {
   const timeDifference = endDate.getTime() - startDate.getTime();
 
   const nightCount = Math.ceil(timeDifference / (1000 * 3600 * 24));
-
+  const { type } = useParams();
+  
   return (
     <>
       {products?.map((element) => {
@@ -36,7 +37,9 @@ const GridCard = ({ products }) => {
                 <div className="content_top">
                   <div className="first_line_left">
                     <div className="title_line_top">
-                      <h3>{element?.name}</h3>
+                      <Link to={`/${type}/${element.name}`}>
+                        {element?.name}
+                      </Link>
                     </div>
                     <div>
                       <Raiting

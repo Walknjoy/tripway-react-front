@@ -6,17 +6,17 @@ const useFetch = (url) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const reFetch = useCallback(async () => {
-    setLoading(true);
-    try {
-      const res = await axios.get(url);
-      setData(res.data);
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  }, [url]);
+  // const reFetch = useCallback(async () => {
+  //   setLoading(true);
+  //   try {
+  //     const res = await axios.get(url);
+  //     setData(res.data);
+  //   } catch (err) {
+  //     setError(err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, [url]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,10 +33,7 @@ const useFetch = (url) => {
     fetchData();
   }, [url]);
 
-  return useMemo(
-    () => ({ data, loading, error, reFetch }),
-    [data, loading, error, reFetch]
-  );
+  return { data, loading, error };
 };
 
 export default useFetch;
