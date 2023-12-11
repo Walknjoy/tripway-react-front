@@ -1,29 +1,33 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import Raiting from '../../Assets/Raiting/Raiting.jsx';
 import './ListCard.scss';
 
 const ListCard = ({ products }) => {
-  const { state } = useLocation();
-  const guests = parseInt(state.options.adult + state.options.children);
-  const rooms = parseInt(state.options.room);
-  const startDateString = state.dates[0].startDate;
-  const endDateString = state.dates[0].endDate;
+  const { search } = useLocation();
+  const searchQuery = new URLSearchParams(search);
+  const guests = parseInt(searchQuery.get('guests')) || 1;
+  const rooms = parseInt(searchQuery.get('rooms')) || 1;
+  const startDateString = searchQuery.get('startDate');
+  const endDateString = searchQuery.get('endDate');
 
-  const startDate = new Date(startDateString);
-  const endDate = new Date(endDateString);
-  const timeDifference = endDate.getTime() - startDate.getTime();
+  const parseDateString = (dateString) =>
+    dateString?.split('-')?.reverse()?.join('-');
+    
+  const nightCount = Math.ceil(
+    (new Date(parseDateString(endDateString)) -
+      new Date(parseDateString(startDateString))) /
+      (1000 * 3600 * 24)
+  );
 
-  const nightCount = Math.ceil(timeDifference / (1000 * 3600 * 24));
+  const { type } = useParams();
 
   return (
     <>
       {products?.map((currElm) => {
         return (
           <div className="col-12 col-lg-4 col-md-6" key={currElm?._id}>
-            <Link
-              to={`/singleproducts/${currElm._id}`}
-              className="trending_card">
+            <Link to={`/${type}/${currElm.name}`} className="trending_card">
               <figure className="card-image">
                 <LazyLoadImage
                   effect="blur"
@@ -60,7 +64,7 @@ const ListCard = ({ products }) => {
                     <span>
                       AZN{' '}
                       {currElm.price.toFixed(2) * nightCount * guests * rooms}
-                    </span> // Display the original price
+                    </span>
                   ) : (
                     <>
                       <del>
@@ -87,7 +91,6 @@ const ListCard = ({ products }) => {
                             100
                         ).toFixed(2)}
                       </span>{' '}
-                      {/* Display the discounted price */}
                     </>
                   )}
                 </div>

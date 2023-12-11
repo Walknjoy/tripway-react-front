@@ -1,22 +1,27 @@
 import './GridCard.scss';
 import LazyLoadImg from '../../Assets/LazyLoadImg';
 import Raiting from '../../Assets/Raiting/Raiting';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { BsDot } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 
 const GridCard = ({ products }) => {
-  const { state } = useLocation();
-  const guests = parseInt(state.options.adult + state.options.children);
-  const rooms = parseInt(state.options.room);
-  const startDateString = state.dates[0].startDate;
-  const endDateString = state.dates[0].endDate;
+  const { search } = useLocation();
+  const searchQuery = new URLSearchParams(search);
+  const guests = parseInt(searchQuery.get('guests')) || 1;
+  const rooms = parseInt(searchQuery.get('rooms')) || 1;
+  const startDateString = searchQuery.get('startDate');
+  const endDateString = searchQuery.get('endDate');
 
-  const startDate = new Date(startDateString);
-  const endDate = new Date(endDateString);
-  const timeDifference = endDate.getTime() - startDate.getTime();
+  const parseDateString = (dateString) =>
+    dateString?.split('-')?.reverse()?.join('-');
 
-  const nightCount = Math.ceil(timeDifference / (1000 * 3600 * 24));
+  const nightCount = Math.ceil(
+    (new Date(parseDateString(endDateString)) -
+      new Date(parseDateString(startDateString))) /
+      (1000 * 3600 * 24)
+  );
+  const { type } = useParams();
 
   return (
     <>
@@ -36,7 +41,9 @@ const GridCard = ({ products }) => {
                 <div className="content_top">
                   <div className="first_line_left">
                     <div className="title_line_top">
-                      <h3>{element?.name}</h3>
+                      <Link to={`/${type}/${element.name}`}>
+                        {element?.name}
+                      </Link>
                     </div>
                     <div>
                       <Raiting

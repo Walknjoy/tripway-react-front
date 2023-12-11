@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './LoadingTopBar.scss'; // Importing styles
+import './LoadingTopBar.scss'; 
 import LoadingBar from 'react-top-loading-bar';
 
 const LoadingTopBar = () => {

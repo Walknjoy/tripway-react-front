@@ -30,7 +30,7 @@ const BreadCrumb = () => {
                   <Link to={match.pathname}>
                     {match.pathname === '/'
                       ? 'Home'
-                      : breadcrumb.props.children}{' '}
+                      : breadcrumb.props.children}
                     <FaAngleRight />
                   </Link>
                 )}

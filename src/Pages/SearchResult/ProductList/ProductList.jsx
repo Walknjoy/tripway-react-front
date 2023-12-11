@@ -7,7 +7,7 @@ import { SearchContext } from '../../../utils/SearchContext';
 const ProductList = () => {
   const { grid } = useContext(mainContext);
   const { searchState } = useContext(SearchContext);
-  const { filteredList } = searchState;
+  const {filteredList} = searchState ;
   if (grid === false) {
     return <ListCard products={filteredList} />;
   }
