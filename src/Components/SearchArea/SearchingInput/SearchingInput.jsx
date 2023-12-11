@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { mainContext } from '../../../utils/ContextApi';
-import { useContext, useState } from 'react';
+import { useContext,   useState } from 'react';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import './SearchingInput.scss';
@@ -9,11 +9,9 @@ import { format } from 'date-fns';
 import { BiSearch } from 'react-icons/bi';
 import { GrMapLocation } from 'react-icons/gr';
 import { BsCalendarDate } from 'react-icons/bs';
-import { useNavigate } from 'react-router-dom';
-import { SearchContext } from '../../../utils/SearchContext';
+import { useNavigate } from 'react-router-dom'; 
 const SearchingInput = () => {
-  const { options, setOptions, activeTab } = useContext(mainContext);
-  const { searchDispatch } = useContext(SearchContext);
+  const { options, setOptions, activeTab } = useContext(mainContext); 
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -50,21 +48,16 @@ const SearchingInput = () => {
       newqueryParams.set('rooms', options.room);
       newqueryParams.set('startDate', format(dates[0].startDate, 'dd-MM-yyyy'));
       newqueryParams.set('endDate', format(dates[0].endDate, 'dd-MM-yyyy'));
-      newqueryParams.set('featured', 'true');
       newqueryParams.set('guests', Number(options.children + options.adult));
 
-      navigate(`/search/${activeTab}?${newqueryParams.toString()}`, {
-        state: { city: city, dates, options },
-      });
-      searchDispatch({
-        type: 'new_search',
-        payload: { city: city, dates, options },
-      });
+     
+      navigate(`/search/hotels?${newqueryParams.toString()}`);
+     
     } catch (error) {
       console.error('Error during handleSearch:', error);
     }
   };
-
+ 
   return (
     <div className="all-searching-fields">
       <motion.div

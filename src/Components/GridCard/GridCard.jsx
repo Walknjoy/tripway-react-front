@@ -6,19 +6,23 @@ import { BsDot } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 
 const GridCard = ({ products }) => {
-  const { state } = useLocation();
-  const guests = parseInt(state.options.adult + state.options.children);
-  const rooms = parseInt(state.options.room);
-  const startDateString = state.dates[0].startDate;
-  const endDateString = state.dates[0].endDate;
+  const { search } = useLocation();
+  const searchQuery = new URLSearchParams(search);
+  const guests = parseInt(searchQuery.get('guests')) || 1;
+  const rooms = parseInt(searchQuery.get('rooms')) || 1;
+  const startDateString = searchQuery.get('startDate');
+  const endDateString = searchQuery.get('endDate');
 
-  const startDate = new Date(startDateString);
-  const endDate = new Date(endDateString);
-  const timeDifference = endDate.getTime() - startDate.getTime();
+  const parseDateString = (dateString) =>
+    dateString?.split('-')?.reverse()?.join('-');
 
-  const nightCount = Math.ceil(timeDifference / (1000 * 3600 * 24));
+  const nightCount = Math.ceil(
+    (new Date(parseDateString(endDateString)) -
+      new Date(parseDateString(startDateString))) /
+      (1000 * 3600 * 24)
+  );
   const { type } = useParams();
-  
+
   return (
     <>
       {products?.map((element) => {

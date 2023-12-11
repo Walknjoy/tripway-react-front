@@ -2,15 +2,41 @@ import './SearchResult.scss';
 import SearchPageLeft from './SearchPageLeft/SearchPageLeft';
 import SearchPageRight from './SearchPageRight/SearchPageRight';
 import SideBarSearch from './SideBarSearch/SideBarSearch';
-import { useLocation } from 'react-router-dom';
 import BreadCrumb from '../../Assets/BreadCrumbs/BreadCrumb';
 import { useContext, useEffect } from 'react';
 import { SearchContext } from '../../utils/SearchContext';
-
+import { useLocation, useParams } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
 const SearchResult = () => {
   const { pathname, search } = useLocation();
-  const { searchState } = useContext(SearchContext);
+  const { searchState, searchDispatch } = useContext(SearchContext);
   const { filteredList } = searchState;
+  console.log(filteredList);
+  const newqueryParams = new URLSearchParams(search);
+  const { type } = useParams();
+  const city = newqueryParams.get('city');
+  const min = newqueryParams.get('min') || 0;
+  const max = newqueryParams.get('max') || 1500;
+  const guestRating = newqueryParams.get('guestRating') || 0;
+  const starRating = newqueryParams.get('starRating') || 0;
+
+  const link = `/${type ? type : ''}?${city ? `city=${city}` : ''}${
+    min ? `&min=${min}` : ''
+  }${max ? `&max=${max}` : ''}${starRating > 0 ? `&stars=${starRating}` : ''}
+   ${guestRating > 0 ? `&guest_rating=${guestRating}` : ''} `;
+
+  const { data, loading } = useFetch(link);
+
+  useEffect(() => {
+    if (!loading) {
+      searchDispatch({
+        type: 'new_search',
+        payload: {
+          filteredList: data || [],
+        },
+      });
+    }
+  }, [searchDispatch, data, loading]);
   useEffect(() => {
     search && window.scrollTo(0, 0);
   }, [search]);
