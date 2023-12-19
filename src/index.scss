@@ -1,5 +1,5 @@
 @import './css-config/mixins.scss';
-
+@import './Inter/font.css';
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -7,7 +7,6 @@ body {
   line-height: 1.5;
   font-family: 'Inter', sans-serif;
   font-style: normal;
-  @import './Inter/font.css';
   font-weight: 400;
   &.no-scroll {
     overflow: hidden;

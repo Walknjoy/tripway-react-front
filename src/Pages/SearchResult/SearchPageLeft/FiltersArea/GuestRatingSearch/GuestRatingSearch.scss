@@ -1,5 +1,5 @@
 @import '../../../../../css-config/mixins.scss';
-.star_rating_area {
+.guest_rating_area {
   width: 100%;
   max-height: fit-content;
   transition: all 0.2s ease-in-out;
@@ -9,6 +9,9 @@
     border: none;
     width: 100%;
     height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background: transparent;
     font-size: 1.063rem;
     color: #3b444f;

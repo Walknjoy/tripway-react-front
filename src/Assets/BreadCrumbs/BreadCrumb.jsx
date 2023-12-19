@@ -24,13 +24,13 @@ const BreadCrumb = () => {
                     }>
                     {match.pathname === '/'
                       ? 'Home'
-                      : breadcrumb.props.children}
+                      : breadcrumb.props.children.replace(/%20/g, " ")}
                   </span>
                 ) : (
                   <Link to={match.pathname}>
                     {match.pathname === '/'
                       ? 'Home'
-                      : breadcrumb.props.children}
+                      : breadcrumb.props.children.replace(/%20/g, " ")}
                     <FaAngleRight />
                   </Link>
                 )}

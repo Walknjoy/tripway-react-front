@@ -1,0 +1,44 @@
+@import '../../css-config/mixins.scss';
+.star-rating {
+  margin-bottom: 1rem;
+  padding-left: 1.813rem;
+  position: relative !important;
+  display: block;
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 1.313rem;
+    height: 1.313rem;
+    pointer-events: none;
+    content: '';
+    background-color: #fff;
+    border: #ebf0f7 solid 2px;
+    cursor: pointer;
+  }
+  &.active {
+    &:after {
+      position: absolute;
+      top: 0.0935rem;
+      left: 0rem;
+      display: block;
+      width: 1.313rem;
+      height: 1.313rem;
+      content: '';
+      box-shadow: 0 0 0 0 transparent;
+      color: #fff;
+      border-color: #297cbb;
+      background-color: #297cbb !important;
+      background: no-repeat 50% / 50% 50%;
+      background-image: url('../../Media/svg-images/download.svg');
+    }
+  }
+  .outer-layer {
+    @include flex();
+    gap: 5px;
+    color: #b0d12b;
+    letter-spacing: 0.188rem;
+    font-size: 16px;
+  }
+}
