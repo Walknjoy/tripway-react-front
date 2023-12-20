@@ -10,8 +10,7 @@ import useFetch from '../../hooks/useFetch';
 const SearchResult = () => {
   const { pathname, search } = useLocation();
   const { searchState, searchDispatch } = useContext(SearchContext);
-  const { filteredList } = searchState;
-  console.log(filteredList);
+  const { filteredList } = searchState;  
   const newqueryParams = new URLSearchParams(search);
   const { type } = useParams();
   const city = newqueryParams.get('city');
@@ -23,7 +22,7 @@ const SearchResult = () => {
     min ? `&min=${min}` : ''
   }${max ? `&max=${max}` : ''}${starRating > 0 ? `&stars=${starRating}` : ''}
    ${guest_rating > 0 ? `&rating=${guest_rating}` : ''} `;
-
+console.log(link);
   const { data, loading } = useFetch(link); 
   useEffect(() => {
     if (!loading) {
