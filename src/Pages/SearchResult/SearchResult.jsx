@@ -10,23 +10,20 @@ import useFetch from '../../hooks/useFetch';
 const SearchResult = () => {
   const { pathname, search } = useLocation();
   const { searchState, searchDispatch } = useContext(SearchContext);
-  const { filteredList } = searchState;
-  console.log(filteredList);
+  const { filteredList } = searchState;  
   const newqueryParams = new URLSearchParams(search);
   const { type } = useParams();
   const city = newqueryParams.get('city');
   const min = newqueryParams.get('min') || 0;
   const max = newqueryParams.get('max') || 1500;
-  const guestRating = newqueryParams.get('guestRating') || 0;
-  const starRating = newqueryParams.get('starRating') || 0;
-
+  const starRating = newqueryParams.get('stars') || 0;
+  const guest_rating = newqueryParams.get('rating') || 0;
   const link = `/${type ? type : ''}?${city ? `city=${city}` : ''}${
     min ? `&min=${min}` : ''
   }${max ? `&max=${max}` : ''}${starRating > 0 ? `&stars=${starRating}` : ''}
-   ${guestRating > 0 ? `&guest_rating=${guestRating}` : ''} `;
-
-  const { data, loading } = useFetch(link);
-
+   ${guest_rating > 0 ? `&rating=${guest_rating}` : ''} `;
+console.log(link);
+  const { data, loading } = useFetch(link); 
   useEffect(() => {
     if (!loading) {
       searchDispatch({
